@@ -1,0 +1,45 @@
+
+$gll-navbar-bg: var(--gll-navbar-bg);
+$gll-navbar-border-bottom: var(--gll-navbar-border-bottom);
+$gll-navbar-usermenu-item-bg: var(--gll-navbar-usermenu-item-bg);
+
+.gll-navbar {
+  background-color: $gll-navbar-bg;
+  font-size: 12px;
+  padding: 0 10px;
+  border-bottom: $gll-navbar-border-bottom;
+
+  .dropdown-toggle:after {
+    display: none;
+  }
+
+  .gll-user-menu {
+    margin-top: 6px;
+    border-radius: 3px;
+
+    button {
+      border-radius: 0;
+
+      &:hover {
+        background: $gll-navbar-usermenu-item-bg;
+      }
+    }
+
+  }
+
+  .gll-avatar {
+    display: inline flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50em;
+    width: 36px;
+    height: 36px;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 50em;
+    }
+  }
+}

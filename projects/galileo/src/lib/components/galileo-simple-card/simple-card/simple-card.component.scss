@@ -1,0 +1,23 @@
+$gll-simple-card-title-fs: var(--gll-simple-card-title);
+$gll-simple-card-subtitle-fs: var(--gll-simple-card-subtitle);
+$gll-simple-card-bg: var(--gll-simple-card-bg);
+$gll-simple-card-color: var(--gll-simple-card-color);
+
+
+.gll-simple-card {
+  background: $gll-simple-card-bg;
+  color: $gll-simple-card-color;
+
+  &:hover {
+    //  background: alpha($gll-simple-card-bg, 0.2);
+  }
+
+  .title {
+    font-weight: bold;
+    font-size: $gll-simple-card-title-fs;
+  }
+
+  .subtitle {
+    font-size: $gll-simple-card-subtitle-fs;
+  }
+}

@@ -1,0 +1,43 @@
+.my-auto {
+  margin: auto;
+  text-align: center;
+}
+
+.forgot-password__image {
+  width: 125px;
+  margin: 0 auto 20px auto;
+}
+.forgot-password__container {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.forgot-password__container form {
+  min-height: 490px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.forgot-password__logo {
+  max-width: 285px;
+  max-height: 100px;
+  margin-top: 30px;
+}
+
+.forgot-password__disabled {
+  cursor: not-allowed;
+}
+
+.forgot-password__disclaimer {
+  width: calc(100% - 20px);
+  padding-right: 10px;
+  margin-top: 13px;
+  text-align: right;
+}
+
+.forgot-password__disclaimer:hover {
+  opacity: .5;
+  cursor: pointer;
+}
+

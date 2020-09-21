@@ -1,0 +1,38 @@
+$gll-sign-in-form-box-shadow: var(--gll-sign-in-form-box-shadow);
+
+.sign-in__container {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 10px;
+
+  form {
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: $gll-sign-in-form-box-shadow;
+  }
+
+}
+
+.sign-in__container form {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.sign-in__forgot {
+  cursor: pointer;
+}
+
+.sign-in__logo {
+  margin-top: 30px;
+  max-width: 285px;
+  max-height: 100px;
+}
+
+.sign-in__forgot:hover {
+  opacity: .5;
+}
+
+.sign-in__disabled {
+  cursor: not-allowed;
+}

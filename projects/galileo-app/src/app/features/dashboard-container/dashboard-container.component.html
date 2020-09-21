@@ -1,0 +1,26 @@
+<div style="height: 100vh">
+  <gll-dashboard-layout
+    [dockSizePx]="50"
+    [navbarHeightPx]="50"
+    [breadcrumbs]="breadcrumbs"
+    [sideBarOpened]="sidebarOpened"
+    [brandSrc]="'../assets/images/galileo_logo.png'"
+    (toggleSideBar)="onToggleSidebar($event)">
+    <div *gllDlSidebar="let sideBarOpened">
+      <gll-sidebar
+        [sideBarOpened]="sideBarOpened"
+        [sidebarItemsGroups]="sidebarItemsGroups"
+        (itemClick)="omSidebarItemClick($event)">
+      </gll-sidebar>
+    </div>
+    <div class="h-100" *gllDlNavbar>
+      <gll-nav-bar class="h-100"
+                   [navbarHeightPx]="50"
+                   [fixedTop]="false"
+                   [userMenuItems]="userMenuItems"
+                   [avatarImageSrc]="'../assets/images/avatar.png'"
+                   (userMenuItemClick)="onUserMenuItemClick($event)">
+      </gll-nav-bar>
+    </div>
+  </gll-dashboard-layout>
+</div>

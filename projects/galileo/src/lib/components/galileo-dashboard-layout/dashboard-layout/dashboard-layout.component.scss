@@ -1,0 +1,31 @@
+$gll-sidenav-toggler-bg: var(--gll-sidenav-toggler-bg);
+$gll-sidenav-toggler-color: var(--gll-sidenav-toggler-color);
+$gll-hover-transition-effect: var(--gll-hover-transition-effect);
+$gll-dashboard-content-bg: var(--gll-dashboard-content-bg);
+$gll-sidenav-background: var(--gll-sidenav-background);
+$gll-sidenav-brand-bg: var(--gll-sidenav-brand-bg);
+.dashboard-container {
+  background: $gll-dashboard-content-bg;
+}
+
+.dl-sidenav {
+  background: $gll-sidenav-background;
+}
+
+.dl-brand {
+  background: $gll-sidenav-brand-bg;
+  img {
+    height: calc(100% - 25px);
+  }
+}
+
+.dl-sidenav-toggler {
+  background: $gll-sidenav-toggler-bg;
+  color: $gll-sidenav-toggler-color;
+  transition: all $gll-hover-transition-effect;
+
+  &:hover {
+    background: hsl($gll-sidenav-toggler-bg, 5%);
+    color: hsl($gll-sidenav-toggler-color, 5%);
+  }
+}

@@ -1,0 +1,44 @@
+<ng-sidebar-container>
+  <ng-sidebar
+    [(opened)]="sideBarOpened"
+    [mode]="'push'"
+    [dock]="true"
+    [dockedSize]="dockSizePx + 'px'">
+    <div [ngStyle]="{'height': navbarHeightPx+'px'}"
+         class="dl-brand d-flex justify-content-center align-items-center">
+      <img [src]="brandSrc">
+    </div>
+    <div class="dl-sidenav" [style.height]="getSideNavHeight()">
+      <ng-container
+        *ngTemplateOutlet="dlSidebarTemplate; context: {$implicit: sideBarOpened}">
+      </ng-container>
+    </div>
+
+    <a (click)="toggleOpened()" class="list-group-item list-group-item-action d-flex align-items-center cursor-pointer
+        dl-sidenav-toggler"
+       [ngStyle]="{'height': navbarHeightPx+'px'}">
+
+      <div class="d-flex w-100 justify-content-end">
+        <fa-icon [icon]="['fas', sideBarOpened ? 'angle-double-left' : 'angle-double-right']"></fa-icon>
+      </div>
+    </a>
+
+  </ng-sidebar>
+
+  <div ng-sidebar-content>
+    <header>
+      <ng-container
+        *ngTemplateOutlet="dlNavbarTemplate; context: {$implicit: sideBarOpened}">
+      </ng-container>
+    </header>
+    <section [style.height]="getDashboardContentHeight()" class="dashboard-container overflow-auto">
+      <!--
+      //TODO evaluate if overflow-auto is correct
+      -->
+      <gll-breadcrumb *ngIf="breadcrumbs !== null" [breadcrumbs]="breadcrumbs"></gll-breadcrumb>
+      <div class="p-2 mt-1">
+        <router-outlet></router-outlet>
+      </div>
+    </section>
+  </div>
+</ng-sidebar-container>

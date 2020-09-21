@@ -1,0 +1,180 @@
+<div class="d-flex align-items-center
+align-items-center d-flex flex-column justify-content-center forgot-password__container" [ngSwitch]="step">
+  <form *ngSwitchCase="enumForgotStep.SEND_MAIL"
+        [formGroup]="forgotRequestForm"
+        (validSubmit)="onForgotRequestFormSubmit()"
+        class="align-self-center">
+
+    <div class="row forgot-password__header">
+      <div class="col-10 offset-1 d-flex justify-content-center text-primary mb-2" *ngIf="logo">
+        <img [src]="logo" alt="" class="forgot-password__logo"/>
+      </div>
+      <div class="col-10 offset-1 d-flex justify-content-center text-primary" *ngIf="title">
+        <h2>{{title}}</h2>
+      </div>
+      <div class="col-10 offset-1 d-flex justify-content-center text-primary" *ngIf="subtitle && showSignupHeader">
+        <p>{{subtitle}}</p>
+      </div>
+    </div>
+
+    <!--Domain-->
+    <div class="row-cols-6 mt-1 d-flex justify-content-center" *ngIf="domainLabel">
+      <div class="col-10">
+        <label for="domain1" class="text-secondary">{{domainLabel}}</label>
+        <input id="domain1" class="form-control" type="text" formControlName="domain">
+      </div>
+    </div>
+
+    <!--Username-->
+    <div class="row-cols-6 mt-1 d-flex justify-content-center" *ngIf="usernameLabel">
+      <div class="col-10">
+        <label for="username1" class="text-secondary">{{usernameLabel}}</label>
+        <input id="username1" class="form-control" type="text" formControlName="username">
+      </div>
+    </div>
+
+    <div class="mt-4 d-flex justify-content-center align-items-center" *ngIf="cancelLabel">
+      <!--Cancel-->
+      <div class="col-5 d-flex justify-content-center">
+        <button class="col-12 btn btn-secondary" type="button" (click)="cancel()">{{cancelLabel}}</button>
+      </div>
+
+      <!--Send Request Label-->
+      <div class="col-5 d-flex justify-content-center">
+        <button class="col-12 btn btn-primary" type="submit"
+                [ngClass]="{'forgot-password__disabled': forgotRequestForm.invalid }"
+                [disabled]="forgotRequestForm.invalid">{{sendRequestLabel}}
+        </button>
+      </div>
+    </div>
+
+  </form>
+
+  <form *ngSwitchCase="enumForgotStep.SEND_UPDATE"
+        [formGroup]="passwordChangeRequestForm"
+        (validSubmit)="onForgotChangeFormSubmit()"
+        class="align-self-center">
+
+    <div class="row forgot-password__header">
+      <div class="col-10 offset-1 d-flex justify-content-center text-primary mb-2" *ngIf="logo">
+        <img [src]="logo" alt="" class="forgot-password__logo"/>
+      </div>
+      <div class="col-10 offset-1 d-flex justify-content-center text-primary" *ngIf="title">
+        <h2>{{title}}</h2>
+      </div>
+      <div class="col-10 offset-1 d-flex justify-content-center text-primary" *ngIf="subtitle && showSignupHeader">
+        <p>{{subtitle}}</p>
+      </div>
+    </div>
+
+    <!--Domain-->
+    <div class="row-cols-6 mt-1 d-flex justify-content-center" *ngIf="domainLabel">
+      <div class="col-10">
+        <label for="domain2" class="text-secondary">{{domainLabel}}</label>
+        <input id="domain2" readonly class="form-control" type="text" formControlName="domain">
+      </div>
+    </div>
+
+    <!--Username-->
+    <div class="row-cols-6 mt-1 d-flex justify-content-center" *ngIf="usernameLabel">
+      <div class="col-10">
+        <label for="username2" class="text-secondary">{{usernameLabel}}</label>
+        <input id="username2" readonly class="form-control" type="text" formControlName="username">
+      </div>
+    </div>
+
+    <!--Code-->
+    <div class="row-cols-6 mt-1 d-flex justify-content-center" *ngIf="codeLabel">
+      <div class="col-10">
+        <label for="code" class="text-secondary">{{codeLabel}}</label>
+        <input id="code" class="form-control" type="text" formControlName="code">
+      </div>
+    </div>
+
+    <!--Password-->
+    <div class="row-cols-6 mt-1 d-flex justify-content-center" *ngIf="passwordLabel">
+      <div class="col-10">
+        <label for="password" class="text-secondary">{{passwordLabel}}</label>
+      </div>
+    </div>
+    <div class="row-cols-6 d-flex justify-content-center" *ngIf="passwordLabel">
+      <div class="col-10 d-flex align-items-center">
+        <div class="input-group">
+          <input id="password" class="col-10 form-control" [type]="passwordInputState.inputType"
+                 formControlName="password">
+          <div class="col-2 input-group-append m-0 p-0">
+            <button class="btn btn-block btn-outline-secondary d-flex justify-content-center align-items-center"
+                    type="button" (click)="passwordInputState.toggle()">
+              <fa-icon [icon]="['fas', passwordInputState.iconType]"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Confirm Password-->
+    <div class="row-cols-6 mt-1 d-flex justify-content-center" *ngIf="confirmPasswordLabel">
+      <div class="col-10">
+        <label for="confirmPassword" class="text-secondary">{{confirmPasswordLabel}}</label>
+      </div>
+    </div>
+    <div class="row-cols-6 d-flex justify-content-center" *ngIf="confirmPasswordLabel">
+      <div class="col-10 d-flex align-items-center">
+        <div class="input-group">
+          <input id="confirmPassword" class="col-10 form-control" [type]="passwordInputState.inputType"
+                 formControlName="confirmPassword">
+          <div class="col-2 input-group-append m-0 p-0">
+            <button class="btn btn-block btn-outline-secondary d-flex justify-content-center align-items-center"
+                    type="button" (click)="passwordInputState.toggle()">
+              <fa-icon [icon]="['fas', passwordInputState.iconType]"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4 d-flex justify-content-center align-items-center" *ngIf="cancelLabel">
+      <!--Cancel-->
+      <div class="col-5 d-flex justify-content-center">
+        <button class="col-12 btn btn-secondary" type="button" (click)="cancel()">{{cancelLabel}}</button>
+      </div>
+
+      <!--updateRequestLabel-->
+      <div class="col-5 d-flex justify-content-center">
+        <button class="col-12 btn btn-primary" type="submit"
+                [ngClass]="{'forgot-password__disabled': passwordChangeRequestForm.invalid }"
+                [disabled]="passwordChangeRequestForm.invalid">{{updateRequestLabel}}
+        </button>
+      </div>
+    </div>
+
+  </form>
+
+  <div *ngSwitchCase="enumForgotStep.SUCCESS" class="w-100">
+    <div class="my-auto">
+      <div class="forgot-password__image">
+        <svg version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+              <circle style="fill:#6DC180;" cx="256" cy="256" r="256"/>
+          <path style="fill:#5CA15D;" d="M256,0v512c141.385,0,256-114.615,256-256S397.385,0,256,0z"/>
+          <polygon style="fill:#F2F2F4;" points="219.429,367.932 108.606,257.108 147.394,218.32 219.429,290.353 355.463,154.32 394.251,193.108 "/>
+          <polygon style="fill:#DFDFE1;" points="256,331.361 394.251,193.108 355.463,154.32 256,253.782 "/>
+            </svg>
+      </div>
+      <button class="col-6 btn btn-light" type="button" (click)="onClickClose()">{{closeLabel}}</button>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="enumForgotStep.FAILED" class="w-100">
+    <div class="my-auto">
+      <div class="forgot-password__image">
+        <svg version="1.1" id="Layer_1" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+            <circle style="fill:#FF6643;" cx="256" cy="256" r="256"/>
+          <path style="fill:#FF4F19;" d="M256,0v512c141.385,0,256-114.615,256-256S397.385,0,256,0z"/>
+          <polygon style="fill:#F2F2F4;" points="365.904,184.885 327.115,146.096 256,217.211 184.885,146.096 146.096,184.885 217.211,256 146.096,327.115 184.885,365.904 256,294.789 327.115,365.904 365.904,327.115 294.789,256 "/>
+          <polygon style="fill:#DFDFE1;" points="365.904,184.885 327.115,146.096 256,217.211 256,294.789 327.115,365.904 365.904,327.115 294.789,256 "/>
+          </svg>
+      </div>
+      <button class="col-6 btn btn-light" type="button" (click)="onClickClose()">{{closeLabel}}</button>
+    </div>
+  </div>
+</div>

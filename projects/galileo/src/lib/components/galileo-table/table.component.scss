@@ -1,0 +1,88 @@
+$gll-table-header-bg: var(--gll-table-header-bg);
+$gll-table-filters-row-bg: var(--gll-table-filters-row-bg);
+$gll-table-row-bg: var(--gll-table-row-bg);
+$gll-table-row-bg-hover: var(--gll-table-row-bg-hover);
+$gll-table-border: var(--gll-table-border);
+$gll-table-bg: var(--gll-table-bg);
+
+.gll-table-container {
+  border: $gll-table-border;
+  background: $gll-table-bg;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-button {
+    width: 3px;
+    height: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #9e9e9e;
+    border: 0px none #ffffff;
+    border-radius: 50px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #5e5e5e;
+  }
+
+  &::-webkit-scrollbar-thumb:active {
+    background: #5e5e5e;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #cfcfcf;
+    border: 0px none #ffffff;
+    border-radius: 50px;
+  }
+
+  &::-webkit-scrollbar-track:hover {
+    background: #d4d4d4;
+  }
+
+  &::-webkit-scrollbar-track:active {
+    background: #d4d4d4;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+.gll-table {
+
+
+  #tableHeader {
+    background: $gll-table-header-bg;
+  }
+
+  #filtersRow {
+    background: $gll-table-filters-row-bg;
+
+    td {
+      input {
+        max-width: 250px;
+      }
+    }
+  }
+
+  #tableRow {
+    background: $gll-table-row-bg;
+
+    .row-selected {
+      background: $gll-table-row-bg-hover;
+    }
+
+    &:hover {
+      background: $gll-table-row-bg-hover;
+    }
+
+    td {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+}

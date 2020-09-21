@@ -1,0 +1,122 @@
+<div class="w-100 table-responsive gll-table-container"
+     [ngStyle]="{'max-height': tableConfig?.maxHeight, 'min-height': tableConfig?.maxHeight}">
+  <table class="table table-sm w-100 gll-table m-0">
+    <thead>
+    <tr id="tableHeader">
+      <th *ngFor="let c of tableConfig?.columnsDef" scope="col">{{c.headerName}}</th>
+      <th *ngIf="atLeastOneAction()" scope="col">
+        {{'actions' | galileoTranslate}}
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr id="filtersRow" *ngIf="atLeastOneFilter()">
+      <td *ngFor="let c of tableConfig?.columnsDef" class="p-1">
+        <ng-container>
+          <gll-filters *ngIf="c.filterConfig"
+                       [columnField]="c.field"
+                       [columnFilterConfig]="c.filterConfig"
+                       (columnFilterValue)="onColumnFilterValue($event)">
+          </gll-filters>
+        </ng-container>
+      </td>
+      <td *ngIf="atLeastOneAction()" class="p-1">
+      </td>
+    </tr>
+    <!--
+    Evaluate tu add a trackBy fn to table ngFor loop
+    (e. g) let i = index; trackBy:trackByFn
+    -->
+    <tr id="tableRow" *ngFor="let r of data">
+      <td *ngFor="let c of tableConfig?.columnsDef"
+          (click)="rowSelected.emit(r)"
+          [ngClass]="{'cursor-pointer': tableConfig?.cursorPointerOnRow, 'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
+        <ng-container *ngIf="!c.gllTableRenderer && !c.gllTableCustomRender">
+          {{r[c.field]}}
+        </ng-container>
+
+        <ng-container *ngIf="c.gllTableCustomRender && !c.gllTableRenderer">
+          {{c.gllTableCustomRender(r)}}
+        </ng-container>
+
+        <ng-container *ngIf="c.gllTableRenderer && !c.gllTableCustomRender">
+          <ng-container [ngSwitch]="c.gllTableRenderer">
+            <ng-container *ngSwitchCase="'gllTableCheckboxRenderer'">
+              <input data-cy="gll-table-checkbox" type="checkbox" [checked]="c.checkboxValue ? c.checkboxValue(r) : r[c.field]"
+                     (click)="checkboxRendererEvent.emit({data: r, checked: $event.target.checked, field: c.field})"
+                     class="cursor-pointer">
+            </ng-container>
+            <ng-container *ngSwitchCase="'gllTableDateTimeRenderer'">
+              {{r[c.field] | date:'short'}}
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </td>
+
+      <td *ngIf="atLeastOneAction()" [ngClass]="{'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
+        <fa-icon [attr.data-cy]="'edit-action'"
+                 (click)="onEdit()"
+                 class="ml-1 mr-1"
+                 [ngClass]="{'cursor-pointer': !tableConfig?.actions?.edit?.disabled(),
+                  'text-black-50': tableConfig?.actions?.edit?.disabled(),
+                  'text-black': !tableConfig?.actions?.edit?.disabled()
+                  }"
+                 [icon]="['fas', 'pencil-alt']"
+                 *ngIf="tableConfig?.actions?.edit?.show">
+        </fa-icon>
+
+
+        <fa-icon [attr.data-cy]="'delete-action'"
+                 (click)="onDelete(r)"
+                 class="ml-1 mr-1 text-danger"
+                 [ngClass]="{'cursor-pointer': !tableConfig?.actions?.delete?.disabled(r),
+                 'text-black-50 no-pointer-event': tableConfig?.actions?.delete?.disabled(r),
+                 'text-danger': !tableConfig?.actions?.delete?.disabled(r)}"
+                 [icon]="['fas', 'trash-alt']"
+                 *ngIf="tableConfig?.actions?.delete?.show">
+        </fa-icon>
+
+
+        <fa-icon [attr.data-cy]="e.iconColorProp.icon" *ngFor="let e of tableConfig?.extraActions"
+                 class="ml-1 mr-1"
+                 [ngClass]="{'cursor-pointer': !e.disabled}"
+                 [ngStyle]="{'color': !e.disabled ? e.iconColorProp.color : 'rgba(0, 0, 0, 0.5)'}"
+                 [icon]="['fas', e.iconColorProp.icon]"
+                 [ngbTooltip]="e.label" placement="bottom"
+                 (click)="!e.disabled ? extraAction.emit({data: r, eventKey: e.eventKey}) : null"></fa-icon>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="p-4 w-100 text-center" *ngIf="data?.length === 0" style="border: 1px solid gainsboro">
+    {{tableConfig?.noDataMessage}}
+  </div>
+</div>
+<div class="d-flex w-100 justify-content-end" *ngIf="tableConfig?.builtInPagination && tableConfig?.mode === 'clientSide'">
+  <gll-pagination [numberOfPages]="clientSideInformation?.pagination.buckets?.length"
+                  [currentPage]="clientSideInformation?.pagination.currentPage"
+                  (selectPage)="onSelectPage($event)"></gll-pagination>
+</div>
+
+
+<ng-template #deleteRowDialog>
+  <div class="modal-header bg-success text-light bg-danger">
+    <h4 class="modal-title text-white">
+      <fa-icon [icon]="['fas', 'trash']" class="text-white"></fa-icon>
+      {{'delete' | galileoTranslate}}
+    </h4>
+  </div>
+  <div class="modal-body">
+    <p>{{tableConfig?.actions?.delete?.customMessage ? tableConfig.actions.delete.customMessage : 'deleteMsg' | galileoTranslate}}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger"
+            (click)="confirmDelete()">
+      {{'delete' | galileoTranslate}}
+    </button>
+    <button ngbAutofocus type="button" class="btn btn-outline-secondary"
+            (click)="cancelDelete()">
+      {{'cancel' | galileoTranslate}}
+    </button>
+  </div>
+</ng-template>

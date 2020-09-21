@@ -1,0 +1,39 @@
+$gll-breadcrumb-bg: var(--gll-breadcrumb-bg);
+$gll-breadcrumb-label-color: var(--gll-breadcrumb-label-color);
+$gll-breadcrumb-label-color-hover: var(--gll-breadcrumb-label-color-hover);
+$gll-breadcrumb-box-shadow: var(--gll-breadcrumb-box-shadow);
+
+.breadcrumb {
+  background: $gll-breadcrumb-bg;
+
+  -webkit-box-shadow: $gll-breadcrumb-box-shadow;
+  -moz-box-shadow: $gll-breadcrumb-box-shadow;
+  box-shadow: $gll-breadcrumb-box-shadow;
+
+  font-size: 0.8em;
+  margin: 0;
+  a,
+  span {
+    color: $gll-breadcrumb-label-color;
+  }
+  a:hover,
+  span:hover {
+    color: $gll-breadcrumb-label-color-hover;
+    text-decoration: none;
+  }
+  li {
+    list-style: none;
+    float: left;
+    margin: 5px;
+  }
+  li:last-child {
+    margin-right: 20px;
+  }
+  li::after {
+    content: "\25BA";
+    color: $gll-breadcrumb-label-color;
+  }
+  li:last-child::after {
+    content: "";
+  }
+}
