@@ -15,3 +15,10 @@ jobs:
          with:
           node-version: 12
       -  run: npm install
+      - name: build
+        run: npm run build:galileo
+      - name: publish
+        working-directory: ./dist/galileo
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
