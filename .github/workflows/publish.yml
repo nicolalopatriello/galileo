@@ -18,7 +18,7 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org
       - name: install
-        run: npm i
+        run: npm install
       - name: publish
         run: npm run build:galileo
       - name: publish
