@@ -19,10 +19,3 @@ jobs:
           registry-url: https://registry.npmjs.org
       - name: install
         run: npm install
-      - name: publish
-        run: npm run build:galileo
-      - name: publish
-        working-directory: ./dist/galileo
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
