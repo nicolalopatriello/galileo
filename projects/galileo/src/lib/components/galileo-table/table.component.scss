@@ -69,7 +69,7 @@ $gll-table-bg: var(--gll-table-bg);
     }
   }
 
-  #tableRow {
+  .tableRow {
     background: $gll-table-row-bg;
 
     .row-selected {

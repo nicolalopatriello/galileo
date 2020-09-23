@@ -43,7 +43,7 @@ export class TableComponent implements OnInit, OnChanges {
   public clientSideInformation: ClientSideInformation = {
     inputData: [],
     pagination: {
-      pageSize: 5,
+      pageSize: 10, //default page size
       currentPage: 0,
       buckets: []
     }
@@ -165,15 +165,17 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   private applyOperator(stringToFilter: string, filterOption: columnFilterOptions, value: string | number) {
-    switch (filterOption) {
-      case 'contains':
-        return stringToFilter.includes(value.toString());
-      case 'equals':
-        return stringToFilter.toString() === value.toString();
-      case 'startsWith':
-        return stringToFilter.startsWith(value.toString());
-      case 'notEqual':
-        return stringToFilter.toString() != value.toString();
+    if (stringToFilter?.length) {
+      switch (filterOption) {
+        case 'contains':
+          return stringToFilter.includes(value.toString());
+        case 'equals':
+          return stringToFilter.toString() === value.toString();
+        case 'startsWith':
+          return stringToFilter.startsWith(value.toString());
+        case 'notEqual':
+          return stringToFilter.toString() != value.toString();
+      }
     }
   }
 

@@ -27,7 +27,7 @@
     Evaluate tu add a trackBy fn to table ngFor loop
     (e. g) let i = index; trackBy:trackByFn
     -->
-    <tr id="tableRow" *ngFor="let r of data">
+    <tr class="tableRow" *ngFor="let r of data">
       <td *ngFor="let c of tableConfig?.columnsDef"
           (click)="rowSelected.emit(r)"
           [ngClass]="{'cursor-pointer': tableConfig?.cursorPointerOnRow, 'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
