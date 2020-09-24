@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-import {GalileoSimpleCardModule} from '@nik_90/ngx-galileo';
+import {GalileoSimpleCardModule} from '@nicolalopatriello/galileo';
 import {MarkdownModule} from 'ngx-markdown';
 import {DashboardLayoutsComponent} from './dashboard-layouts/dashboard-layouts.component';
 

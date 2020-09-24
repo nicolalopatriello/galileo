@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {SignAction, SignActionType} from 'galileo';
+import {SignAction, SignActionType} from '@nicolalopatriello/galileo';
 
 @Component({
   template: `

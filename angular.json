@@ -112,9 +112,10 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "options": {
-            "browserTarget": "galileo-app:build"
+            "browserTarget": "galileo-app:build",
+            "extraWebpackConfig": "./cypress/coverage.webpack.js"
           },
           "configurations": {
             "production": {
@@ -159,10 +160,10 @@
           }
         },
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@nrwl/cypress:cypress",
           "options": {
-            "protractorConfig": "projects/galileo-app/e2e/protractor.conf.js",
-            "devServerTarget": "galileo-app:serve"
+            "cypressConfig": "e2e/cypress.json",
+            "tsConfig": "e2e/cypress/tsconfig.e2e.json"
           },
           "configurations": {
             "production": {

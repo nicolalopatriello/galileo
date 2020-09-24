@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule} from '@angular/router';
-import {GalileoSimpleCardModule} from '@nik_90/ngx-galileo';
+import {GalileoSimpleCardModule} from '@nicolalopatriello/galileo';
 import {MarkdownModule} from 'ngx-markdown';
 import {FormsComponent} from './forms/forms.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {GalileoFormsModule} from 'galileo';
+import {GalileoFormsModule} from '@nicolalopatriello/galileo';
 
 
 @NgModule({

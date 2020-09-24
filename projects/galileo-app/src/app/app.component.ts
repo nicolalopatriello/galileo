@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {GalileoThemeService} from '@nik_90/ngx-galileo';
+import {GalileoThemeService} from '@nicolalopatriello/galileo';
 
 @Component({
   selector: 'app-root',

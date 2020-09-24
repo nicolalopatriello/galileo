@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {CarouselConfig} from 'galileo';
+import {CarouselConfig} from '@nicolalopatriello/galileo';
 
 @Component({
   selector: 'lsicp-auth',

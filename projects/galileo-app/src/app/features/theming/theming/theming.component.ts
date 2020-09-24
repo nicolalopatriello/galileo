@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {GalileoThemeService} from 'galileo';
+import {GalileoThemeService} from '@nicolalopatriello/galileo';
 
 @Component({
   selector: 'app-theming',

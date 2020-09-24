@@ -5,7 +5,7 @@ import {
   GalileoForgotModule,
   GalileoSignInModule,
   GalileoSignUpModule
-} from '@nik_90/ngx-galileo';
+} from '@nicolalopatriello/galileo';
 import {RouterModule} from '@angular/router';
 import {AuthSignInComponent} from './containers/auth-sign-in.component';
 import {AuthSignUpComponent} from './containers/auth-sign-up.component';

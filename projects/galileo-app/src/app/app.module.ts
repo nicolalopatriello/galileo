@@ -13,9 +13,9 @@ import {
   GalileoSidebarModule,
   GalileoTableModule,
   GalileoThemeService,
-} from '@nik_90/ngx-galileo';
+} from '@nicolalopatriello/galileo';
 import {MarkdownModule} from 'ngx-markdown';
-import {GalileoThemeInterface} from '@nik_90/ngx-galileo/lib/styles/themes';
+import {GalileoThemeInterface} from '@nicolalopatriello/galileo';
 
 
 export const themeWithDarkSidebar: GalileoThemeInterface = {

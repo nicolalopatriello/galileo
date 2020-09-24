@@ -1,0 +1,15 @@
+{
+  "baseUrl": "http://localhost:4200",
+  "video": true,
+  "videosFolder": "./dist/cypress/videos",
+  "screenshotsFolder": "./dist/cypress/screenshots",
+  "chromeWebSecurity": false,
+  "retries": 2,
+  "reporter": "./../node_modules/mochawesome/src/mochawesome.js",
+  "reporterOptions": {
+    "reportDir": "./dist/cypress/reports",
+    "overwrite": false,
+    "html": false,
+    "json": true
+  }
+}

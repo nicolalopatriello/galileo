@@ -15,7 +15,17 @@ jobs:
          with:
           node-version: 12
           registry-url: https://registry.npmjs.org
-      -  run: npm install
+      - run: npm install
+      - name: run tests
+        run: npm run e2e
+      - name: coverage
+        working-directory: ./dist/cypress/coverage
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./clover.xml
+          name: codecov-galileo
+          fail_ci_if_error: true
       - name: build
         run: npm run build:galileo
       - name: publish
