@@ -19,10 +19,9 @@ jobs:
       - name: run tests
         run: npm run e2e
       - uses: codecov/codecov-action@v1
-        working-directory: ./dist/cypress/coverage
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./clover.xml
+          file: ./dist/cypress/coverage/clover.xml
           name: codecov-galileo
           fail_ci_if_error: true
       - name: build
