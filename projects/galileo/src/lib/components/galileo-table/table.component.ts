@@ -43,7 +43,7 @@ export class TableComponent implements OnInit, OnChanges {
   public clientSideInformation: ClientSideInformation = {
     inputData: [],
     pagination: {
-      pageSize: 10, //default page size
+      pageSize: 5, //default page size
       currentPage: 0,
       buckets: []
     }
@@ -60,7 +60,9 @@ export class TableComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (!!changes.data && !changes.data.isFirstChange() && this.tableConfig.mode === 'clientSide') {
       const b = this.clientSideInformation.pagination.buckets[this.clientSideInformation.pagination.currentPage];
-      this.data = this.clientSideInformation.inputData.slice(b.start, b.stop);
+      if (!!b) {
+        this.data = this.clientSideInformation.inputData.slice(b.start, b.stop);
+      }
     }
   }
 
@@ -76,8 +78,9 @@ export class TableComponent implements OnInit, OnChanges {
         }
       };
       const b = this.clientSideInformation.pagination.buckets[0]
-      this.data = this.clientSideInformation.inputData?.slice(b.start, b.stop);
-      console.log('a' + this.data);
+      if (!!b) {
+        this.data = this.clientSideInformation.inputData?.slice(b.start, b.stop);
+      }
     }
 
     this.filtersSubject.pipe(
