@@ -67,8 +67,11 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+    console.log('t():');
 
     if (this.tableConfig.mode === 'clientSide') {
+      console.log('aaaaaafdsaaaaa');
+
       this.clientSideInformation = {
         ...this.clientSideInformation,
         inputData: this.data,
@@ -99,7 +102,7 @@ export class TableComponent implements OnInit, OnChanges {
 
 
   atLeastOneFilter() {
-    return this.tableConfig.columnsDef.filter(t => !!t.filterConfig).length > 0;
+    return this.tableConfig.columnsDef?.filter(t => !!t.filterConfig).length > 0;
   }
 
   atLeastOneAction() {
@@ -151,8 +154,7 @@ export class TableComponent implements OnInit, OnChanges {
     let filteredData = this.clientSideInformation?.inputData;
     const keys = Array.from(filters.keys());
     keys.forEach(t => {
-      filteredData = filteredData
-        .filter(dataRow => this.applyOperator(dataRow[t], filters.get(t).type, filters.get(t).value));
+      filteredData = filteredData?.filter(dataRow => this.applyOperator(dataRow[t], filters.get(t).type, filters.get(t).value));
     });
     const b = this.clientSideInformation.pagination.buckets[0];
     this.data = filteredData.slice(!!b ? b.start : 0, !!b ? b.stop : this.clientSideInformation.pagination.pageSize);
