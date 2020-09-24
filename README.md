@@ -1,9 +1,10 @@
-<p align="center"><img src="https://user-images.githubusercontent.com/3687153/94135637-07d7f680-fe64-11ea-94f7-f001442c3ba9.png" width="600"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/3687153/94135637-07d7f680-fe64-11ea-94f7-f001442c3ba9.png" width="100%"></p>
 <div align="center">
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Build](https://github.com/nicolalopatriello/galileo/workflows/build/badge.svg)](https://github.com/nicolalopatriello/galileo/actions)
 [![npm version](https://badge.fury.io/js/%40nicolalopatriello%2Fgalileo.svg)](https://badge.fury.io/js/%40nicolalopatriello%2Fgalileo)
+[![codecov](https://codecov.io/gh/nicolalopatriello/galileo/branch/master/graph/badge.svg)](https://codecov.io/gh/nicolalopatriello/galileo)
 </div>
 
 <hr>
