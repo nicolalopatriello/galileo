@@ -28,4 +28,5 @@ jobs:
       - name: Pull request
         uses: repo-sync/pull-request@v2
         with:
+          pr_label: "automerge"
           github_token: ${{ secrets.GITHUB_TOKEN }}
