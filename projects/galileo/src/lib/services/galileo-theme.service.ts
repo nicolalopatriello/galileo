@@ -24,7 +24,6 @@ export class GalileoThemeService {
   private currentTheme: string = DefaultThemesName.DEFAULT;
 
   setTheme(themeName: DefaultThemesName | string) {
-    console.log('[DEBUG] Set theme to: ' + themeName);
     this.currentTheme = themeName;
     const t = this.THEMES_LIST.get(themeName);
     Object.keys(t).forEach(v => {

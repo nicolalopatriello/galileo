@@ -67,11 +67,7 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    console.log('t():');
-
     if (this.tableConfig.mode === 'clientSide') {
-      console.log('aaaaaafdsaaaaa');
-
       this.clientSideInformation = {
         ...this.clientSideInformation,
         inputData: this.data,
@@ -198,7 +194,6 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   private buildBuckets(length: number, pageSize: number): Array<{ start: number, stop: number }> {
-    console.log('len ' + length + ' -- pageSize ' + pageSize);
     let numberOfBuckets = Math.ceil(length / pageSize);
     const toRet = [];
     for (let i = 0; i < numberOfBuckets; i++) {
