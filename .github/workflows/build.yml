@@ -8,7 +8,7 @@ on:
 
 jobs:
   release:
-    name: publish
+    name: build
     runs-on: ubuntu-latest
     steps:
       -  uses: actions/checkout@v2
@@ -28,4 +28,5 @@ jobs:
       - name: Merge
         uses: ridedott/merge-me-action@master
         with:
+          GITHUB_LOGIN: dependabot-preview
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
