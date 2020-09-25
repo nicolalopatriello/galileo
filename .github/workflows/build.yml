@@ -1,9 +1,10 @@
 name: "build"
 
 on:
-    pull_request:
+    push:
       branches:
-        - master
+        - '**'        # matches every branch
+        - '!master'   # excludes master
 
 jobs:
   release:
