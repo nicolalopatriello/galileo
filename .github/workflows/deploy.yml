@@ -1,18 +1,24 @@
 name: "deploy"
 
 on:
-    pull_request:
-        branches:
-          - master
+  workflow_run:
+    workflows:
+      - build
+    types:
+      - completed
 
 jobs:
   release:
     name: deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: "pascalgn/automerge-action@c29cef1b62bfb675777896255a70c69fc01bcfe4"
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - uses: reitermarkus/automerge@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          merge-method: rebase
+          do-not-merge-labels: never-merge
+          pull-request: ${{ github.event.inputs.pull-request }}
+          dry-run: true
       - run: npm install
       - name: semantic-release
         run: npm run release
