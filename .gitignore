@@ -47,3 +47,4 @@ Thumbs.db
 .nyc_output/*
 .nyc_output
 /.nyc_output/
+/projects/galileo/node_modules/
