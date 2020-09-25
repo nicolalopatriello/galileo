@@ -1,6 +1,6 @@
 {
   "name": "galileo",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "cy:open": "cypress open",
@@ -12,7 +12,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "dev": "start-test 4200 cy:open",
-    "e2e": "start-test 4200 cy:run:headless"
+    "standard-version": "standard-version",
+    "e2e": "start-test 4200 cy:run:headless",
+    "release": "cd projects/galileo && standard-version"
   },
   "private": true,
   "dependencies": {

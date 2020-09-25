@@ -1,9 +1,9 @@
 name: "build"
 
 on:
-    push:
-        branches:
-          - master
+    pull_request:
+      branches:
+        - master
 
 jobs:
   release:
@@ -24,10 +24,7 @@ jobs:
           file: ./dist/cypress/coverage/clover.xml
           name: codecov-galileo
           fail_ci_if_error: true
-      - name: build
-        run: npm run build:galileo
-      - name: publish
-        working-directory: ./dist/galileo
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      - name: Merge
+        uses: ridedott/merge-me-action@master
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,27 @@
+name: "deploy"
+
+on:
+    push:
+        branches-ignore:
+          - master
+
+jobs:
+  release:
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+      -  uses: actions/checkout@v2
+      -  uses: actions/setup-node@v1
+         with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org
+      - run: npm install
+      - name: semantic-release
+        run: npm run release
+      - name: build
+        run: npm run build:galileo
+      - name: publish
+        working-directory: ./dist/galileo
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
