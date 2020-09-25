@@ -1,0 +1,27 @@
+name: "deploy"
+
+on:
+  pull_request:
+
+jobs:
+  release:
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: reitermarkus/automerge@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          merge-method: rebase
+          do-not-merge-labels: never-merge
+          pull-request: ${{ github.event.inputs.pull-request }}
+          dry-run: true
+      - run: npm install
+      - name: semantic-release
+        run: npm run release
+      - name: build
+        run: npm run build:galileo
+      - name: publish
+        working-directory: ./dist/galileo
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
