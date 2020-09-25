@@ -7,7 +7,7 @@ on:
         - '!master'   # excludes master
 
 jobs:
-  release:
+  build:
     name: build
     runs-on: ubuntu-latest
     steps:
@@ -16,17 +16,16 @@ jobs:
          with:
           node-version: 12
           registry-url: https://registry.npmjs.org
-      - run: npm install
-      - name: run tests
-        run: npm run e2e
-      - uses: codecov/codecov-action@v1
+#      - run: npm install
+#      - name: run tests
+#        run: npm run e2e
+#      - uses: codecov/codecov-action@v1
+#        with:
+#          token: ${{ secrets.CODECOV_TOKEN }}
+#          file: ./dist/cypress/coverage/clover.xml
+#          name: codecov-galileo
+#          fail_ci_if_error: true
+      - name: Pull request
+        uses: repo-sync/pull-request@v2
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./dist/cypress/coverage/clover.xml
-          name: codecov-galileo
-          fail_ci_if_error: true
-      - name: Merge
-        uses: ridedott/merge-me-action@master
-        with:
-          GITHUB_LOGIN: dependabot-preview
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
