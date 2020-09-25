@@ -2,8 +2,9 @@ name: "deploy"
 
 on:
     push:
-        branches-ignore:
-          - master
+        branches:
+          - '**'        # matches every branch
+          - '!master'   # excludes master
 
 jobs:
   release:
