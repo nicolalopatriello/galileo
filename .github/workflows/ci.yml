@@ -5,6 +5,7 @@ on:
     branches:
       - '**'
       - '!master'
+      - '!version-bump/*'
 
 jobs:
   build:
