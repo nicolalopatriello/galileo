@@ -42,7 +42,7 @@
     "ng-sidebar": "^9.2.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1001.1",
+    "@angular-devkit/build-angular": "~0.1001.3",
     "@angular/cli": "~10.1.1",
     "@angular/compiler-cli": "~10.1.1",
     "@briebug/cypress-schematic": "^4.0.3",
