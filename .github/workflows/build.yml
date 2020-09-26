@@ -25,8 +25,8 @@ jobs:
 #          file: ./dist/cypress/coverage/clover.xml
 #          name: codecov-galileo
 #          fail_ci_if_error: true
-      - name: Pull request
-        uses: repo-sync/pull-request@v2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Pull request
+#        uses: repo-sync/pull-request@v2
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
 
