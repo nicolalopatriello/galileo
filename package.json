@@ -14,7 +14,7 @@
     "dev": "start-test 4200 cy:open",
     "standard-version": "standard-version",
     "e2e": "start-test 4200 cy:run:headless",
-    "release": "cd projects/galileo && standard-version"
+    "release": "cd projects/galileo && standard-version --skip.tag --skip.commit"
   },
   "private": true,
   "dependencies": {
