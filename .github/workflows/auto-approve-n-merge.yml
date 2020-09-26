@@ -39,3 +39,8 @@ jobs:
 #        if: github.actor == 'asyncapi-bot'
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
+#          GITHUB_LOGIN: asyncapi-bot
+          MERGE_METHOD: "squash"
+          MERGE_COMMIT_MESSAGE: "pull-request-title"
+          MERGE_RETRIES: "10"
+          MERGE_RETRY_SLEEP: "10000"
