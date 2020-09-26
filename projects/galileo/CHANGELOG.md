@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### 0.1.12 (2020-09-26)
 
+### 0.1.12 (2020-09-26)
+
 ### 0.1.12 (2020-09-25)
 
 ### [0.1.12](https://github.com/nicolalopatriello/galileo/compare/v0.0.2...v0.1.12) (2020-09-25)
