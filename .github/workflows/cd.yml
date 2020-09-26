@@ -2,27 +2,8 @@ name: CD
 
 on:
   pull_request:
-    types:
-      - labeled
-      - unlabeled
-      - synchronize
-      - opened
-      - edited
-      - ready_for_review
-      - reopened
-      - unlocked
      branches:
        - master
-  pull_request_review:
-    types:
-      - submitted
-    branches:
-      - master
-  check_suite:
-    types:
-      - completed
-    branches:
-      - master
 
 jobs:
 
