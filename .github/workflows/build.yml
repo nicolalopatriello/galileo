@@ -25,12 +25,8 @@ jobs:
 #          file: ./dist/cypress/coverage/clover.xml
 #          name: codecov-galileo
 #          fail_ci_if_error: true
-#      - name: Pull request
-#        uses: repo-sync/pull-request@v2
-#        with:
-#          github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Merge me!
-        uses: ridedott/merge-me-action@master
+      - name: Pull request
+        uses: repo-sync/pull-request@v2
         with:
-          GITHUB_LOGIN: dependabot[bot]
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
