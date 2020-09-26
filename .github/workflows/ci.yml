@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    name: build
+    name: CI
     runs-on: ubuntu-latest
     steps:
       -  uses: actions/checkout@v2
