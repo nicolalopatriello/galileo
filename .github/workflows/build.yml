@@ -16,7 +16,18 @@ jobs:
          with:
           node-version: 12
           registry-url: https://registry.npmjs.org
-#      - run: npm install
+      - run: npm install
+      - name: Release
+        id: release
+        run: npm run release
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v2.4.4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore(release): new version'
+          title: 'chore(release): new release'
+          body: 'Version bump in package.json and package-lock.json for release'
+#          branch: version-bump/${{ steps.extractver.outputs.version }}
 #      - name: run tests
 #        run: npm run e2e
 #      - uses: codecov/codecov-action@v1
