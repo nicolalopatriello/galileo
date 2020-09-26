@@ -25,8 +25,23 @@ jobs:
 #          file: ./dist/cypress/coverage/clover.xml
 #          name: codecov-galileo
 #          fail_ci_if_error: true
-      - name: Pull request
-        uses: repo-sync/pull-request@v2
+#      - name: Pull request
+#        uses: repo-sync/pull-request@v2
+#        with:
+#          pr_label: "automerge"
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Merge me!
+        uses: ridedott/merge-me-action@master
         with:
-          pr_label: "automerge"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Depending on branch protection rules, a  manually populated
+          # `GITHUB_TOKEN_WORKAROUND` environment variable with permissions to
+          # push to a protected branch must be used. This variable can have an
+          # arbitrary name, as an example, this repository uses
+          # `GITHUB_TOKEN_DOTTBOTT`.
+          #
+          # When using a custom token, it is recommended to leave the following
+          # comment for other developers to be aware of the reasoning behind it:
+          #
+          # This must be used as GitHub Actions token does not support
+          # pushing to protected branches.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
