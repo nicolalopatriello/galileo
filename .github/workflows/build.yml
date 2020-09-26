@@ -3,8 +3,9 @@ name: "build"
 on:
     push:
       branches:
-        - '**'        # matches every branch
-        - '!master'   # excludes master
+        - '*'
+        - '!master'
+        - '!dev'
 
 jobs:
   build:
@@ -23,8 +24,8 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v2.4.4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'chore(release): new version'
+          token: ${{ secrets.BOT_TOKEN }}
+          commit-message: 'chore(release): new version from bot'
           title: 'chore(release): new release'
           body: 'Version bump in package.json and package-lock.json for release'
 #          branch: version-bump/${{ steps.extractver.outputs.version }}
