@@ -5,30 +5,34 @@ on:
       types: [closed]
       branches:
        - master
+       - '!version-bump/*'
 
 jobs:
-
-#  autoapprove:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Autoapproving
-#        uses: hmarr/auto-approve-action@v2.0.0
-#        if: github.actor == 'asyncapi-bot'
-#        with:
-#          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-  automerge:
-#    needs: [autoapprove]
+  release:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "ciao"
-#      - name: Automerging
-#        uses: pascalgn/automerge-action@v0.7.5
-#        if: github.actor == 'asyncapi-bot'
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
-#          GITHUB_LOGIN: asyncapi-bot
-#          MERGE_METHOD: "squash"
-#          MERGE_COMMIT_MESSAGE: "pull-request-title"
-#          MERGE_RETRIES: "10"
-#          MERGE_RETRY_SLEEP: "10000"
+      -  uses: actions/checkout@v2
+      -  uses: actions/setup-node@v1
+         with:
+           node-version: 12
+           registry-url: https://registry.npmjs.org
+      - run: npm install
+      - name: Release
+        id: release
+        run: npm run release
+      - run: npm run build:galileo
+      - name: publish
+        working-directory: ./projects/galileo
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v2.4.4
+        with:
+          token: ${{ secrets.BOT_TOKEN }}
+          commit-message: 'chore(release): new version from bot'
+          labels: automerge
+          title: 'chore(release): new release'
+          body: 'Version bump in package.json and package-lock.json for release'
+          branch: version-bump/new-version
+
