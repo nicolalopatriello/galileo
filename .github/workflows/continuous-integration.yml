@@ -1,3 +1,5 @@
+name: "merge"
+
 on:
   pull_request:
     types:
