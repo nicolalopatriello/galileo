@@ -15,7 +15,6 @@ import { CarouselItem } from '../../../models';
               <router-outlet></router-outlet>
           </div>
       </div>
-
   `
 })
 export class AuthLayoutComponent {
