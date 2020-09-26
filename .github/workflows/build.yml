@@ -26,6 +26,7 @@ jobs:
         with:
           token: ${{ secrets.BOT_TOKEN }}
           commit-message: 'chore(release): new version from bot'
+          labels: automerge
           title: 'chore(release): new release'
           body: 'Version bump in package.json and package-lock.json for release'
 #          branch: version-bump/${{ steps.extractver.outputs.version }}
