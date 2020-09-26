@@ -2,7 +2,8 @@ name: CD
 
 on:
   pull_request:
-     branches:
+      types: [closed]
+      branches:
        - master
 
 jobs:
