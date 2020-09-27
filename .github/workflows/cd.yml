@@ -35,4 +35,5 @@ jobs:
           title: 'chore(release): new release'
           body: 'Version bump in package.json and package-lock.json for release'
           branch: version-bump
+          delete-branch: true
 
