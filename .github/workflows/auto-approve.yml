@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Autoapproving
         uses: hmarr/auto-approve-action@v2.0.0
-        if: github.actor == 'bot'
+        if: github.actor == 'galileo-bot'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Automerging
         uses: ridedott/merge-me-action@master
-        if: github.actor == 'bot'
+        if: github.actor == 'galileo-bot'
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
 

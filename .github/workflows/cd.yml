@@ -29,7 +29,7 @@ jobs:
         uses: peter-evans/create-pull-request@v2.4.4
         with:
           token: ${{ secrets.BOT_TOKEN }}
-          author: bot
+          author: galileo-bot <info@galileo-bot.io>
           commit-message: 'chore(release): new version from bot'
           labels: automerge
           title: 'chore(release): new release'
