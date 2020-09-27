@@ -30,6 +30,7 @@ jobs:
         with:
           token: ${{ secrets.BOT_TOKEN }}
           author: galileo-bot <info@galileo-bot.io>
+          committer: galileo-bot <info@galileo-bot.io>
           commit-message: 'chore(release): new version from bot'
           labels: automerge
           title: 'chore(release): new release'
