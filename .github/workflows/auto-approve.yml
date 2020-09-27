@@ -11,6 +11,7 @@ jobs:
   autoapprove:
     runs-on: ubuntu-latest
     steps:
+      - run: echo
       - name: Autoapproving
         uses: hmarr/auto-approve-action@v2.0.0
         if: github.actor == 'galileo-bot'
