@@ -2,7 +2,15 @@ name: auto-approve
 
 on:
   pull_request:
-    types: [labeled]
+    types:
+      - labeled
+      - unlabeled
+      - synchronize
+      - opened
+      - edited
+      - ready_for_review
+      - reopened
+      - unlocked
     branches:
       - version-bump
 
