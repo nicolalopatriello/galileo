@@ -7,7 +7,7 @@ on:
        - master
 
 jobs:
-  recovery-branch-bame:
+  recovery-branch-name:
     runs-on: ubuntu-latest
     steps:
       - uses: mdecoleman/pr-branch-name@1.0.0
@@ -17,7 +17,7 @@ jobs:
       -  run: echo Branch is ${{ steps.vars.outputs.branch }}
   Release:
     runs-on: ubuntu-latest
-    if: !contains(jobs.recovery-branch-bame.steps.vars.outputs.branch, bump)
+    if: contains(jobs.recovery-branch-name.steps.vars.outputs.branch, 'feature')
     steps:
       -  run: echo Branch from second job is ${{ jobs.recovery-branch-bame.steps.vars.outputs.branch }}
       -  uses: actions/checkout@v2
