@@ -1,4 +1,10 @@
-name: auto-approve
+# Auto Approve workflow is triggered
+# only in master branch when pull request is labeled and label contains 'automerge'
+# and base branches contains 'feature/*' in their name, it:
+#   - Auto approve pull request
+#   - Auto merge pull request
+
+name: Auto-Approve
 
 on:
   pull_request:
@@ -7,6 +13,8 @@ on:
     branches:
       - master
 
+if: contains(github.event.pull_request.labels.*.name, 'automerge')
+
 jobs:
   autoapprove:
     runs-on: ubuntu-latest
@@ -14,7 +22,6 @@ jobs:
       - run: echo github.actor
       - name: Autoapproving
         uses: hmarr/auto-approve-action@v2.0.0
-#        if: github.actor == 'nicolalopatriello'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -24,7 +31,6 @@ jobs:
     steps:
       - name: Automerging
         uses: pascalgn/automerge-action@v0.7.5
-#        if: github.actor == 'nicolalopatriello'
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
 

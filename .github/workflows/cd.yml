@@ -1,3 +1,12 @@
+# Continuous Deployment workflow is triggered
+# only in master branch when pull request is closed
+# and base branches contains 'feature/*' in their name, it:
+#   - Install deps with npm i
+#   - Run release script that upgrade version with semantic versioning conventions
+#   - Publish artifact (with upgraded version) to npm
+#   - Create a pull request with 'automerge' label. This operation allow master to branch to receive
+#     upgraded package.json after release script
+
 name: CD
 
 on:
@@ -19,7 +28,6 @@ jobs:
   Release:
     runs-on: ubuntu-latest
     needs: recovery-branch-name
-#    if: contains(jobs.recovery-branch-name.steps.vars.outputs.branch, 'feature')
     if: contains(needs.recovery-branch-name.outputs.branch-name, 'feature')
     steps:
       -  uses: actions/checkout@v2
@@ -43,10 +51,10 @@ jobs:
           token: ${{ secrets.BOT_TOKEN }}
           author: galileo-bot <info@galileo-bot.io>
           committer: galileo-bot <info@galileo-bot.io>
-          commit-message: 'chore(release): new version from bot'
+          commit-message: 'chore(release): Upgraded package.json file after npm release script'
           labels: automerge
-          title: 'chore(release): new release'
-          body: 'Version bump in package.json and package-lock.json for release'
+          title: 'chore(release): New release'
+          body: 'Version bump in package.json and package-lock.json.'
           branch: version-bump
           delete-branch: true
 
