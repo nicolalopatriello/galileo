@@ -12,6 +12,11 @@ jobs:
 #    if: github.event.review.state != 'approved'
     steps:
       - run: echo ${{github.ref}}
+      - uses: mdecoleman/pr-branch-name@1.0.0
+        id: vars
+        with:
+         repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: echo ${{ steps.vars.outputs.branch }}
       -  uses: actions/checkout@v2
       -  uses: actions/setup-node@v1
          with:
