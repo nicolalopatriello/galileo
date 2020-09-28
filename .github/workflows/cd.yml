@@ -48,7 +48,7 @@ jobs:
       - name: Read package.json version
         uses: tyankatsu0105/read-package-version-actions@v1
         with:
-           path: "./projects/galileo/package.json/"
+           path: "./projects/galileo/'
         id: package-json
       - name: Create pull request
         uses: peter-evans/create-pull-request@v2.4.4
