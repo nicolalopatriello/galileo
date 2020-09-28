@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     if: contains(jobs.recovery-branch-name.steps.vars.outputs.branch, 'feature')
     steps:
-      -  run: echo Branch from second job is ${{ jobs.recovery-branch-bame.steps.vars.outputs.branch }}
+      -  run: echo Branch from second job is ${{ jobs.recovery-branch-name.steps.vars.outputs.branch }}
       -  uses: actions/checkout@v2
       -  uses: actions/setup-node@v1
          with:
