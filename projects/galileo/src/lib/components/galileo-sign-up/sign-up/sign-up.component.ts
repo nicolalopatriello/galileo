@@ -31,7 +31,6 @@ export class SignUpComponent implements OnInit {
   signUpFormGroup: FormGroup;
   passwordInputState = new PasswordInputState();
 
-
   ngOnInit(): void {
     this.buildSignUpFormGroup();
   }

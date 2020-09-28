@@ -1,3 +1,8 @@
+# Continuous Integration workflow is triggered
+# in all branches expect 'master' and 'version-bump', it:
+#   - Install deps with npm i
+#   - Run all tests
+#   - Send tests to codecov
 name: CI
 
 on:
@@ -20,14 +25,8 @@ jobs:
       - run: npm install
       - name: run tests
         run: npm run e2e
-#      - uses: codecov/codecov-action@v1
-#        with:
-#          token: ${{ secrets.CODECOV_TOKEN }}
-#          file: ./dist/cypress/coverage/clover.xml
-#          name: codecov-galileo
-#          fail_ci_if_error: true
-#      - name: Pull request
-#        uses: repo-sync/pull-request@v2
-#        with:
-#          github_token: ${{ secrets.GITHUB_TOKEN }}
-
+      - uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./dist/cypress/coverage/clover.xml
+          name: codecov-galileo
