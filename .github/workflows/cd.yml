@@ -45,16 +45,21 @@ jobs:
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      - name: Read package.json version
+        uses: tyankatsu0105/read-package-version-actions@v1
+        with:
+          - path: "./projects/galileo/package.json/"
+        id: package-json
       - name: Create pull request
         uses: peter-evans/create-pull-request@v2.4.4
         with:
           token: ${{ secrets.BOT_TOKEN }}
           author: galileo-bot <info@galileo-bot.io>
           committer: galileo-bot <info@galileo-bot.io>
-          commit-message: 'chore(release): Upgraded package.json file after npm release script'
+          commit-message: 'chore(release): Upgraded package.json file after npm release script with version: [${{steps.package-json.outputs.version}}]'
           labels: automerge
-          title: 'chore(release): New release'
-          body: 'Version bump in package.json and package-lock.json.'
-          branch: version-bump
+          title: 'chore(release): New release [${{steps.package-json.outputs.version}}]'
+          body: 'Version bump in package.json and package-lock.json for release [${{steps.package-json.outputs.version}}].'
+          branch: version-bump/${{steps.package-json.outputs.version}}
           delete-branch: true
 

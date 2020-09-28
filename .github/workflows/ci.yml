@@ -1,5 +1,5 @@
 # Continuous Integration workflow is triggered
-# in all branches expect 'master' and 'version-bump', it:
+# in all branches expect 'master' and 'version-bump/*', it:
 #   - Install deps with npm i
 #   - Run all tests
 #   - Send tests to codecov
@@ -10,7 +10,7 @@ on:
     branches:
       - '**'
       - '!master'
-      - '!version-bump'
+      - '!version-bump/*'
 
 jobs:
   build:

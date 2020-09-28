@@ -13,10 +13,12 @@ on:
     branches:
       - master
 
-if: contains(github.event.pull_request.labels.*.name, 'automerge')
+
 
 jobs:
+
   autoapprove:
+    if: contains(github.event.pull_request.labels.*.name, 'automerge')
     runs-on: ubuntu-latest
     steps:
       - run: echo github.actor
@@ -26,6 +28,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
   automerge:
+    if: contains(github.event.pull_request.labels.*.name, 'automerge')
     needs: [autoapprove]
     runs-on: ubuntu-latest
     steps:
