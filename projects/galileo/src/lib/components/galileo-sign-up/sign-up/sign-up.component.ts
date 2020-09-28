@@ -55,7 +55,7 @@ export class SignUpComponent implements OnInit {
     this.signUpFormGroup = new FormGroup({
       username: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
-      surname: new FormControl('', [Validators.required]),
+      surname: new FormControl('', []),
       email: new FormControl('', [Validators.required, Validators.pattern(EMAIL_REGEX)]),
       password: new FormControl('', [Validators.required]),
       confirmPassword: new FormControl('', [Validators.required, matchValues('password')]),

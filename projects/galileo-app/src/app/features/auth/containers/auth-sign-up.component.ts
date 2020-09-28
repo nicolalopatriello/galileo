@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {SignAction, SignActionType} from '@nicolalopatriello/galileo';
+import {SignAction, SignActionType} from '../../../../../../galileo/src/lib/models';
 
 @Component({
   template: `
@@ -14,7 +14,8 @@ import {SignAction, SignActionType} from '@nicolalopatriello/galileo';
                    [cancelLabel]="'Cancel'"
                    [signUpLabel]="'Signup'"
                    (signAction)="onSignAction($event)"
-    ></gll-sign-up>`
+    ></gll-sign-up>
+  `
 })
 export class AuthSignUpComponent implements OnInit {
 
