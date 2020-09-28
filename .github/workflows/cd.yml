@@ -9,17 +9,19 @@ on:
 jobs:
   recovery-branch-name:
     runs-on: ubuntu-latest
+    outputs:
+      branch-name: ${{ steps.vars.outputs.branch }}
     steps:
       - uses: mdecoleman/pr-branch-name@1.0.0
         id: vars
         with:
          repo-token: ${{ secrets.GITHUB_TOKEN }}
-      -  run: echo Branch is ${{ steps.vars.outputs.branch }}
   Release:
     runs-on: ubuntu-latest
-    if: contains(jobs.recovery-branch-name.steps.vars.outputs.branch, 'feature')
+    needs: recovery-branch-name
+#    if: contains(jobs.recovery-branch-name.steps.vars.outputs.branch, 'feature')
+    if: contains(needs.recovery-branch-name.outputs.branch-name, 'feature')
     steps:
-      -  run: echo Branch from second job is ${{ jobs.recovery-branch-name.steps.vars.outputs.branch }}
       -  uses: actions/checkout@v2
       -  uses: actions/setup-node@v1
          with:
