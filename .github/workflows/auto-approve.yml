@@ -14,7 +14,7 @@ jobs:
       - run: echo github.actor
       - name: Autoapproving
         uses: hmarr/auto-approve-action@v2.0.0
-        if: github.actor == 'galileo-bot'
+#        if: github.actor == 'nicolalopatriello'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: Automerging
         uses: ridedott/merge-me-action@master
-        if: github.actor == 'galileo-bot'
+#        if: github.actor == 'nicolalopatriello'
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
 
