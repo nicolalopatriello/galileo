@@ -7,16 +7,19 @@ on:
        - master
 
 jobs:
-  release:
+  recovery-branch-bame:
     runs-on: ubuntu-latest
-#    if: github.event.review.state != 'approved'
     steps:
-      - run: echo ${{github.ref}}
       - uses: mdecoleman/pr-branch-name@1.0.0
         id: vars
         with:
          repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: echo ${{ steps.vars.outputs.branch }}
+      -  run: echo Branch is ${{ steps.vars.outputs.branch }}
+  Release:
+    runs-on: ubuntu-latest
+    if: !contains(jobs.recovery-branch-bame.steps.vars.outputs.branch, bump)
+    steps:
+      -  run: echo Branch from second job is ${{ jobs.recovery-branch-bame.steps.vars.outputs.branch }}
       -  uses: actions/checkout@v2
       -  uses: actions/setup-node@v1
          with:
