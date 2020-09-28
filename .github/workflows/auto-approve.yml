@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Automerging
-        uses: ridedott/merge-me-action@master
+        uses: pascalgn/automerge-action@v0.7.5
 #        if: github.actor == 'nicolalopatriello'
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
