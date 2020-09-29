@@ -41,7 +41,7 @@ jobs:
         run: npm run release
       - run: npm run build:galileo
       - name: publish
-        working-directory: ./projects/galileo
+        working-directory: ./projects/galileo/dist
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

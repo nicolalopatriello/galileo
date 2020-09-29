@@ -10,17 +10,19 @@ export class TableComponent implements OnInit {
 
 
   tableData = [
-    {name: 'Nicola', surname: 'Lopatriello'},
-    {name: 'Greta', surname: 'Sasso'},
-    {name: 'Domenico', surname: 'Grieco'},
-    {name: 'Georgy', surname: 'Alarcon'}
+    {name: 'Nicola', surname: 'Lopatriello', isAdmin: true, isEnabled: true},
+    {name: 'Greta', surname: 'Sasso', isAdmin: false,  isEnabled: false},
+    {name: 'Domenico', surname: 'Grieco', isAdmin: false,  isEnabled: false},
+    {name: 'Georgy', surname: 'Alarcon', isAdmin: true,  isEnabled: false}
   ];
   tableConfig: TableConfig = {
     mode: 'clientSide',
     builtInPagination: true,
     columnsDef: [
       {field: 'name', headerName: 'Name', filterConfig: {type: 'gllTextColumnFilter', options: ['contains']}},
-      {field: 'surname', headerName: 'Surname', filterConfig: {type: 'gllTextColumnFilter', options: ['contains']}}
+      {field: 'surname', headerName: 'Surname', filterConfig: {type: 'gllTextColumnFilter', options: ['contains']}},
+      {field: 'isAdmin', headerName: 'Admin', gllTableRenderer: 'gllTableBooleanRenderer', trueFaIcon: {color: 'green', icon: 'user-shield'}, falseFaIcon: {color: 'red', icon: 'user'}},
+      {field: 'isEnabled', headerName: 'Enabled', gllTableRenderer: 'gllTableBooleanRenderer'}
     ],
     actions: {
       delete: {builtIn: true, show: true, disabled: () => false}

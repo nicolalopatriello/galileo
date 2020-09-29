@@ -240,6 +240,8 @@ export interface ColumnDef {
   gllTableRenderer?: GllTableRenderer;
   gllTableCustomRender?: Function;
   checkboxValue?: Function;
+  trueFaIcon?: FontAwesomeIconColorBoolPair,
+  falseFaIcon?: FontAwesomeIconColorBoolPair
 }
 
 interface ClientSideInformation {
@@ -251,4 +253,4 @@ interface ClientSideInformation {
   }
 }
 
-export type GllTableRenderer = 'gllTableCheckboxRenderer' | 'gllTableDateTimeRenderer'
+export type GllTableRenderer = 'gllTableCheckboxRenderer' | 'gllTableDateTimeRenderer' | 'gllTableBooleanRenderer'

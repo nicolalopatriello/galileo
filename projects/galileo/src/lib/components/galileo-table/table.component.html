@@ -31,6 +31,7 @@
       <td *ngFor="let c of tableConfig?.columnsDef"
           (click)="rowSelected.emit(r)"
           [ngClass]="{'cursor-pointer': tableConfig?.cursorPointerOnRow, 'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
+
         <ng-container *ngIf="!c.gllTableRenderer && !c.gllTableCustomRender">
           {{r[c.field]}}
         </ng-container>
@@ -48,6 +49,11 @@
             </ng-container>
             <ng-container *ngSwitchCase="'gllTableDateTimeRenderer'">
               {{r[c.field] | date:'short'}}
+            </ng-container>
+            <ng-container *ngSwitchCase="'gllTableBooleanRenderer'">
+              <fa-icon *ngIf="r[c.field] && !!c.trueFaIcon" [icon]="['fas', c.trueFaIcon.icon]" [ngStyle]="{color: c.trueFaIcon.color}"></fa-icon>
+              <fa-icon *ngIf="!r[c.field] && !!c.falseFaIcon" [icon]="['fas', c.falseFaIcon.icon]" [ngStyle]="{color: c.falseFaIcon.color}"></fa-icon>
+              <span *ngIf="!c.trueFaIcon || !c.falseFaIcon">{{r[c.field]}}</span>
             </ng-container>
           </ng-container>
         </ng-container>
