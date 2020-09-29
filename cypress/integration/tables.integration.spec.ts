@@ -21,4 +21,16 @@ context('Cypress', () => {
     cy.get('.tableRow').should('have.length', 1)
   });
 
+  it('Boolean field should have custom icon', () => {
+    cy.visit('/tables');
+    cy.get(`[ng-reflect-icon="fas,user-shield"]`).should('have.length', 2)
+    cy.get(`[ng-reflect-icon="fas,user"]`).should('have.length', 2)
+  });
+
+  it('If trueFaIcon or falseFaIcon isn\'t set, table should render true or false', () => {
+    cy.visit('/tables');
+    cy.get('table').contains('false')
+    cy.get('table').contains('true')
+  });
+
 });
