@@ -11,7 +11,7 @@ import {
   ViewChild
 } from '@angular/core';
 import {Subject} from 'rxjs';
-import {ColumnFilterConfig, ColumnFilterEvent, columnFilterOptions} from './components/filters';
+import {ColumnFilterConfig, ColumnFilterEvent, columnFilterOptions, columnFilterType} from './components/filters';
 import {FontAwesomeIconColorBoolPair} from '../../models/font-awesome-icon-color-bool-pair';
 import {TableCellDirective} from './table-cell.directive';
 import {FilterParser} from './utils/filter-parser';
@@ -87,6 +87,7 @@ export class TableComponent implements OnInit, OnChanges {
       const parsed = this.parseFilter(t);
       switch (this.tableConfig.mode) {
         case 'clientSide':
+          console.log(t);
           this.handleClientSideFilter(t);
           break;
         case 'serverSide':
@@ -150,7 +151,7 @@ export class TableComponent implements OnInit, OnChanges {
     let filteredData = this.clientSideInformation?.inputData;
     const keys = Array.from(filters.keys());
     keys.forEach(t => {
-      filteredData = filteredData?.filter(dataRow => this.applyOperator(dataRow[t], filters.get(t).type, filters.get(t).value));
+      filteredData = filteredData?.filter(dataRow => this.applyOperator(dataRow[t], filters.get(t).filterOption, filters.get(t).filterType, filters.get(t).value));
     });
     const b = this.clientSideInformation.pagination.buckets[0];
     this.data = filteredData.slice(!!b ? b.start : 0, !!b ? b.stop : this.clientSideInformation.pagination.pageSize);
@@ -165,13 +166,32 @@ export class TableComponent implements OnInit, OnChanges {
 
   }
 
-  private applyOperator(stringToFilter: string, filterOption: columnFilterOptions, value: string | number) {
-    if (stringToFilter?.length) {
+  private applyOperator(stringToFilter: string, filterOption: columnFilterOptions, filterType: columnFilterType, value: string | number) {
+    console.log('stringToFilter ' + stringToFilter);
+    console.log('filterOption ' + JSON.stringify(filterOption));
+    if (stringToFilter?.toString()?.length) {
       switch (filterOption) {
+        case 'greaterThanOrEqual':
+          switch (filterType) {
+            case 'gllNumberColumnFilter':
+              return value > 0 ? Number.parseInt(stringToFilter) >= Number.parseInt(value?.toString()) : true;
+          }
+          break;
+        case 'lessThanOrEqual':
+          switch (filterType) {
+            case 'gllNumberColumnFilter':
+              return value > 0 ? Number.parseInt(stringToFilter) <= Number.parseInt(value?.toString()) : true;
+          }
+          break;
         case 'contains':
           return stringToFilter.includes(value.toString());
         case 'equals':
-          return stringToFilter.toString() === value.toString();
+          switch (filterType) {
+            case 'gllTextColumnFilter':
+              return stringToFilter.toString() === value.toString();
+            case 'gllNumberColumnFilter':
+              return value > 0 ? Number.parseInt(stringToFilter) === Number.parseInt(value?.toString()) : true;
+          }
         case 'startsWith':
           return stringToFilter.startsWith(value.toString());
         case 'notEqual':

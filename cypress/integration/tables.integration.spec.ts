@@ -33,4 +33,39 @@ context('Cypress', () => {
     cy.get('table').contains('true')
   });
 
+  it('If search a member with age = 30, table rows should be 1', () => {
+    cy.visit('/tables');
+    cy.get('.tableRow').should('have.length', 4);
+    cy.writeToFilterInput('age', '30');
+    cy.get('.tableRow').should('have.length', 1);
+  });
+
+  it('If search a member with age >= 30, table rows should be 2', () => {
+    cy.visit('/tables');
+    cy.get('.tableRow').should('have.length', 4);
+    cy.get('[data-cy=age-filter-options]').click();
+    cy.get('[data-cy=age-dropdown-filter]').select('greaterThanOrEqual');
+    cy.writeToFilterInput('age', '30');
+    cy.get('.tableRow').should('have.length', 2);
+  });
+
+  it('If delete action si clicked, dialog should be visible', () => {
+    cy.visit('/tables');
+    cy.get('[data-cy=delete-action]').first().click();
+    cy.get('.modal-header').should('exist');
+    cy.findByRole('button', { name: 'Delete'}).should('exist');
+    cy.findByRole('button', { name: 'Cancel'}).should('exist');
+  });
+
+  it('If Cancel btn is clicked, dialog should be closed', () => {
+    cy.visit('/tables');
+    cy.get('[data-cy=delete-action]').first().click();
+    cy.get('.modal-header').should('exist');
+    cy.findByRole('button', { name: 'Cancel'}).click();
+    cy.get('.modal-header').should('not.exist');
+  });
+
+
+
+
 });
