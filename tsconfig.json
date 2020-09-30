@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "types": ["cypress", "@testing-library/cypress"],
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,

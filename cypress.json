@@ -5,6 +5,7 @@
   "screenshotsFolder": "./dist/cypress/screenshots",
   "chromeWebSecurity": false,
   "retries": 2,
+  "supportFile": "cypress/support/index.ts",
   "reporter": "./../node_modules/mochawesome/src/mochawesome.js",
   "reporterOptions": {
     "reportDir": "./dist/cypress/reports",

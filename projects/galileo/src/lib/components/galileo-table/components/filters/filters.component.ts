@@ -6,6 +6,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
       <div class="d-flex" [ngSwitch]="columnFilterConfig?.type">
         <input *ngSwitchCase="'gllTextColumnFilter'" [attr.data-cy]="columnField + '-filter-input'"
                (input)="filterValueChange()" [(ngModel)]="value" class="form-control-sm form-control">
+        <input *ngSwitchCase="'gllNumberColumnFilter'" [attr.data-cy]="columnField + '-filter-input'"
+               (input)="filterValueChange()" type="number" [(ngModel)]="value" class="form-control-sm form-control">
         <div *ngSwitchCase="'gllSelectMenuColumnFilter'">
           <select (change)="selectMenuFilterChange($event.target.value)" [value]="null" class="form-control-sm">
             <option [value]="'NO_FILTER'">All</option>
@@ -17,7 +19,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
         </div>
       </div>
       <div class="d-flex pt-1 pl-1" ngbDropdown placement="bottom-right"
-           *ngIf="columnFilterConfig?.type === 'gllTextColumnFilter'">
+           *ngIf="columnFilterConfig?.type === 'gllTextColumnFilter' || columnFilterConfig?.type === 'gllNumberColumnFilter'">
         <fa-icon class="cursor-pointer"
                  [attr.data-cy]="columnField + '-filter-options'"
                  id="dropdownBasic2" ngbDropdownToggle [icon]="['fas', 'filter']">
@@ -46,21 +48,21 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class FiltersComponent implements OnInit {
 
   @Input() columnField: string;
-  @Input() columnFilterConfig: ColumnFilterConfig = {
-    options: ['contains', 'startsWith'],
-    type: 'gllTextColumnFilter'
-  };
+  @Input() columnFilterConfig: ColumnFilterConfig;
 
   @Output() columnFilterValue: EventEmitter<ColumnFilterEvent> = new EventEmitter<ColumnFilterEvent>();
 
   public value: string | number;
   public valueTo: string | number;
-  public selectedFilterOption: columnFilterOptions = this.columnFilterConfig.options[0];
+  public selectedFilterOption: columnFilterOptions = null;
 
   constructor() {
   }
 
   ngOnInit(): void {
+    if (this.columnFilterConfig?.options.length) {
+      this.selectedFilterOption = this.columnFilterConfig.options[0]
+    }
   }
 
   onFilterOptionChange($event: any) {
@@ -68,7 +70,8 @@ export class FiltersComponent implements OnInit {
 
   filterValueChange() {
     const e: ColumnFilterEvent = {
-      type: this.selectedFilterOption,
+      filterType: this.columnFilterConfig.type,
+      filterOption: this.selectedFilterOption,
       columnField: this.columnField,
       value: this.value,
       valueTo: this.valueTo
@@ -78,7 +81,8 @@ export class FiltersComponent implements OnInit {
 
   selectMenuFilterChange(value: any) {
     const e: ColumnFilterEvent = {
-      type: 'equals',
+      filterType: this.columnFilterConfig.type,
+      filterOption: 'equals',
       columnField: this.columnField,
       value: value,
       valueTo: null
@@ -103,7 +107,8 @@ export type columnFilterOptions = 'equals' | 'notEqual' | 'lessThanOrEqual'
   | 'greaterThanOrEqual' | 'inRange' | 'contains' | 'startsWith';
 
 export interface ColumnFilterEvent {
-  type: columnFilterOptions;
+  filterOption: columnFilterOptions;
+  filterType: columnFilterType;
   columnField: string;
   value: string | number;
   valueTo?: string | number;
