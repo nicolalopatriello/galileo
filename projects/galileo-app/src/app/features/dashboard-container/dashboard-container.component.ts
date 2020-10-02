@@ -8,6 +8,7 @@ import {
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {distinctUntilChanged, filter} from 'rxjs/operators';
 import {buildGalileoBreadCrumb} from '../../../../../galileo/src/lib/utils/build-galileo-breadcrumb';
+import {SidebarGroup} from '../../../../../galileo/src/lib/components/galileo-sidebar/sidebar-group';
 
 @Component({
   selector: 'app-dashboard-container',
@@ -16,7 +17,7 @@ import {buildGalileoBreadCrumb} from '../../../../../galileo/src/lib/utils/build
 })
 export class DashboardContainerComponent implements OnInit {
 
-  public sidebarItemsGroups: Map<string, SidebarItem[]> = new Map<string, SidebarItem[]>();
+  public sidebarItemsGroups: Map<string, SidebarGroup> = new Map<string, SidebarGroup>();
   userMenuItems: NavBarUserMenuItem[] = [{id: 'logout', label: 'Logout', type: UserMenuItemType.ITEM}];
   sidebarOpened = true;
   breadcrumbs: any;
@@ -26,14 +27,20 @@ export class DashboardContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sidebarItemsGroups.set('Galileo', [
-      {id: 'tables', label: 'Tables', show: of(true), routerLink: 'tables', faIcon: 'table'},
-      {id: 'cards', label: 'Cards', show: of(true), routerLink: 'cards', faIcon: 'address-card'},
-      {id: 'auth-layouts', label: 'Auth layout', show: of(true), routerLink: 'auth-layout', faIcon: 'layer-group'},
-      {id: 'dashboard-layouts', label: 'Dashboard layout', show: of(true), routerLink: 'dashboard-layout', faIcon: 'layer-group'},
-      {id: 'forms', label: 'Forms', show: of(true), routerLink: 'forms', faIcon: 'align-justify'},
-      {id: 'theming', label: 'Theming', show: of(true), routerLink: 'theming', faIcon: 'fill-drip'}
-    ])
+    this.sidebarItemsGroups.set('Galileo', {
+        items: [
+          {id: 'tables', label: 'Tables', show: of(true), routerLink: 'tables', faIcon: 'table'},
+          {id: 'cards', label: 'Cards', show: of(true), routerLink: 'cards', faIcon: 'address-card'},
+          {id: 'auth-layouts', label: 'Auth layout', show: of(true), routerLink: 'auth-layout', faIcon: 'layer-group'},
+          {id: 'dashboard-layouts', label: 'Dashboard layout', show: of(true), routerLink: 'dashboard-layout', faIcon: 'layer-group'},
+          {id: 'forms', label: 'Forms', show: of(true), routerLink: 'forms', faIcon: 'align-justify'},
+          {id: 'theming', label: 'Theming', show: of(true), routerLink: 'theming', faIcon: 'fill-drip'}
+        ], groupLabel: {label: 'Galileo', show: true, activeItemGroupBorderColor: 'red', color: 'white', background: 'red'}
+      }
+    ).set('tools', {
+      items: [{id: 'settings', label: 'Settings', routerLink: 'settings', faIcon: 'cog', show: of(true)}],
+      groupLabel: {background: 'blue', color: 'white', label: 'Tools', show: true, activeItemGroupBorderColor: 'blue'}
+    });
 
     this.breadcrumbs = buildGalileoBreadCrumb(this.activatedRoute.root);
     this.router.events.pipe(
@@ -45,15 +52,12 @@ export class DashboardContainerComponent implements OnInit {
 
   }
 
-  onToggleSidebar($event: boolean) {
+  onToggleSidebar($event: boolean): void {
     this.sidebarOpened = !this.sidebarOpened;
   }
 
-  omSidebarItemClick($event: SidebarItem) {
-
+  omSidebarItemClick($event: { item: SidebarItem; groupLabel: string; groupColor: string }): void {
   }
 
-  onUserMenuItemClick($event: NavBarUserMenuItem) {
 
-  }
 }

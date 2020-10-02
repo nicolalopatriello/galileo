@@ -6,7 +6,7 @@ export enum UserMenuItemType {
 }
 
 export interface NavBarUserMenuItem {
-  type: UserMenuItemType,
+  type: UserMenuItemType;
   id?: any;
   label?: string;
   faIcon?: FontAwesomeIconColorBoolPair;

@@ -87,7 +87,6 @@ export class TableComponent implements OnInit, OnChanges {
       const parsed = this.parseFilter(t);
       switch (this.tableConfig.mode) {
         case 'clientSide':
-          console.log(t);
           this.handleClientSideFilter(t);
           break;
         case 'serverSide':
@@ -167,8 +166,6 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   private applyOperator(stringToFilter: string, filterOption: columnFilterOptions, filterType: columnFilterType, value: string | number) {
-    console.log('stringToFilter ' + stringToFilter);
-    console.log('filterOption ' + JSON.stringify(filterOption));
     if (stringToFilter?.toString()?.length) {
       switch (filterOption) {
         case 'greaterThanOrEqual':

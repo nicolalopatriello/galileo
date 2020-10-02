@@ -5,17 +5,14 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {galileoCustomTheme} from '../themes/galileoCustomTheme';
 import {DashboardContainerComponent} from './features/dashboard-container/dashboard-container.component';
-import {
-  GalileoDashboardLayoutModule,
-  GalileoModule,
-  GalileoNavBarModule,
-  GalileoService,
-  GalileoSidebarModule,
-  GalileoTableModule,
-  GalileoThemeService,
-} from '@nicolalopatriello/galileo';
 import {MarkdownModule} from 'ngx-markdown';
 import {GalileoThemeInterface} from '@nicolalopatriello/galileo';
+import {GalileoSidebarModule} from '../../../galileo/src/lib/components/galileo-sidebar/galileo-sidebar.module';
+import {GalileoNavBarModule} from '../../../galileo/src/lib/components/galileo-nav-bar/galileo-nav-bar.module';
+import {GalileoDashboardLayoutModule} from '../../../galileo/src/lib/components/galileo-dashboard-layout/galileo-dashboard-layout.module';
+import {GalileoService, GalileoThemeService} from '../../../galileo/src/lib/services';
+import {GalileoModule} from '../../../galileo/src/lib/galileo.module';
+import {GalileoTableModule} from '../../../galileo/src/lib/components/galileo-table/galileo-table.module';
 
 
 export const themeWithDarkSidebar: GalileoThemeInterface = {

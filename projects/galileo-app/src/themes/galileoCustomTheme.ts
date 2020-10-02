@@ -6,5 +6,5 @@ export const galileoCustomTheme: GalileoThemeInterface = {
   '--gll-sidenav-item-active-color': '#dedede',
   '--gll-sidenav-item-bg-hover': '#868686',
   '--gll-sidenav-item-active-bg': '#444444',
-  '--gll-sidenav-brand-bg': '#000000'
+  '--gll-sidenav-brand-bg': '#000000',
 }
