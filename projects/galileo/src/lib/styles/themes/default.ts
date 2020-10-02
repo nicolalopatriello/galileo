@@ -19,8 +19,6 @@ export const defaultTheme: GalileoThemeInterface = {
   '--gll-sidenav-item-label-color': 'rgba(82,82,82,0.8)',
   '--gll-sidenav-item-pt': '15px',
   '--gll-sidenav-item-pb': '15px',
-  '--gll-sidenav-item-group-border-color': 'white',
-  '--gll-sidenav-item-group-border-width': '0px',
   '--gll-sidenav-brand-bg': '#ffffff',
   '--gll-sidenav-toggler-bg': '#e4e5e6',
   '--gll-sidenav-toggler-bg-hover': 'rgba(0,0,0,.3)',

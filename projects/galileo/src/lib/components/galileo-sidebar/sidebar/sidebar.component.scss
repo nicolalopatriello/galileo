@@ -6,8 +6,6 @@ $gll-sidenav-item-bg-hover: var(--gll-sidenav-item-bg-hover);
 $gll-sidenav-item-active-bg: var(--gll-sidenav-item-active-bg);
 $gll-sidenav-item-active-color: var(--gll-sidenav-item-active-color);
 $gll-sidenav-item-label-color: var(--gll-sidenav-item-label-color);
-$gll-sidenav-item-group-border-color: var(--gll-sidenav-item-group-border-color);
-$gll-sidenav-item-group-border-width: var(--gll-sidenav-item-group-border-width);
 $gll-sidenav-item-pt: var(--gll-sidenav-item-pt);
 $gll-sidenav-item-pb: var(--gll-sidenav-item-pb);
 $gll-hover-transition-effect: var(--gll-hover-transition-effect);
@@ -45,9 +43,6 @@ $gll-hover-transition-effect: var(--gll-hover-transition-effect);
       background: $gll-sidenav-item-active-bg;
     }
 
-    &__group-border {
-      border-left: $gll-sidenav-item-group-border-width inset $gll-sidenav-item-group-border-color;
-    }
 
   }
 

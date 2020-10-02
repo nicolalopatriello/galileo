@@ -35,8 +35,6 @@ export class ThemingComponent {
   '--gll-sidenav-item-label-color'?: string;
   '--gll-sidenav-item-pt'?: string;
   '--gll-sidenav-item-pb'?: string;
-  '--gll-sidenav-item-group-border-color'?: string;
-  '--gll-sidenav-item-group-border-width'?: string;
   '--gll-sidenav-brand-bg'?: string;
   '--gll-sidenav-toggler-bg'?: string;
   '--gll-sidenav-toggler-bg-hover'?: string;

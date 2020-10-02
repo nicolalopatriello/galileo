@@ -1,8 +1,7 @@
 /// <reference types="cypress" />
 
-import './tables.integration.spec';
 
-context('Cypress', () => {
+context('gll-table', () => {
 
   beforeEach(() => {
     cy.viewport(1920, 768);
