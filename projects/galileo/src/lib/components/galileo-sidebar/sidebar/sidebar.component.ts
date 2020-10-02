@@ -21,7 +21,7 @@ import {SidebarGroup} from '../sidebar-group';
               <div
                 [routerLink]="'/'+item.routerLink" routerLinkActive="sidenav__item-active"
                 #rla="routerLinkActive"
-                (click)="onClickAction(item, groupLabel, sidebarItemsGroups.get(groupLabel).groupLabel.background)" class="d-flex flex-row cursor-pointer sidenav__item
+                (click)="onClickAction(item, groupLabel, sidebarItemsGroups.get(groupLabel).groupLabel?.background)" class="d-flex flex-row cursor-pointer sidenav__item
               pl-3 w-100 "
                 [ngStyle]="{'border-left': belongToGroup(item.label) && sidebarItemsGroups.get(groupLabel)?.groupLabel ? '5px solid ' + sidebarItemsGroups.get(groupLabel).groupLabel.activeItemGroupBorderColor : null}"
                 [ngClass]="{'sidenav--closed': !sideBarOpened}">
