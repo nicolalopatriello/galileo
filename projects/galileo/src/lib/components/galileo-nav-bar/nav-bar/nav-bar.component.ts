@@ -14,7 +14,7 @@ import {NavBarUserMenuItem, UserMenuItemType} from './nav-bar-user-menu-item';
             <img [src]="avatarImageSrc">
           </div>
         </a>
-        <div class="dropdown-menu dropdown-menu-right gll-user-menu" style="border-radius: 10px; width: 200px">
+        <div class="dropdown-menu dropdown-menu-right gll-user-menu" style="border-radius: 10px; width: 200px; z-index: 9000">
           <div class="d-flex flex-column justify-content-center pt-4 pr-4 pl-4" *ngIf="loggedUsername">
             <div class="w-100">
               <div class="gll-avatar cursor-pointer d-flex mr-auto ml-auto" style="width: 45px; height: 45px">

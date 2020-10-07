@@ -106,7 +106,7 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   onDelete(r: any) {
-    if (this.tableConfig.actions.delete.builtIn) {
+    if (this.tableConfig.actions.delete.builtIn && !this.tableConfig.actions.delete.disabled(r)) {
       this.currentRowToDelete = r;
       this.dialogService.open(this.deleteRowDialog, {size: 'md', backdrop: 'static', centered: true});
     }
