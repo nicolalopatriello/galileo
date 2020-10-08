@@ -1,37 +1,51 @@
 // Generate by Georgy Alarcon georgy.alarcon@gfmintegration.it
 
-import { Pipe, PipeTransform } from '@angular/core';
-import { gllEn, gllIt } from './translations';
+import {Pipe, PipeTransform} from '@angular/core';
+import {gllEn, gllIt} from './translations';
+import {GalileoAvailableLanguages} from '../../../../models';
+import {GalileoLanguageService} from '../../../../services';
+import {map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Pipe({
   name: 'galileoTranslate'
 })
 export class GalileoTranslatePipe implements PipeTransform {
 
-  transform(value: string, ...args: any[]): string {
-    const browserLang = navigator.language;
-    switch (browserLang) {
-      case GalileoLAng.EN: {
-        let r = gllEn[value];
-        if (!!args) {
-          r = this.setAdditionalParams(r, args[0])
-        }
-        return r;
-      }
-      case GalileoLAng.IT: {
-        let r = gllIt[value];
-        if (!!args) {
-          r = this.setAdditionalParams(r, args[0])
-        }
-        return r
-      }
-      default: {
-        return gllEn[value];
-      }
-    }
+  constructor(private galileoLanguageService: GalileoLanguageService) {
   }
 
-  private setAdditionalParams(translations: string, args: any) {
+  transform(value: string, args?: any): Observable<string> {
+    return this.galileoLanguageService.getLanguage().pipe(
+      map((lang: GalileoAvailableLanguages) => {
+        switch (lang) {
+          case GalileoAvailableLanguages.EN: {
+            let r = gllEn[value];
+            if (!!args) {
+              r = this.setAdditionalParams(r, args[0]);
+            }
+            return r;
+          }
+          case GalileoAvailableLanguages.IT: {
+            let r = gllIt[value];
+            if (!!args) {
+              r = this.setAdditionalParams(r, args[0]);
+            }
+            return r;
+          }
+          default: {
+            let r = gllEn[value];
+            if (!!args) {
+              r = this.setAdditionalParams(r, args[0]);
+            }
+            return r;
+          }
+        }
+      })
+    );
+  }
+
+  private setAdditionalParams(translations: string, args: any): any {
     const regx = RegExp(/{{(\w*)}}/, 'gm');
     const t = translations.match(regx);
     let output = translations;
@@ -40,14 +54,10 @@ export class GalileoTranslatePipe implements PipeTransform {
       const y = regx.exec(array[index + 1]);
       x.concat(y);
       if (!!x) {
-        output = output.replace(x[0], args[x[1]])
+        output = output.replace(x[0], args[x[1]]);
       }
     });
-    return output
+    return output;
   }
 }
 
-export enum GalileoLAng {
-  EN = 'en',
-  IT = 'it'
-}

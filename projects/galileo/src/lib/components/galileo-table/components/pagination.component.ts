@@ -10,8 +10,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
             <a class="page-link cursor-pointer"><</a>
           </li>
           <li class="page-item">
-            <a class="page-link">{{'pageOf' | galileoTranslate: { currentPage: currentPage + 1, totalPages: numberOfPages } }}
-            </a>
+            <a class="page-link">{{  currentPage + 1 }} {{'pageOf' | galileoTranslate | async }} {{numberOfPages}}</a>
           </li>
           <li (click)="(currentPage + 1) < numberOfPages ? selectPage.emit(currentPage + 1) : null" class="page-item">
             <a class="page-link cursor-pointer">></a>

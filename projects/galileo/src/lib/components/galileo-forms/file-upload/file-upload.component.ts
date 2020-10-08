@@ -5,8 +5,8 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
   selector: 'gll-file-upload',
   template: `
     <div class="file-drop-area">
-      <span class="fake-btn">{{'chooseFile' | galileoTranslate}}</span>
-      <span class="file-msg">{{file ? file.name : 'orDragAndDrop' | galileoTranslate }}</span>
+      <span class="fake-btn">{{'chooseFile' | galileoTranslate | async}}</span>
+      <span class="file-msg">{{file ? file.name : 'orDragAndDrop' | galileoTranslate | async }}</span>
       <input (change)="onChangeFile($event)" class="file-input" type="file">
     </div>
   `,

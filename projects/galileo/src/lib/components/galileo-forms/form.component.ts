@@ -10,10 +10,10 @@ import {FormGroup} from '@angular/forms';
           'justify-content-center': buttonsPosition === 'center', 'justify-content-end': buttonsPosition === 'right'
           }">
         <button *ngIf="showBuiltInButtons" [disabled]="!relativeFormGroup.valid" (click)="confirm.emit(true)"
-                class="btn btn-primary mr-1">{{'confirm' | galileoTranslate}}
+                class="btn btn-primary mr-1">{{'confirm' | galileoTranslate | async}}
         </button>
         <button *ngIf="showBuiltInButtons" (click)="resetForm(); reject.emit(true)"
-                class="btn btn-outline-secondary ml-1">{{'cancel' | galileoTranslate}}
+                class="btn btn-outline-secondary ml-1">{{'cancel' | galileoTranslate | async}}
         </button>
       </div>
     </div>

@@ -30,7 +30,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
                     [attr.data-cy]="columnField + '-dropdown-filter'"
                     [(ngModel)]="selectedFilterOption" id="filtersOptions" class="w-100 form-control-sm form-control">
               <option [attr.data-cy]="columnField + '-' + o + '-dropdown-filter'" class="form-control"
-                      *ngFor="let o of columnFilterConfig?.options" [value]="o">{{o | galileoTranslate}}</option>
+                      *ngFor="let o of columnFilterConfig?.options" [value]="o">{{o | galileoTranslate | async}}</option>
             </select>
             <input (input)="filterValueChange()" [attr.data-cy]="columnField + '-dropdown-filter-input'"
                    [(ngModel)]="value" class="form-control-sm form-control mt-1">

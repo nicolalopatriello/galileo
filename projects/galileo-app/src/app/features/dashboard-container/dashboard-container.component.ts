@@ -9,6 +9,7 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {distinctUntilChanged, filter} from 'rxjs/operators';
 import {buildGalileoBreadCrumb} from '../../../../../galileo/src/lib/utils/build-galileo-breadcrumb';
 import {SidebarGroup} from '../../../../../galileo/src/lib/components/galileo-sidebar/sidebar-group';
+import {GalileoLanguageService} from '../../../../../galileo/src/lib/services';
 
 @Component({
   selector: 'app-dashboard-container',
@@ -23,7 +24,9 @@ export class DashboardContainerComponent implements OnInit {
   breadcrumbs: any;
 
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private galileoLanguageService: GalileoLanguageService) {
   }
 
   ngOnInit(): void {
@@ -60,4 +63,7 @@ export class DashboardContainerComponent implements OnInit {
   }
 
 
+  languageChanged($event: any) {
+    this.galileoLanguageService.setLanguage($event.target.value);
+  }
 }
