@@ -49,7 +49,7 @@ export const themeWithDarkBreadcrumbs: GalileoThemeInterface = {
         {name: 'themeWithDarkSidebar', theme: themeWithDarkSidebar},
         {name: 'themeWithDarkBreadcrumbs', theme: themeWithDarkBreadcrumbs},
       ],
-      language: GalileoAvailableLanguages.IT
+      language: GalileoAvailableLanguages.EN
     }),
     GalileoDashboardLayoutModule,
     GalileoSidebarModule,
