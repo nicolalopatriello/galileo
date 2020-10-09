@@ -22,7 +22,7 @@ import {DialogType, FontAwesomeIconColorBoolPair} from '../../../models';
       <button *ngIf="showCancelButton" ngbAutofocus
               type="button" class="btn btn-outline-secondary"
               (click)="activeModal.dismiss()">
-        {{'cancel' | galileoTranslate}}
+        {{'cancel' | galileoTranslate | async}}
       </button>
     </div>
   `,

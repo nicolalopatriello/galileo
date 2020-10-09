@@ -13,6 +13,8 @@ import {GalileoDashboardLayoutModule} from '../../../galileo/src/lib/components/
 import {GalileoService, GalileoThemeService} from '../../../galileo/src/lib/services';
 import {GalileoModule} from '../../../galileo/src/lib/galileo.module';
 import {GalileoTableModule} from '../../../galileo/src/lib/components/galileo-table/galileo-table.module';
+import {GalileoAvailableLanguages} from '../../../galileo/src/lib/models';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 export const themeWithDarkSidebar: GalileoThemeInterface = {
@@ -46,11 +48,13 @@ export const themeWithDarkBreadcrumbs: GalileoThemeInterface = {
         {name: 'galileoCustomTheme', theme: galileoCustomTheme},
         {name: 'themeWithDarkSidebar', theme: themeWithDarkSidebar},
         {name: 'themeWithDarkBreadcrumbs', theme: themeWithDarkBreadcrumbs},
-      ]
+      ],
+      language: GalileoAvailableLanguages.EN
     }),
     GalileoDashboardLayoutModule,
     GalileoSidebarModule,
     GalileoNavBarModule,
+    ReactiveFormsModule,
   ],
   providers: [GalileoThemeService, GalileoService],
   bootstrap: [AppComponent]

@@ -21,6 +21,16 @@
                    [loggedUsername]="'Marco Rossi'"
                    [avatarImageSrc]="'../assets/images/avatar.png'">
       </gll-nav-bar>
+      <ul class="navbar-nav mr-auto flex-row">
+        <li class="nav-item">
+          <div class="d-flex flex-column">
+            <select (change)="languageChanged($event)">
+              <option value="en">EN</option>
+              <option value="it">IT</option>
+            </select>
+          </div>
+        </li>
+      </ul>
     </div>
   </gll-dashboard-layout>
 </div>

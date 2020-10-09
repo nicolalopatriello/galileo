@@ -5,7 +5,7 @@
     <tr id="tableHeader">
       <th *ngFor="let c of tableConfig?.columnsDef" scope="col">{{c.headerName}}</th>
       <th *ngIf="atLeastOneAction()" scope="col">
-        {{'actions' | galileoTranslate}}
+        {{'actions' | galileoTranslate | async}}
       </th>
     </tr>
     </thead>
@@ -109,20 +109,20 @@
   <div class="modal-header bg-success text-light bg-danger">
     <h4 class="modal-title text-white">
       <fa-icon [icon]="['fas', 'trash']" class="text-white"></fa-icon>
-      {{'delete' | galileoTranslate}}
+      {{'delete' | galileoTranslate | async}}
     </h4>
   </div>
   <div class="modal-body">
-    <p>{{tableConfig?.actions?.delete?.customMessage ? tableConfig.actions.delete.customMessage : 'deleteMsg' | galileoTranslate}}</p>
+    <p>{{tableConfig?.actions?.delete?.customMessage ? tableConfig.actions.delete.customMessage : 'deleteMsg' | galileoTranslate | async}}</p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-danger"
             (click)="confirmDelete()">
-      {{'delete' | galileoTranslate}}
+      {{'delete' | galileoTranslate | async}}
     </button>
     <button ngbAutofocus type="button" class="btn btn-outline-secondary"
             (click)="cancelDelete()">
-      {{'cancel' | galileoTranslate}}
+      {{'cancel' | galileoTranslate | async}}
     </button>
   </div>
 </ng-template>

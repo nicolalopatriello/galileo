@@ -28,7 +28,7 @@ export class GalileoModule {
         GalileoThemeService,
         { provide: APP_INITIALIZER, useFactory: initializeModule, multi: true, deps: [GalileoThemeService] },
         {
-          provide: 'GalileoConfigService', //TODO try to restore with GalileoConfigService InjectionToken
+          provide: 'GalileoConfigService',
           useValue: config
         }
       ]
