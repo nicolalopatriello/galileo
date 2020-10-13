@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {noop} from 'rxjs';
+import {noop, Observable} from 'rxjs';
 import {SidebarItem} from '../sidebar-item';
 import {SidebarGroup} from '../sidebar-group';
 
@@ -13,7 +13,7 @@ import {SidebarGroup} from '../sidebar-group';
         <ng-container *ngFor="let groupLabel of getKeys(sidebarItemsGroups); let i = index">
           <p *ngIf="sidebarItemsGroups.get(groupLabel)?.groupLabel"
             [ngStyle]="{background: sidebarItemsGroups.get(groupLabel).groupLabel.background, color: sidebarItemsGroups.get(groupLabel).groupLabel.color}"
-            class="small d-flex w-100 p-1 m-0 justify-content-center font-weight-bolder" [ngClass]="{'mt-1' : i > 0}">{{sidebarItemsGroups.get(groupLabel).groupLabel.label}}</p>
+            class="small d-flex w-100 p-1 m-0 justify-content-center font-weight-bolder" [ngClass]="{'mt-1' : i > 0}">{{sidebarItemsGroups.get(groupLabel).groupLabel.label | async}}</p>
 
           <div class="w-100" style="height: 3px" [ngStyle]="{background: sidebarItemsGroups.get(groupLabel).groupLabel.background}" *ngIf="!sideBarOpened && sidebarItemsGroups.get(groupLabel).groupLabel"></div>
           <ng-container *ngFor="let item of getValueOf(groupLabel)" class="mt-2">
@@ -83,7 +83,7 @@ export class SidebarComponent implements OnInit {
     return this.sidebarItemsGroups.get(groupLabel).groupLabel?.show;
   }
 
-  getLabel(groupLabel: string): string {
+  getLabel(groupLabel: string): Observable<string> {
     return this.sidebarItemsGroups.get(groupLabel).groupLabel?.label;
   }
 }

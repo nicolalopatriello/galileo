@@ -5,7 +5,7 @@
     "ng": "ng",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "cy:run:headless": "cypress run --headless",
+    "cy:run:headless": "cy    press run --headless",
     "build:galileo": "ng build galileo --prod",
     "start": "ng serve",
     "build": "ng build",
