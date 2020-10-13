@@ -38,11 +38,11 @@ export class DashboardContainerComponent implements OnInit {
           {id: 'dashboard-layouts', label: 'Dashboard layout', show: of(true), routerLink: 'dashboard-layout', faIcon: 'layer-group'},
           {id: 'forms', label: 'Forms', show: of(true), routerLink: 'forms', faIcon: 'align-justify'},
           {id: 'theming', label: 'Theming', show: of(true), routerLink: 'theming', faIcon: 'fill-drip'}
-        ], groupLabel: {label: 'Galileo', show: true, activeItemGroupBorderColor: 'red', color: 'white', background: 'red'}
+        ], groupLabel: {label: of('Galileo'), show: true, activeItemGroupBorderColor: 'red', color: 'white', background: 'red'}
       }
     ).set('tools', {
       items: [{id: 'settings', label: 'Settings', routerLink: 'settings', faIcon: 'cog', show: of(true)}],
-      groupLabel: {background: 'blue', color: 'white', label: 'Tools', show: true, activeItemGroupBorderColor: 'blue'}
+      groupLabel: {background: 'blue', color: 'white', label: of('Tools'), show: true, activeItemGroupBorderColor: 'blue'}
     });
 
     this.breadcrumbs = buildGalileoBreadCrumb(this.activatedRoute.root);

@@ -1,6 +1,7 @@
 import {ActivatedRoute} from '@angular/router';
 import {GllBreadCrumb} from '../components/galileo-dashboard-layout/breadcrumb/gll-breadcrumb';
 
+
 export function buildGalileoBreadCrumb(route: ActivatedRoute, url: string = '', breadcrumbs: GllBreadCrumb[] = []): GllBreadCrumb[] {
   let label = route.routeConfig && route.routeConfig.data ? route.routeConfig.data.breadcrumb : '';
   let path = route.routeConfig && route.routeConfig.data ? route.routeConfig.path : '';
@@ -21,9 +22,17 @@ export function buildGalileoBreadCrumb(route: ActivatedRoute, url: string = '', 
   }
 
   const nextUrl = path ? `${url}/${path}` : url;
+
+  let a = [];
+  route.pathFromRoot.forEach(i => {
+    if (i.snapshot.url.length) {
+      a.push(...i.snapshot.url);
+    }
+  })
+  const newUrl = a.join('/');
   const breadcrumb: GllBreadCrumb = {
-    label: label,
-    url: nextUrl
+    label,
+    url: route.children.length === 0 ? null : newUrl
   };
   const newBreadcrumbs = breadcrumb.label ? [...breadcrumbs, breadcrumb] : [...breadcrumbs];
   if (route.firstChild) {

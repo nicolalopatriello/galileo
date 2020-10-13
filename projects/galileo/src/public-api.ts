@@ -3,7 +3,7 @@
  */
 
 export * from './lib/components/galileo-dialog-wrapper/galileo-dialog-wrapper.module';
-export * from './lib/components/galileo-dialog-wrapper/dialog-wrapper.component'
+export * from './lib/components/galileo-dialog-wrapper/dialog-wrapper.component';
 
 export * from './lib/components/galileo-auth-layout/galileo-auth-layout.module';
 export * from './lib/components/galileo-auth-layout/auth-layout/auth-layout.component';
@@ -29,7 +29,7 @@ export * from './lib/components/galileo-simple-card/simple-card/simple-card.comp
 
 export * from './lib/components/galileo-nav-bar/galileo-nav-bar.module';
 export * from './lib/components/galileo-nav-bar/nav-bar/nav-bar.component';
-export * from './lib/components/galileo-nav-bar/nav-bar/nav-bar-user-menu-item'
+export * from './lib/components/galileo-nav-bar/nav-bar/nav-bar-user-menu-item';
 
 export * from './lib/components/galileo-sidebar/galileo-sidebar.module';
 export * from './lib/components/galileo-sidebar/sidebar/sidebar.component';
@@ -52,7 +52,7 @@ export * from './lib/services/galileo-config.service';
 
 export * from './lib/models';
 export * from './lib/styles/themes/models';
-export * from './lib/validators'
+export * from './lib/validators';
 
 
 export * from './lib/utils/build-galileo-breadcrumb';

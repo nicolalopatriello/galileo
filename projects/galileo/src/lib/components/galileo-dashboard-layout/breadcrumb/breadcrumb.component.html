@@ -1,7 +1,7 @@
 <ol class="breadcrumb">
   <li *ngFor="let breadcrumb of breadcrumbs; let last = last">
     <span [ngClass]="{'font-weight-bold' : last}" class="cursor-pointer"
-          [routerLink]="breadcrumb.url" routerLinkActive="router-link-active">
+          (click)="navigate(breadcrumb.url)" routerLinkActive="router-link-active">
       {{ breadcrumb.label}}
     </span>
   </li>

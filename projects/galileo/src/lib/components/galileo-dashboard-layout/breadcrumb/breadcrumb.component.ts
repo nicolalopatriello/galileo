@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, Input} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {GllBreadCrumb} from './gll-breadcrumb';
 
 @Component({
@@ -8,7 +8,17 @@ import {GllBreadCrumb} from './gll-breadcrumb';
   styleUrls: ['./breadcrumb.component.scss']
 })
 export class BreadcrumbComponent {
+
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
+  }
+
   @Input() breadcrumbs: GllBreadCrumb[];
+
+  navigate(url: string) {
+    if (url !== null && url !== undefined) {
+      this.router.navigate(url.split('/'));
+    }
+  }
 
 }
 
