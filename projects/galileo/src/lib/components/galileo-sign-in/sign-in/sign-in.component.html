@@ -60,9 +60,9 @@ align-items-center d-flex flex-column justify-content-center sign-in__container
     <div class="row-cols-6 d-flex justify-content-center mt-2">
       <div class="col-10 d-flex align-items-center">
         <div class="d-flex flex-row w-100">
-          <button class="btn mr-1 btn-secondary w-50" type="button" (click)="signUp()">{{signUpButtonLabel}}</button>
+          <button class="btn mr-1 btn-secondary w-50 gll-signup-btn" type="button" (click)="signUp()">{{signUpButtonLabel}}</button>
 
-          <button class="btn ml-1 btn-primary w-50" (click)="signIn()"
+          <button class="btn ml-1 btn-primary w-50 gll-signin-btn" (click)="signIn()"
                   [ngClass]="{'sign-in__disabled': loginFormGroup.invalid }"
                   [disabled]="loginFormGroup.invalid">
             {{signInButtonLabel}}
