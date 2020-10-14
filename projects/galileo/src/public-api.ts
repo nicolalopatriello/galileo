@@ -49,6 +49,7 @@ export * from './lib/galileo.module';
 export * from './lib/services/galileo-theme.service';
 export * from './lib/services/galileo.service';
 export * from './lib/services/galileo-config.service';
+export * from './lib/services/galileo-language.service';
 
 export * from './lib/models';
 export * from './lib/styles/themes/models';
