@@ -40,12 +40,13 @@ export abstract class GllBaseAuthTokenInterceptor implements HttpInterceptor {
       return this.refreshTokenRequest().pipe(
         switchMap((resp: { newToken: string, newRefreshToken: string }) => {
           this.isRefreshing = false;
-          this.refreshTokenSubject.next(null);
+          this.refreshTokenSubject.next(resp.newToken);
           localStorage.setItem(this.getLocalStorageAuthTokenInfo().tokenKey, resp.newToken);
           localStorage.setItem(this.getLocalStorageAuthTokenInfo().refreshTokenKey, resp.newRefreshToken);
           return next.handle(this.addToken(request, resp.newToken));
         })).pipe(
         catchError(err => {
+          this.isRefreshing = false;
           this.ifErrorsAction();
           return throwError(err);
         })
@@ -56,16 +57,16 @@ export abstract class GllBaseAuthTokenInterceptor implements HttpInterceptor {
         filter(token => token != null),
         take(1),
         switchMap(jwt => {
-          return next.handle(this.addToken(request));
+          return next.handle(this.addToken(request, jwt));
         }));
     }
   }
 
-  private addToken(request: HttpRequest<any>, newToken?: string) {
+  private addToken(request: HttpRequest<any>, token?: string) {
     return request.clone({
       setHeaders: {
         ...this.appendHeaders(),
-        Authorization: !!newToken ? newToken : `${this.readTokenFromLocalStorage()}`
+        Authorization: token
       }
     });
   }
