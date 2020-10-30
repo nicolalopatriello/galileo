@@ -11,12 +11,13 @@ import {SidebarGroup} from '../sidebar-group';
     <div class="h-100 d-flex flex-column sidenav">
       <div class="d-flex align-items-end flex-column h-100 w-100">
         <ng-container *ngFor="let groupLabel of getKeys(sidebarItemsGroups); let i = index">
-          <p *ngIf="sidebarItemsGroups.get(groupLabel)?.groupLabel"
-            [ngStyle]="{background: sidebarItemsGroups.get(groupLabel).groupLabel.background, color: sidebarItemsGroups.get(groupLabel).groupLabel.color}"
-            class="small d-flex w-100 p-1 m-0 justify-content-center font-weight-bolder" [ngClass]="{'mt-1' : i > 0}">{{sidebarItemsGroups.get(groupLabel).groupLabel.label | async}}</p>
+          <p *ngIf="sidebarItemsGroups.get(groupLabel)?.groupLabel && (sidebarItemsGroups.get(groupLabel).groupLabel.show | async)"
+            [ngStyle]="{background: (sidebarItemsGroups.get(groupLabel).groupLabel.background | async), color: (sidebarItemsGroups.get(groupLabel).groupLabel.color | async)}"
+            class="small d-flex w-100 p-1 m-0 justify-content-center font-weight-bolder" [ngClass]="{'mt-1' : i > 0}">{{sidebarItemsGroups.get(groupLabel).groupLabel.label | async}}
+          </p>
 
           <div class="w-100" style="height: 3px"
-               [ngStyle]="{background: sidebarItemsGroups.get(groupLabel).groupLabel.background}"
+               [ngStyle]="{background: (sidebarItemsGroups.get(groupLabel).groupLabel.background | async)}"
                *ngIf="
                !sideBarOpened && sidebarItemsGroups.get(groupLabel).groupLabel && (sidebarItemsGroups.get(groupLabel).groupLabel.show | async)">
           </div>
@@ -25,9 +26,9 @@ import {SidebarGroup} from '../sidebar-group';
               <div
                 [routerLink]="'/'+item.routerLink" routerLinkActive="sidenav__item-active"
                 #rla="routerLinkActive"
-                (click)="onClickAction(item, groupLabel, sidebarItemsGroups.get(groupLabel).groupLabel?.background)" class="d-flex flex-row cursor-pointer sidenav__item
+                (click)="onClickAction(item, groupLabel)" class="d-flex flex-row cursor-pointer sidenav__item
               pl-3 w-100 "
-                [ngStyle]="{'border-left': belongToGroup(item.label) && sidebarItemsGroups.get(groupLabel)?.groupLabel ? '5px solid ' + sidebarItemsGroups.get(groupLabel).groupLabel.activeItemGroupBorderColor : null}"
+                [ngStyle]="{'border-left': belongToGroup(item.label) && sidebarItemsGroups.get(groupLabel)?.groupLabel && (sidebarItemsGroups.get(groupLabel).groupLabel.show | async) ? '5px solid ' + (sidebarItemsGroups.get(groupLabel).groupLabel.activeItemGroupBorderColor | async) : null}"
                 [ngClass]="{'sidenav--closed': !sideBarOpened}">
                 <fa-icon
                   [icon]="['fas', item.faIcon]"
@@ -51,16 +52,16 @@ export class SidebarComponent implements OnInit {
   @Input() sidebarItemsGroups: Map<string, SidebarGroup> = new Map<string, SidebarGroup>();
   @Input() sideBarOpened: boolean;
 
-  @Output() itemClick = new EventEmitter<{ item: SidebarItem, groupLabel: string, groupColor: string }>();
+  @Output() itemClick = new EventEmitter<{ item: SidebarItem, groupLabel: string }>();
   @Output() sideNavToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
   private currentItemGroup: string;
 
   constructor() {
   }
 
-  onClickAction(item: SidebarItem, groupLabel: string, groupColor: string): void {
+  onClickAction(item: SidebarItem, groupLabel: string): void {
     this.currentItemGroup = groupLabel;
-    !item.disabled ? this.itemClick.emit({item, groupLabel, groupColor}) : noop();
+    !item.disabled ? this.itemClick.emit({item, groupLabel}) : noop();
   }
 
   getKeys(sidebarItemsGroups: Map<string, SidebarGroup>): string[] {
@@ -75,19 +76,8 @@ export class SidebarComponent implements OnInit {
     return this.sidebarItemsGroups.get(this.currentItemGroup).items.find(t => t.label === itemLabel);
   }
 
-  setActiveGroup(groupLabel: string): void {
-    this.currentItemGroup = groupLabel;
-  }
 
   ngOnInit(): void {
     this.currentItemGroup = Array.from(this.sidebarItemsGroups.keys())[0];
-  }
-
-  showLabel(groupLabel: string): Observable<boolean> {
-    return this.sidebarItemsGroups.get(groupLabel).groupLabel?.show;
-  }
-
-  getLabel(groupLabel: string): Observable<string> {
-    return this.sidebarItemsGroups.get(groupLabel).groupLabel?.label;
   }
 }
