@@ -15,7 +15,11 @@ import {SidebarGroup} from '../sidebar-group';
             [ngStyle]="{background: sidebarItemsGroups.get(groupLabel).groupLabel.background, color: sidebarItemsGroups.get(groupLabel).groupLabel.color}"
             class="small d-flex w-100 p-1 m-0 justify-content-center font-weight-bolder" [ngClass]="{'mt-1' : i > 0}">{{sidebarItemsGroups.get(groupLabel).groupLabel.label | async}}</p>
 
-          <div class="w-100" style="height: 3px" [ngStyle]="{background: sidebarItemsGroups.get(groupLabel).groupLabel.background}" *ngIf="!sideBarOpened && sidebarItemsGroups.get(groupLabel).groupLabel"></div>
+          <div class="w-100" style="height: 3px"
+               [ngStyle]="{background: sidebarItemsGroups.get(groupLabel).groupLabel.background}"
+               *ngIf="
+               !sideBarOpened && sidebarItemsGroups.get(groupLabel).groupLabel && (sidebarItemsGroups.get(groupLabel).groupLabel.show | async)">
+          </div>
           <ng-container *ngFor="let item of getValueOf(groupLabel)" class="mt-2">
             <ng-container *ngIf="item.show | async">
               <div
@@ -79,7 +83,7 @@ export class SidebarComponent implements OnInit {
     this.currentItemGroup = Array.from(this.sidebarItemsGroups.keys())[0];
   }
 
-  showLabel(groupLabel: string): boolean {
+  showLabel(groupLabel: string): Observable<boolean> {
     return this.sidebarItemsGroups.get(groupLabel).groupLabel?.show;
   }
 

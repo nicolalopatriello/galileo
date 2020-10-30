@@ -4,5 +4,5 @@ import {SidebarItem} from './sidebar-item';
 
 export interface SidebarGroup {
   items: SidebarItem[];
-  groupLabel?: {label: Observable<string>, show: boolean, background: string, color: string, activeItemGroupBorderColor: string};
+  groupLabel?: {label: Observable<string>, show: Observable<boolean>, background: string, color: string, activeItemGroupBorderColor: string};
 }
