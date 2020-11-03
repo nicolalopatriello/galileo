@@ -43,7 +43,8 @@ export class DashboardContainerComponent implements OnInit {
             faIcon: 'layer-group'
           },
           {id: 'forms', label: 'Forms', show: of(true), routerLink: 'forms', faIcon: 'align-justify'},
-          {id: 'theming', label: 'Theming', show: of(true), routerLink: 'theming', faIcon: 'fill-drip'}
+          {id: 'theming', label: 'Theming', show: of(true), routerLink: 'theming', faIcon: 'fill-drip'},
+          {id: 'dialogs', label: 'Dialogs', routerLink: 'dialogs', faIcon: 'window-maximize', show: of(true)}
         ],
         groupLabel: {
           label: of('Galileo'),
@@ -54,7 +55,8 @@ export class DashboardContainerComponent implements OnInit {
         }
       }
     ).set('tools', {
-      items: [{id: 'settings', label: 'Settings', routerLink: 'settings', faIcon: 'cog', show: of(true)}],
+      items: [{id: 'settings', label: 'Settings', routerLink: 'settings', faIcon: 'cog', show: of(true)},
+      ],
       groupLabel: {
         background: of('blue'),
         color: of('white'),

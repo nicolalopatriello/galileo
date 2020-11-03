@@ -45,6 +45,13 @@ const routes: Routes = [
         data: {
           breadcrumb: 'Theming'
         },
+      },
+      {
+        path: 'dialogs',
+        loadChildren: () => import('./features/dialogs/dialogs.module').then(t => t.DialogsModule),
+        data: {
+          breadcrumb: 'Dialogs'
+        },
       }
     ]
   },

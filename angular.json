@@ -69,7 +69,8 @@
             ],
             "styles": [
               "projects/galileo-app/src/styles.scss",
-              "node_modules/prismjs/themes/prism-okaidia.css"
+              "node_modules/prismjs/themes/prism-okaidia.css",
+              "node_modules/@nicolalopatriello/galileo/src/assets/galileo.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

@@ -5,16 +5,18 @@ import {CarouselComponent} from './components/carousel.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgModule} from '@angular/core';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {FormsModule} from "@angular/forms";
 
 
 
 @NgModule({
   declarations: [GalileoTranslatePipe, ConfirmDialogComponent, CarouselComponent],
-  imports: [
-    NgbModule,
-    CommonModule,
-    FontAwesomeModule
-  ],
+    imports: [
+        NgbModule,
+        CommonModule,
+        FontAwesomeModule,
+        FormsModule
+    ],
   exports: [GalileoTranslatePipe, ConfirmDialogComponent, CarouselComponent]
 })
 export class GalileoCommonModule { }
