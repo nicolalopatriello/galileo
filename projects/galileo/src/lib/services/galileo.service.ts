@@ -11,7 +11,7 @@ export class GalileoService {
   constructor(private modalService: NgbModal) {
   }
 
-  showConfirmDialog = (options: ConfirmDialogOptions): Observable<boolean> => {
+  showConfirmDialog = (options: ConfirmDialogOptions): Observable<string> => {
     const modalRef = this.modalService.open(ConfirmDialogComponent, {centered: true, backdrop: 'static', size: 'lg', keyboard: false});
     modalRef.componentInstance.options = options;
     return from(modalRef.result);
