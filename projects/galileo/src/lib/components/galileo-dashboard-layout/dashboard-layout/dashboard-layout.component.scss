@@ -19,6 +19,16 @@ $gll-sidenav-brand-bg: var(--gll-sidenav-brand-bg);
   }
 }
 
+.dl-brand--mini {
+  background: $gll-sidenav-brand-bg;
+  img {
+    float: right;
+    height: 50px;
+    width: 50px;
+    padding: 10px;
+  }
+}
+
 .dl-sidenav-toggler {
   background: $gll-sidenav-toggler-bg;
   color: $gll-sidenav-toggler-color;

@@ -3,5 +3,9 @@
   "dest": "../../dist/galileo",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "assets": [
+    "CHANGELOG.md",
+    "./src/assets/galileo.scss"
+  ]
 }
