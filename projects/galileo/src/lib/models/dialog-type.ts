@@ -1,4 +1,4 @@
 export enum DialogType {
-  ERROR = 'ERROR',
-  MESSAGE = 'MESSAGE'
+  DANGER = 'DANGER',
+  SUCCESS = 'SUCCESS',
 }

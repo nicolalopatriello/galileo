@@ -1,21 +1,22 @@
 export interface GalileoTranslations {
-  chooseFile: string,
-  orDragAndDrop: string,
-  equals: string,
-  notEqual: string,
-  lessThanOrEqual: string,
-  greaterThanOrEqual: string,
-  contains: string,
-  startsWith: string,
-  inRange: string,
-  pageOf: string,
-  actions: string,
-  delete: string,
-  deleteMsg: string,
-  confirm: string,
-  cancel: string,
-  update: string,
-  close: string,
+  chooseFile: string;
+  orDragAndDrop: string;
+  equals: string;
+  notEqual: string;
+  lessThanOrEqual: string;
+  greaterThanOrEqual: string;
+  contains: string;
+  startsWith: string;
+  inRange: string;
+  pageOf: string;
+  actions: string;
+  delete: string;
+  deleteMsg: string;
+  confirm: string;
+  cancel: string;
+  update: string;
+  close: string;
+  toConfirmWrite: string;
 }
 
 export const gllEn: GalileoTranslations = {
@@ -35,7 +36,8 @@ export const gllEn: GalileoTranslations = {
   confirm: 'Confirm',
   cancel: 'Cancel',
   update: 'Update',
-  close: 'Close'
+  close: 'Close',
+  toConfirmWrite: 'To confirm write'
 };
 
 export const gllIt: GalileoTranslations = {
@@ -55,5 +57,6 @@ export const gllIt: GalileoTranslations = {
   confirm: 'Conferma',
   cancel: 'Annulla',
   update: 'Aggiorna',
-  close: 'Chiudi'
+  close: 'Chiudi',
+  toConfirmWrite: 'Per confermare scrivi'
 };
