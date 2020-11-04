@@ -3,7 +3,7 @@
   <table class="table table-sm w-100 gll-table m-0">
     <thead>
     <tr id="tableHeader">
-      <th *ngFor="let c of tableConfig?.columnsDef" scope="col">{{c.headerName}}</th>
+      <th *ngFor="let c of tableConfig?.columnsDef" scope="col">{{isObs(c.headerName) ? (c.headerName | async) : c.headerName}}</th>
       <th *ngIf="atLeastOneAction()" scope="col">
         {{'actions' | galileoTranslate | async}}
       </th>

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TableConfig} from '../../../../../../galileo/src/lib/components/galileo-table/table.component';
+import {of} from "rxjs";
 
 @Component({
   selector: 'app-table',
@@ -19,7 +20,7 @@ export class TableComponent implements OnInit {
     mode: 'clientSide',
     builtInPagination: true,
     columnsDef: [
-      {field: 'name', headerName: 'Name', filterConfig: {type: 'gllTextColumnFilter', options: ['contains']}},
+      {field: 'name', headerName: of('Name'), filterConfig: {type: 'gllTextColumnFilter', options: ['contains']}},
       {field: 'surname', headerName: 'Surname', filterConfig: {type: 'gllTextColumnFilter', options: ['contains']}},
       {field: 'age', headerName: 'Age', filterConfig: {type: 'gllNumberColumnFilter', options: ['equals', 'greaterThanOrEqual', 'lessThanOrEqual']}},
       {field: 'isAdmin', headerName: 'Admin', gllTableRenderer: 'gllTableBooleanRenderer', trueFaIcon: {color: 'green', icon: 'user-shield'}, falseFaIcon: {color: 'red', icon: 'user'}},

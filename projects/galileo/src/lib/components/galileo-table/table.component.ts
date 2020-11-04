@@ -10,7 +10,7 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {ColumnFilterConfig, ColumnFilterEvent, columnFilterOptions, columnFilterType} from './components/filters';
 import {FontAwesomeIconColorBoolPair} from '../../models/font-awesome-icon-color-bool-pair';
 import {TableCellDirective} from './table-cell.directive';
@@ -218,6 +218,10 @@ export class TableComponent implements OnInit, OnChanges {
     }
     return toRet;
   }
+
+  isObs(headerName: string | Observable<string>) {
+    return headerName instanceof Observable;
+  }
 }
 
 export type tableFilterParser = 'spring'
@@ -250,7 +254,7 @@ export interface TableActionDef {
 }
 
 export interface ColumnDef {
-  headerName: string;
+  headerName: string | Observable<string>;
   field: string;
   sortEnabled?: boolean;
   filterConfig?: ColumnFilterConfig;

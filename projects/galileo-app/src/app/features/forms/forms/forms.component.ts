@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-forms',
@@ -7,6 +8,12 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   styles: []
 })
 export class FormsComponent {
+  public myLabelObs$: Observable<string>;
+
+  constructor() {
+    this.myLabelObs$ = of('Obs label');
+  }
+
   markDown = `
   \`gll-form\` component allow us to create Forms based to Angular Reactive Forms.
 
