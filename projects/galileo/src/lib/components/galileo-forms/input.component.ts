@@ -91,7 +91,7 @@ export class InputComponent implements AfterViewInit, OnDestroy {
   }
 
   isObs(label: string | Observable<string>) {
-    return label instanceof Observable;
+    return !!label && label instanceof Observable;
   }
 }
 

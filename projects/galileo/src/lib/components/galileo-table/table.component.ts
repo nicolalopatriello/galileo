@@ -220,7 +220,7 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   isObs(headerName: string | Observable<string>) {
-    return headerName instanceof Observable;
+    return !!headerName && headerName instanceof Observable;
   }
 }
 
