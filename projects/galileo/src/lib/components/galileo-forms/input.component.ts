@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, Input, OnDestroy, Renderer2, ViewChild} from '@angular/core';
 import {FormGroup} from '@angular/forms';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 
 @Component({
   selector: 'gll-input',
@@ -8,7 +8,7 @@ import {Subject} from 'rxjs';
     <div>
       <div [ngClass]="{'d-flex flex-row justify-content-around': inputLabelPosition === 'left'}">
         <label id="label-container" #inputLabel [ngClass]="{'label-left-position': inputLabelPosition === 'left'}"
-               *ngIf="label">{{label}}</label>
+               *ngIf="label">{{isObs(label) ? (label | async) : label}}</label>
         <div id="input-container" #input [ngClass]="{'input-container-left-position': inputLabelPosition === 'left'}">
           <ng-content></ng-content>
         </div>
@@ -50,7 +50,7 @@ export class InputComponent implements AfterViewInit, OnDestroy {
   @ViewChild('input') input: ElementRef;
   @ViewChild('inputLabel') inputLabel: ElementRef;
 
-  @Input() label = ' ';
+  @Input() label: string | Observable<string>;
   @Input() inputLabelPosition: inputLabelPosition = 'top';
   @Input() associatedFormGroup: FormGroup;
   @Input() errorsMessages: object;
@@ -88,6 +88,10 @@ export class InputComponent implements AfterViewInit, OnDestroy {
     if (!!this.errorsMessages) {
       return Object.keys(this.errorsMessages);
     }
+  }
+
+  isObs(label: string | Observable<string>) {
+    return label instanceof Observable;
   }
 }
 

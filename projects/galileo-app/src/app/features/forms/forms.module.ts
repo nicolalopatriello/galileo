@@ -5,14 +5,13 @@ import {GalileoSimpleCardModule} from '@nicolalopatriello/galileo';
 import {MarkdownModule} from 'ngx-markdown';
 import {FormsComponent} from './forms/forms.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {GalileoFormsModule} from '@nicolalopatriello/galileo';
+import {GalileoFormsModule} from '../../../../../galileo/src/lib/components/galileo-forms/galileo-forms.module';
 
 
 @NgModule({
   declarations: [FormsComponent],
   imports: [
     MarkdownModule.forRoot(),
-    GalileoSimpleCardModule,
     ReactiveFormsModule,
     RouterModule.forChild([{
       path: '', component: FormsComponent
