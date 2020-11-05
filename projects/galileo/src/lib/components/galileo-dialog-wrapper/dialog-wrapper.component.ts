@@ -27,7 +27,6 @@ export class DialogWrapperComponent {
   @Input() title: string | Observable<string>;
   @Input() showCloseButton: boolean = false;
   @Input() iconColorPair: FontAwesomeIconColorBoolPair;
-
   @Output() closeButtonClick: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   isObs(title: string | Observable<string>) {
