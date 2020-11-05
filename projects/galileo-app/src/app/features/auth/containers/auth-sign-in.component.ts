@@ -9,7 +9,6 @@ import {SignAction, SignActionType} from '../../../../../../galileo/src/lib/mode
                      [passwordLabel]="'Password'"
                      [forgotPasswordLabel]="'Forgot password?'"
                      [signInButtonLabel]="'Signin'"
-                     [signUpButtonLabel]="'Signup'"
                      (signAction)="onSignAction($event)">
       </gll-sign-in>`
 })
