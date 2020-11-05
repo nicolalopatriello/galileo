@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {FontAwesomeIconColorBoolPair} from '../../models';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'gll-dialog-wrapper',
@@ -9,7 +10,7 @@ import {FontAwesomeIconColorBoolPair} from '../../models';
               <h4 class="modal-title" id="modal-basic-title">
                   <fa-icon *ngIf="iconColorPair" [icon]="['fas', iconColorPair.icon]"
                            [ngStyle]="{'color': iconColorPair.color}"></fa-icon>
-                  {{title}}
+                  {{isObs(title) ? (title | async) : title}}
               </h4>
           </div>
           <div class="modal-body">
@@ -23,11 +24,14 @@ import {FontAwesomeIconColorBoolPair} from '../../models';
   styles: []
 })
 export class DialogWrapperComponent {
-  @Input() title: string;
+  @Input() title: string | Observable<string>;
   @Input() showCloseButton: boolean = false;
   @Input() iconColorPair: FontAwesomeIconColorBoolPair;
-
   @Output() closeButtonClick: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  isObs(title: string | Observable<string>) {
+    return !!title && title instanceof Observable;
+  }
 
 }
 
