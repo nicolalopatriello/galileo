@@ -232,7 +232,7 @@ export interface TableConfig {
   isRowSelected?: Function;
   cursorPointerOnRow?: boolean;
   tableFilterParser?: tableFilterParser;
-  noDataMessage?: string;
+  noDataMessage?: string | Observable<string>;
   maxHeight?: string
   columnsDef: ColumnDef[];
   actions?: TableActionDef;
@@ -242,7 +242,7 @@ export interface TableConfig {
 
 export interface ExtraAction {
   eventKey: string;
-  label: string;
+  label: string | Observable<string>;
   iconColorProp: FontAwesomeIconColorBoolPair,
   disabled?: Function
 }
