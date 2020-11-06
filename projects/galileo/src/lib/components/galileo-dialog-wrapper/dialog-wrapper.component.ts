@@ -10,7 +10,7 @@ import {Observable} from "rxjs";
               <h4 class="modal-title" id="modal-basic-title">
                   <fa-icon *ngIf="iconColorPair" [icon]="['fas', iconColorPair.icon]"
                            [ngStyle]="{'color': iconColorPair.color}"></fa-icon>
-                  {{isObs(title) ? (title | async) : title}}
+                  {{title}}
               </h4>
           </div>
           <div class="modal-body">
@@ -24,14 +24,10 @@ import {Observable} from "rxjs";
   styles: []
 })
 export class DialogWrapperComponent {
-  @Input() title: string | Observable<string>;
+  @Input() title: string;
   @Input() showCloseButton: boolean = false;
   @Input() iconColorPair: FontAwesomeIconColorBoolPair;
   @Output() closeButtonClick: EventEmitter<boolean> = new EventEmitter<boolean>();
-
-  isObs(title: string | Observable<string>) {
-    return !!title && title instanceof Observable;
-  }
 
 }
 
