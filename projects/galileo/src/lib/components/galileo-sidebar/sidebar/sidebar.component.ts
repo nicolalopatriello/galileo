@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {noop, Observable} from 'rxjs';
 import {SidebarItem} from '../sidebar-item';
 import {SidebarGroup} from '../sidebar-group';
+import {Utils} from "../../../utils/utils";
 
 @Component({
   selector: 'gll-sidebar',
@@ -28,7 +29,7 @@ import {SidebarGroup} from '../sidebar-group';
                 #rla="routerLinkActive"
                 (click)="onClickAction(item, groupLabel)" class="d-flex flex-row cursor-pointer sidenav__item
               pl-3 w-100 "
-                [ngStyle]="{'border-left': belongToGroup(item.label) && sidebarItemsGroups.get(groupLabel)?.groupLabel && (sidebarItemsGroups.get(groupLabel).groupLabel.show | async) ? '5px solid ' + (sidebarItemsGroups.get(groupLabel).groupLabel.activeItemGroupBorderColor | async) : null}"
+                [ngStyle]="{'border-left': belongToGroup(isObs(item.label) ? (item.label | async) : item.label) && sidebarItemsGroups.get(groupLabel)?.groupLabel && (sidebarItemsGroups.get(groupLabel).groupLabel.show | async) ? '5px solid ' + (sidebarItemsGroups.get(groupLabel).groupLabel.activeItemGroupBorderColor | async) : null}"
                 [ngClass]="{'sidenav--closed': !sideBarOpened}">
                 <fa-icon
                   [icon]="['fas', item.faIcon]"
@@ -37,7 +38,7 @@ import {SidebarGroup} from '../sidebar-group';
                 <div [ngClass]="{'pl-2': sideBarOpened}" class="d-flex justify-content-center"
                      *ngIf="sideBarOpened">
                   <div class="d-flex align-self-center sidenav__label"
-                       [ngClass]="{'sidenav__label-active': rla.isActive}">{{item.label}}</div>
+                       [ngClass]="{'sidenav__label-active': rla.isActive}">{{isObs(item.label) ? (item.label | async) : item.label}}</div>
                 </div>
               </div>
               <div class="d-flex sidenav__separator"></div>
@@ -79,5 +80,9 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentItemGroup = Array.from(this.sidebarItemsGroups.keys())[0];
+  }
+
+  isObs(label: string | Observable<string>) {
+    return Utils.isObs<string>(label);
   }
 }

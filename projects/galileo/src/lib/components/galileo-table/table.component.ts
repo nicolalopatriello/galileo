@@ -16,6 +16,7 @@ import {FontAwesomeIconColorBoolPair} from '../../models/font-awesome-icon-color
 import {TableCellDirective} from './table-cell.directive';
 import {FilterParser} from './utils/filter-parser';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Utils} from "../../utils/utils";
 
 @Component({
   selector: 'gll-table',
@@ -219,8 +220,9 @@ export class TableComponent implements OnInit, OnChanges {
     return toRet;
   }
 
-  isObs(headerName: string | Observable<string>) {
-    return !!headerName && headerName instanceof Observable;
+
+  isObs(label: string | Observable<string>) {
+    return Utils.isObs<string>(label);
   }
 }
 

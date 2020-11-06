@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, Input, OnDestroy, Renderer2, ViewChild} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {Observable, Subject} from 'rxjs';
+import {Utils} from "../../utils/utils";
 
 @Component({
   selector: 'gll-input',
@@ -91,7 +92,7 @@ export class InputComponent implements AfterViewInit, OnDestroy {
   }
 
   isObs(label: string | Observable<string>) {
-    return !!label && label instanceof Observable;
+    return Utils.isObs<string>(label);
   }
 }
 
