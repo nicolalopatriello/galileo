@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NavBarUserMenuItem, UserMenuItemType} from './nav-bar-user-menu-item';
+import {Observable} from "rxjs";
+import {Utils} from "../../../utils/utils";
 
 @Component({
   selector: 'gll-nav-bar',
@@ -14,7 +16,8 @@ import {NavBarUserMenuItem, UserMenuItemType} from './nav-bar-user-menu-item';
             <img [src]="avatarImageSrc">
           </div>
         </a>
-        <div class="dropdown-menu dropdown-menu-right gll-user-menu" style="border-radius: 10px; width: 200px; z-index: 9000">
+        <div class="dropdown-menu dropdown-menu-right gll-user-menu"
+             style="border-radius: 10px; width: 200px; z-index: 9000">
           <div class="d-flex flex-column justify-content-center pt-4 pr-4 pl-4" *ngIf="loggedUsername">
             <div class="w-100">
               <div class="gll-avatar cursor-pointer d-flex mr-auto ml-auto" style="width: 45px; height: 45px">
@@ -34,7 +37,7 @@ import {NavBarUserMenuItem, UserMenuItemType} from './nav-bar-user-menu-item';
                     (click)="!item.disabled ? userMenuItemClick.emit(item): null">
               <fa-icon class="mr-1" [ngStyle]="{'color': item.faIcon.color}"
                        *ngIf="item.faIcon" [icon]="['fas', item.faIcon.icon]" size="1x"></fa-icon>
-              {{item.label}}
+              {{isObs(item.label) ? (item.label | async) : item.label}}
             </button>
 
           </ng-container>
@@ -55,4 +58,8 @@ export class NavBarComponent {
   @Input() fixedTop = true;
 
   UserMenuItemType = UserMenuItemType;
+
+  isObs(label: string | Observable<string>) {
+    return Utils.isObs<string>(label);
+  }
 }
