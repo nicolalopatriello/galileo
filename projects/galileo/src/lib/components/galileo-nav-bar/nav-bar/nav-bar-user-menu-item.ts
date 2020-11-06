@@ -1,4 +1,5 @@
 import {FontAwesomeIconColorBoolPair} from '../../../models';
+import {Observable} from "rxjs";
 
 export enum UserMenuItemType {
   SEPARATOR,
@@ -8,7 +9,7 @@ export enum UserMenuItemType {
 export interface NavBarUserMenuItem {
   type: UserMenuItemType;
   id?: any;
-  label?: string;
+  label?: string | Observable<string>;
   faIcon?: FontAwesomeIconColorBoolPair;
   disabled?: boolean;
 }
