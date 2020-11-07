@@ -1,0 +1,15 @@
+<div class="d-flex flex-column justify-content-center gll-confirm-code {{config.containerClass}}" *ngIf="confirmCodeFormGroup?.controls"
+     #gllConfirmCodeContainer
+     [ngStyle]="config.containerStyles">
+  <form [formGroup]="confirmCodeFormGroup">
+    <input type="text" [placeholder]="config?.placeholder || ''"
+           [ngStyle]="config.inputStyles" maxlength="1"
+           class="code-input {{config.inputClass}}" autocomplete="off"
+           *ngFor="let item of confirmCodeFormGroup?.controls | keyvalue ; let i=index"
+           [formControl]="confirmCodeFormGroup.controls[item.key]" id="code_{{i}}" (keydown)="onKeyDown($event)"
+           (keyup)="onKeyUp($event,i)">
+  </form>
+  <div class="w-100">
+    <ng-content></ng-content>
+  </div>
+</div>

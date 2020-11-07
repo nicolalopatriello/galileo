@@ -9,24 +9,29 @@ import {GalileoSignInModule} from '../../../../../galileo/src/lib/components/gal
 import {GalileoSignUpModule} from '../../../../../galileo/src/lib/components/galileo-sign-up/galileo-sign-up.module';
 import {GalileoForgotModule} from '../../../../../galileo/src/lib/components/galileo-forgot/galileo-forgot.module';
 import {GalileoAuthLayoutModule} from '../../../../../galileo/src/lib/components/galileo-auth-layout/galileo-auth-layout.module';
+import {GalileoConfirmCodeModule} from '../../../../../galileo/src/lib/components/galileo-confirm-code/galileo-confirm-code.module';
+import {AuthConfirmSignUpComponent} from './containers/auth-confirm-sign-up.component';
 
 
 
 @NgModule({
-  declarations: [AuthComponent, AuthSignUpComponent, AuthSignInComponent, AuthForgotPasswordComponent],
+  declarations: [AuthComponent, AuthSignUpComponent, AuthSignInComponent, AuthForgotPasswordComponent, AuthConfirmSignUpComponent],
   imports: [
     CommonModule,
     GalileoSignInModule,
     GalileoSignUpModule,
     GalileoForgotModule,
     GalileoAuthLayoutModule,
+    GalileoConfirmCodeModule,
     RouterModule.forChild([
       {
         path: '', component: AuthComponent, children: [
           { path: '', redirectTo: 'sign-in' },
           { path: 'sign-in', component: AuthSignInComponent },
           { path: 'sign-up', component: AuthSignUpComponent },
-          { path: 'forgot', component: AuthForgotPasswordComponent }
+          { path: 'forgot', component: AuthForgotPasswordComponent },
+          { path: 'confirm-signup', component: AuthConfirmSignUpComponent }
+
         ]
       }
     ]),

@@ -7,11 +7,15 @@ import {SignAction, SignActionType} from '../../../../../../galileo/src/lib/mode
       <gll-sign-in [title]="'Sign In'"
                      [usernameLabel]="'Username'"
                      [passwordLabel]="'Password'"
-                     [forgotPasswordLabel]="'Forgot password?'"
                      [signInButtonLabel]="'Signin'"
                      [signUpButtonLabel]="'Signup'"
                      (signAction)="onSignAction($event)">
-      </gll-sign-in>`
+        <div class="w-100 d-flex justify-content-center flex-row mt-2 mb-2">
+          <button class="btn btn-outline-primary">Optional guest button</button>
+        </div>
+      </gll-sign-in>
+
+  `
 })
 export class AuthSignInComponent {
 
