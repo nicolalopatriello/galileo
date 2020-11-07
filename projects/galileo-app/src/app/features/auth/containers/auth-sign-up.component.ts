@@ -14,7 +14,11 @@ import {SignAction, SignActionType} from '../../../../../../galileo/src/lib/mode
                    [cancelLabel]="'Cancel'"
                    [signUpLabel]="'Signup'"
                    (signAction)="onSignAction($event)"
-    ></gll-sign-up>
+    >
+      <div class="w-100 d-flex flex-row justify-content-center mt-2">
+        <button class="btn btn-outline-primary">Optional button</button>
+      </div>
+    </gll-sign-up>
   `
 })
 export class AuthSignUpComponent implements OnInit {

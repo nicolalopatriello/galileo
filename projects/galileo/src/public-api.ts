@@ -44,6 +44,9 @@ export * from './lib/components/galileo-forms/form.component';
 export * from './lib/components/galileo-forms/file-upload/file-upload.component';
 export * from './lib/components/galileo-forms/input.component';
 
+export * from './lib/components/galileo-confirm-code/galileo-confirm-code.module';
+export * from './lib/components/galileo-confirm-code/galileo-confirm-code/galileo-confirm-code.component';
+
 export * from './lib/galileo.module';
 
 export * from './lib/services/galileo-theme.service';
