@@ -11,8 +11,8 @@ import {
 } from '@angular/core';
 import {GalieloConfirmCodeConfig} from '../../../models';
 import {FormControl, FormGroup} from '@angular/forms';
-import {Subject} from "rxjs";
-import {debounceTime, takeUntil} from "rxjs/operators";
+import {Subject} from 'rxjs';
+import {debounceTime, takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'gll-confirm-code',
