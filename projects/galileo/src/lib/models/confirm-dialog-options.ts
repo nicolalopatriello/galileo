@@ -9,4 +9,5 @@ export interface ConfirmDialogOptions {
   dialogType: DialogType;
   confirmButtonCheck?: string;
   iconColorPair?: FontAwesomeIconColorBoolPair;
+  dialogSize?: 'sm' | 'lg' | 'xl';
 }

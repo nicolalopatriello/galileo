@@ -22,6 +22,7 @@ export abstract class GllBaseAuthTokenInterceptor implements HttpInterceptor {
     if (!!token) {
       request = this.addToken(request, token);
     }
+    request = this.addOptionalHeaders(request);
     return next.handle(request).pipe(
       catchError(err => {
         if (err.status === 401) {
@@ -65,8 +66,15 @@ export abstract class GllBaseAuthTokenInterceptor implements HttpInterceptor {
   private addToken(request: HttpRequest<any>, token?: string) {
     return request.clone({
       setHeaders: {
-        ...this.appendHeaders(),
         Authorization: token
+      }
+    });
+  }
+
+  private addOptionalHeaders(request: HttpRequest<any>) {
+    return request.clone({
+      setHeaders: {
+        ...this.appendHeaders(),
       }
     });
   }

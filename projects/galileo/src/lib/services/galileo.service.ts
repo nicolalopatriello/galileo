@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {ConfirmDialogOptions, DialogType, FontAwesomeIconColorBoolPair} from '../models';
+import {ConfirmDialogOptions} from '../models';
 import {from, Observable} from 'rxjs';
 import {ConfirmDialogComponent} from '../utils/galileo-common/components/confirm-dialog.component';
 
@@ -12,7 +12,12 @@ export class GalileoService {
   }
 
   showConfirmDialog = (options: ConfirmDialogOptions): Observable<string> => {
-    const modalRef = this.modalService.open(ConfirmDialogComponent, {centered: true, backdrop: 'static', size: 'lg', keyboard: false});
+    const modalRef = this.modalService.open(ConfirmDialogComponent, {
+      centered: true,
+      backdrop: 'static',
+      size: !!options.dialogSize ? options.dialogSize : 'lg',
+      keyboard: false
+    });
     modalRef.componentInstance.options = options;
     return from(modalRef.result);
   }
