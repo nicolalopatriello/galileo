@@ -1,7 +1,7 @@
 <div class="d-flex flex-column justify-content-center gll-confirm-code {{config.containerClass}}" *ngIf="confirmCodeFormGroup?.controls"
      #gllConfirmCodeContainer
      [ngStyle]="config.containerStyles">
-  <form [formGroup]="confirmCodeFormGroup">
+  <form [formGroup]="confirmCodeFormGroup" class="text-center">
     <input type="text" [placeholder]="config?.placeholder || ''"
            [ngStyle]="config.inputStyles" maxlength="1"
            class="code-input {{config.inputClass}}" autocomplete="off"
