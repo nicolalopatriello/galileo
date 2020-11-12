@@ -56,6 +56,8 @@ export * from './lib/services/galileo-language.service';
 
 export * from './lib/guards/redirect-to-parent-guard.service';
 
+export * from './lib/directives/index';
+
 export * from './lib/models';
 export * from './lib/styles/themes/models';
 export * from './lib/validators';
