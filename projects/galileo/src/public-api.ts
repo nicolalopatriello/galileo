@@ -64,3 +64,4 @@ export * from './lib/validators';
 
 export * from './lib/utils/build-galileo-breadcrumb';
 export * from './lib/utils/gll-base-auth-token-interceptor';
+export * from './lib/utils/gll-with-additional-router-outlet';
