@@ -5,11 +5,10 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {GalileoConfigService, GalileoService, GalileoThemeService} from './services';
 import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {fas} from '@fortawesome/free-solid-svg-icons';
-import {HideIfHasChildRoutesDirective} from "./directives";
 
 
 @NgModule({
-  declarations: [HideIfHasChildRoutesDirective],
+  declarations: [],
   imports: [
     CommonModule,
     FontAwesomeModule
