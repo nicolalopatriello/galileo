@@ -2,19 +2,21 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {noop, Observable} from 'rxjs';
 import {SidebarItem} from '../sidebar-item';
 import {SidebarGroup} from '../sidebar-group';
-import {Utils} from "../../../utils/utils";
+import {Utils} from '../../../utils/utils';
 
 @Component({
   selector: 'gll-sidebar',
   styleUrls: ['./sidebar.component.scss'],
   template: `
-
     <div class="h-100 d-flex flex-column sidenav">
       <div class="d-flex align-items-end flex-column h-100 w-100">
         <ng-container *ngFor="let groupLabel of getKeys(sidebarItemsGroups); let i = index">
-          <p *ngIf="sidebarItemsGroups.get(groupLabel)?.groupLabel && (sidebarItemsGroups.get(groupLabel).groupLabel.show | async)"
+          <p
+            *ngIf="sidebarItemsGroups.get(groupLabel)?.groupLabel && (sidebarItemsGroups.get(groupLabel).groupLabel.show | async)"
             [ngStyle]="{background: (sidebarItemsGroups.get(groupLabel).groupLabel.background | async), color: (sidebarItemsGroups.get(groupLabel).groupLabel.color | async)}"
-            class="small d-flex w-100 p-1 m-0 justify-content-center font-weight-bolder" [ngClass]="{'mt-1' : i > 0}">{{sidebarItemsGroups.get(groupLabel).groupLabel.label | async}}
+            class="small d-flex w-100 p-1 m-0 justify-content-center font-weight-bolder"
+            [id]="'groupLabelId_' + i"
+            [ngClass]="{'mt-1' : i > 0}">{{sidebarItemsGroups.get(groupLabel).groupLabel.label | async}}
           </p>
 
           <div class="w-100" style="height: 3px"
