@@ -54,6 +54,7 @@ export * from './lib/services/galileo.service';
 export * from './lib/services/galileo-config.service';
 export * from './lib/services/galileo-language.service';
 
+export * from './lib/guards';
 export * from './lib/guards/redirect-to-parent-guard.service';
 
 
