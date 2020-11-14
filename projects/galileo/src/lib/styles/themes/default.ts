@@ -25,7 +25,6 @@ export const defaultTheme: GalileoThemeInterface = {
   '--gll-sidenav-toggler-color': 'rgba(175, 202, 255, 0.5)',
   '--gll-auth-layout--only-form-bg': 'rgba(255,255,255,0.5)',
   '--gll-sign-in-form-box-shadow': '0 0px 0px 0 rgb(0, 0, 0)',
-  '--gll-navbar-bg': '#ffffff',
   '--gll-navbar-border-bottom': '1px solid #d8dbe0',
   '--gll-navbar-usermenu-item-bg': '#c3c3c3',
 

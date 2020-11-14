@@ -1,1 +1,1 @@
-export * from './galileo-theme.interface'
+export * from './galileo-theme.interface';

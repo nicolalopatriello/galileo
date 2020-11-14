@@ -42,7 +42,6 @@ export class ThemingComponent {
   '--gll-auth-layout--only-form-bg'?: string;
   '--gll-sign-in-form-box-shadow'?: string;
 
-  '--gll-navbar-bg'?: string;
   '--gll-navbar-border-bottom'?: string;
   '--gll-navbar-usermenu-item-bg'?: string;
 
