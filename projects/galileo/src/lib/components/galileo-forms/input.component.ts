@@ -17,8 +17,11 @@ import {Utils} from "../../utils/utils";
 
       <div style="min-height: 25px">
         <div class="m-0 p-0">
-          <small [ngClass]="{'msg-error-left-position': inputLabelPosition === 'left'}" *ngFor="let m of getMsgsKeys()"
+          <ng-container *ngFor="let m of getMsgsKeys()">
+          <small [ngClass]="{'msg-error-left-position': inputLabelPosition === 'left'}"
+                 *ngIf="getErrorMessage(m) !== null"
                  class="text-danger">{{getErrorMessage(m)}}</small>
+          </ng-container>
         </div>
       </div>
     </div>
@@ -78,6 +81,8 @@ export class InputComponent implements AfterViewInit, OnDestroy {
   getErrorMessage(k: string): string {
     if (!!this.formControlName && !!this.associatedFormGroup && this.associatedFormGroup.get(this.formControlName)?.dirty) {
       return this.associatedFormGroup.get(this.formControlName).hasError(k) ? this.errorsMessages[k] : null;
+    } else {
+      return null;
     }
   }
 

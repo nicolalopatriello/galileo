@@ -6,11 +6,5 @@ import {GalileoThemeService} from '@nicolalopatriello/galileo';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  constructor(private galileoThemeService: GalileoThemeService) {
-  }
-
-  ngOnInit(): void {
-   this.galileoThemeService.setTheme('galileoCustomTheme');
-  }
+export class AppComponent {
 }

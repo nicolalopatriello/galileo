@@ -27,8 +27,11 @@ export class TableComponent implements OnInit {
       {field: 'isEnabled', headerName: 'Enabled', gllTableRenderer: 'gllTableBooleanRenderer'}
     ],
     actions: {
-      delete: {builtIn: true, show: true, disabled: () => false}
-    }
+      delete: {builtIn: true, show: true, disabled: () => false, showDeleteConfirmInput: true}
+    },
+    extraActions: [
+      {hide: false, label: 'Extra action', eventKey: 'extraAction1', iconColorProp: {color: 'black', icon: 'cog'}}
+    ]
   };
   markDown = `
 \`gll-table\` component allow us to create a Table in just few lines of code.
