@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {GalileoThemeService} from '@nicolalopatriello/galileo';
 
 @Component({
   selector: 'app-theming',
@@ -9,7 +8,7 @@ import {GalileoThemeService} from '@nicolalopatriello/galileo';
 export class ThemingComponent {
 
 
-  constructor(private galileoThemeService: GalileoThemeService) {
+  constructor() {
   }
 
   markDown = `
@@ -59,55 +58,7 @@ export class ThemingComponent {
 }
 \`\`\`
 
-To use it just:
-
-* Create some custom themes
-
-\`\`\`typescript
-export const themeWithDarkSidebar: GalileoThemeInterface = {
-  ...galileoCustomTheme,
-  '--gll-sidenav-background': '#585858',
-  '--gll-sidenav-item-active-color': '#dedede',
-  '--gll-sidenav-item-bg-hover': '#959595',
-  '--gll-sidenav-item-active-bg': '#929292',
-   '--gll-sidnav-item-bg': '#585858',
-  '--gll-sidenav-item-label-color': 'white'
-}
-
-export const themeWithDarkBreadcrumbs: GalileoThemeInterface = {
-  ...galileoCustomTheme,
-  '--gll-breadcrumb-bg': '#585858',
-  '--gll-breadcrumb-label-color': '#ffffff'
-}
-\`\`\`
-
-* Registers theme when \`GalileoModule\` is imported
-
-\`\`\`typescript
-    GalileoModule.forRoot({
-      themesToRegister: [
-        {name: 'galileoCustomTheme', theme: galileoCustomTheme},
-        {name: 'themeWithDarkSidebar', theme: themeWithDarkSidebar},
-        {name: 'themeWithDarkBreadcrumbs', theme: themeWithDarkBreadcrumbs},
-      ]
-    }),
-\`\`\`
-
-* Switch themes with \`GalileoThemeService.setTheme()\` method
-
-\`\`\`typescript
-    this.galileoThemeService.setTheme('themeWithDarkBreadcrumbs');
-\`\`\`
+To use it just overrides variables in styles.scss of our project or use methods provided by GalileoThemeService
   `;
-
-
-  darkSidebar() {
-    this.galileoThemeService.setTheme('themeWithDarkSidebar');
-  }
-
-  darkBreadcrumbs() {
-    this.galileoThemeService.setTheme('themeWithDarkBreadcrumbs');
-  }
-
 
 }

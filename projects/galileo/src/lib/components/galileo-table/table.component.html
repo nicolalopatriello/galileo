@@ -3,7 +3,8 @@
   <table class="table table-sm w-100 gll-table m-0">
     <thead>
     <tr id="tableHeader">
-      <th *ngFor="let c of tableConfig?.columnsDef" scope="col">{{isObs(c.headerName) ? (c.headerName | async) : c.headerName}}</th>
+      <th *ngFor="let c of tableConfig?.columnsDef"
+          scope="col">{{isObs(c.headerName) ? (c.headerName | async) : c.headerName}}</th>
       <th *ngIf="atLeastOneAction()" scope="col">
         {{'actions' | galileoTranslate | async}}
       </th>
@@ -43,7 +44,8 @@
         <ng-container *ngIf="c.gllTableRenderer && !c.gllTableCustomRender">
           <ng-container [ngSwitch]="c.gllTableRenderer">
             <ng-container *ngSwitchCase="'gllTableCheckboxRenderer'">
-              <input data-cy="gll-table-checkbox" type="checkbox" [checked]="c.checkboxValue ? c.checkboxValue(r) : r[c.field]"
+              <input data-cy="gll-table-checkbox" type="checkbox"
+                     [checked]="c.checkboxValue ? c.checkboxValue(r) : r[c.field]"
                      (click)="checkboxRendererEvent.emit({data: r, checked: $event.target.checked, field: c.field})"
                      class="cursor-pointer">
             </ng-container>
@@ -51,26 +53,18 @@
               {{r[c.field] | date:'short'}}
             </ng-container>
             <ng-container *ngSwitchCase="'gllTableBooleanRenderer'">
-              <fa-icon *ngIf="r[c.field] && !!c.trueFaIcon" [icon]="['fas', c.trueFaIcon.icon]" [ngStyle]="{color: c.trueFaIcon.color}"></fa-icon>
-              <fa-icon *ngIf="!r[c.field] && !!c.falseFaIcon" [icon]="['fas', c.falseFaIcon.icon]" [ngStyle]="{color: c.falseFaIcon.color}"></fa-icon>
+              <fa-icon *ngIf="r[c.field] && !!c.trueFaIcon" [icon]="['fas', c.trueFaIcon.icon]"
+                       [ngStyle]="{color: c.trueFaIcon.color}"></fa-icon>
+              <fa-icon *ngIf="!r[c.field] && !!c.falseFaIcon" [icon]="['fas', c.falseFaIcon.icon]"
+                       [ngStyle]="{color: c.falseFaIcon.color}"></fa-icon>
               <span *ngIf="!c.trueFaIcon || !c.falseFaIcon">{{r[c.field]}}</span>
             </ng-container>
           </ng-container>
         </ng-container>
       </td>
 
-      <td *ngIf="atLeastOneAction()" [ngClass]="{'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
-        <fa-icon [attr.data-cy]="'edit-action'"
-                 (click)="onEdit()"
-                 class="ml-1 mr-1"
-                 [ngClass]="{'cursor-pointer': !tableConfig?.actions?.edit?.disabled(),
-                  'text-black-50': tableConfig?.actions?.edit?.disabled(),
-                  'text-black': !tableConfig?.actions?.edit?.disabled()
-                  }"
-                 [icon]="['fas', 'pencil-alt']"
-                 *ngIf="tableConfig?.actions?.edit?.show">
-        </fa-icon>
-
+      <td *ngIf="atLeastOneAction()"
+          [ngClass]="{'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
 
         <fa-icon [attr.data-cy]="'delete-action'"
                  (click)="onDelete(r)"
@@ -79,17 +73,20 @@
                  'text-black-50 no-pointer-event': tableConfig?.actions?.delete?.disabled(r),
                  'text-danger': !tableConfig?.actions?.delete?.disabled(r)}"
                  [icon]="['fas', 'trash-alt']"
-                 *ngIf="tableConfig?.actions?.delete?.show">
+                 *ngIf="isObs(tableConfig?.actions?.delete?.show) ? (tableConfig?.actions?.delete?.show | async) : tableConfig?.actions?.delete?.show">
         </fa-icon>
 
 
-        <fa-icon [attr.data-cy]="e.iconColorProp.icon" *ngFor="let e of tableConfig?.extraActions"
-                 class="ml-1 mr-1"
-                 [ngClass]="{'cursor-pointer': !e.disabled}"
-                 [ngStyle]="{'color': !e.disabled ? e.iconColorProp.color : 'rgba(0, 0, 0, 0.5)'}"
-                 [icon]="['fas', e.iconColorProp.icon]"
-                 [ngbTooltip]="isObs(e.label) ? (e.label | async) : e.label" placement="bottom"
-                 (click)="!e.disabled ? extraAction.emit({data: r, eventKey: e.eventKey}) : null"></fa-icon>
+        <ng-container *ngFor="let e of tableConfig?.extraActions">
+          <fa-icon [attr.data-cy]="e.iconColorProp.icon"
+                   *ngIf="isObs(e.hide) ? !(e.hide | async) : !e.hide"
+                   class="ml-1 mr-1"
+                   [ngClass]="{'cursor-pointer': !e.disabled}"
+                   [ngStyle]="{'color': !e.disabled ? e.iconColorProp.color : 'rgba(0, 0, 0, 0.5)'}"
+                   [icon]="['fas', e.iconColorProp.icon]"
+                   [ngbTooltip]="isObs(e.label) ? (e.label | async) : e.label" placement="bottom"
+                   (click)="!e.disabled ? extraAction.emit({data: r, eventKey: e.eventKey}) : null"></fa-icon>
+        </ng-container>
       </td>
     </tr>
     </tbody>
@@ -98,7 +95,8 @@
     {{isObs(tableConfig?.noDataMessage) ? (tableConfig?.noDataMessage | async) : tableConfig?.noDataMessage}}
   </div>
 </div>
-<div class="d-flex w-100 justify-content-end" *ngIf="tableConfig?.builtInPagination && tableConfig?.mode === 'clientSide'">
+<div class="d-flex w-100 justify-content-end"
+     *ngIf="tableConfig?.builtInPagination && tableConfig?.mode === 'clientSide'">
   <gll-pagination [numberOfPages]="clientSideInformation?.pagination.buckets?.length"
                   [currentPage]="clientSideInformation?.pagination.currentPage"
                   (selectPage)="onSelectPage($event)"></gll-pagination>
@@ -113,10 +111,15 @@
     </h4>
   </div>
   <div class="modal-body">
-    <p>{{tableConfig?.actions?.delete?.customMessage ? tableConfig.actions.delete.customMessage : 'deleteMsg' | galileoTranslate | async}}</p>
+    <p>{{'deleteMsg' | galileoTranslate | async}}</p>
+    <ng-container *ngIf="showDeleteConfirmInput">
+      <p class="mt-1 mb-1">{{'deleteConfirmInput' | galileoTranslate | async}}</p>
+      <input ngbAutofocus  [(ngModel)]="deleteConfirmInputValue" class="form-control" type="text">
+    </ng-container>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-danger"
+            [disabled]="showDeleteConfirmInput ? (deleteBtmDisabled() | async) : false"
             (click)="confirmDelete()">
       {{'delete' | galileoTranslate | async}}
     </button>

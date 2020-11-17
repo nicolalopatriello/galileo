@@ -10,13 +10,15 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import {Observable, Subject} from 'rxjs';
+import {Observable, of, Subject} from 'rxjs';
 import {ColumnFilterConfig, ColumnFilterEvent, columnFilterOptions, columnFilterType} from './components/filters';
-import {FontAwesomeIconColorBoolPair} from '../../models/font-awesome-icon-color-bool-pair';
+import {FontAwesomeIconColorBoolPair} from '../../models';
 import {TableCellDirective} from './table-cell.directive';
 import {FilterParser} from './utils/filter-parser';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {Utils} from "../../utils/utils";
+import {Utils} from '../../utils/utils';
+import {GalileoLanguageService} from "../../services";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'gll-table',
@@ -37,21 +39,23 @@ export class TableComponent implements OnInit, OnChanges {
   @Output() checkboxRendererEvent: EventEmitter<{ checked: boolean, data: any, field: string }> = new EventEmitter<{ checked: boolean, data: any, field: string }>();
   @Output() rowSelected: EventEmitter<any> = new EventEmitter<any>();
 
-  private currentRowToDelete: null;
+  public currentRowToDelete: null;
   private currentFilters: Map<string, ColumnFilterEvent> = new Map<string, ColumnFilterEvent>();
   private filtersSubject: Subject<Map<string, ColumnFilterEvent>> = new Subject<Map<string, ColumnFilterEvent>>();
 
   public clientSideInformation: ClientSideInformation = {
     inputData: [],
     pagination: {
-      pageSize: 5, //default page size
+      pageSize: 5, // default page size
       currentPage: 0,
       buckets: []
     }
   };
+  public showDeleteConfirmInput = false;
+  public deleteConfirmInputValue: string;
 
 
-  constructor(private dialogService: NgbModal) {
+  constructor(private dialogService: NgbModal, private galileoLanguageService: GalileoLanguageService) {
   }
 
   trackByFn(index: any, item: any) {
@@ -77,7 +81,7 @@ export class TableComponent implements OnInit, OnChanges {
           buckets: this.buildBuckets(this.data?.length, this.clientSideInformation.pagination.pageSize)
         }
       };
-      const b = this.clientSideInformation.pagination.buckets[0]
+      const b = this.clientSideInformation.pagination.buckets[0];
       if (!!b) {
         this.data = this.clientSideInformation.inputData?.slice(b.start, b.stop);
       }
@@ -103,11 +107,12 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   atLeastOneAction() {
-    return this.tableConfig?.actions?.edit?.show || this.tableConfig?.actions?.delete?.show || this.tableConfig?.extraActions?.length > 0;
+    return this.tableConfig?.actions?.delete?.show || this.tableConfig?.extraActions?.length > 0;
   }
 
   onDelete(r: any) {
     if (this.tableConfig.actions.delete.builtIn && !this.tableConfig.actions.delete.disabled(r)) {
+      this.showDeleteConfirmInput = this.tableConfig.actions.delete.showDeleteConfirmInput;
       this.currentRowToDelete = r;
       this.dialogService.open(this.deleteRowDialog, {size: 'md', backdrop: 'static', centered: true});
     }
@@ -119,16 +124,10 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   cancelDelete() {
+    this.deleteConfirmInputValue = null;
     this.currentRowToDelete = null;
     this.dialogService.dismissAll();
   }
-
-  onEdit() {
-    if (this.tableConfig.actions.edit.builtIn && !this.tableConfig.actions.edit.disabled()) {
-      console.log('Implement edit...');
-    }
-  }
-
 
   onColumnFilterValue($event: ColumnFilterEvent) {
     /*
@@ -190,10 +189,11 @@ export class TableComponent implements OnInit, OnChanges {
             case 'gllNumberColumnFilter':
               return value > 0 ? Number.parseInt(stringToFilter) === Number.parseInt(value?.toString()) : true;
           }
+          break;
         case 'startsWith':
           return stringToFilter.startsWith(value.toString());
         case 'notEqual':
-          return stringToFilter.toString() != value.toString();
+          return stringToFilter.toString() !== value.toString();
       }
     }
   }
@@ -205,14 +205,14 @@ export class TableComponent implements OnInit, OnChanges {
         ...this.clientSideInformation.pagination,
         currentPage: $event,
       }
-    }
-    const b = this.clientSideInformation.pagination.buckets[this.clientSideInformation.pagination.currentPage]
-    this.data = this.clientSideInformation.inputData.slice(b.start, b.stop)
+    };
+    const b = this.clientSideInformation.pagination.buckets[this.clientSideInformation.pagination.currentPage];
+    this.data = this.clientSideInformation.inputData.slice(b.start, b.stop);
 
   }
 
   private buildBuckets(length: number, pageSize: number): Array<{ start: number, stop: number }> {
-    let numberOfBuckets = Math.ceil(length / pageSize);
+    const numberOfBuckets = Math.ceil(length / pageSize);
     const toRet = [];
     for (let i = 0; i < numberOfBuckets; i++) {
       toRet.push({start: i * pageSize, stop: (i * pageSize) + pageSize});
@@ -224,18 +224,31 @@ export class TableComponent implements OnInit, OnChanges {
   isObs(label: string | Observable<string>) {
     return Utils.isObs<string>(label);
   }
+
+  deleteBtmDisabled() {
+    return this.galileoLanguageService.getLanguage().pipe(
+      map(lang => {
+        switch (lang) {
+          case 'en':
+            return this.deleteConfirmInputValue !== 'Delete';
+          case 'it':
+            return this.deleteConfirmInputValue !== 'Cancella';
+        }
+      })
+    );
+  }
 }
 
-export type tableFilterParser = 'spring'
+export type tableFilterParser = 'spring';
 
 export interface TableConfig {
-  mode: 'clientSide' | 'serverSide'
+  mode: 'clientSide' | 'serverSide';
   builtInPagination?: boolean;
   isRowSelected?: Function;
   cursorPointerOnRow?: boolean;
   tableFilterParser?: tableFilterParser;
   noDataMessage?: string | Observable<string>;
-  maxHeight?: string
+  maxHeight?: string;
   columnsDef: ColumnDef[];
   actions?: TableActionDef;
   extraActions?: ExtraAction[];
@@ -245,14 +258,13 @@ export interface TableConfig {
 export interface ExtraAction {
   eventKey: string;
   label: string | Observable<string>;
-  iconColorProp: FontAwesomeIconColorBoolPair,
-  disabled?: Function
+  iconColorProp: FontAwesomeIconColorBoolPair;
+  hide?: boolean | Observable<boolean>;
+  disabled?: Function;
 }
 
 export interface TableActionDef {
-  delete?: { show: boolean, builtIn: boolean, disabled?: Function, customMessage?: string }
-  add?: { show: boolean, builtIn: boolean, disabled?: Function };
-  edit?: { show: boolean, builtIn: boolean, disabled?: Function };
+  delete?: { show: boolean | Observable<boolean>, builtIn: boolean, disabled?: Function, showDeleteConfirmInput?: boolean };
 }
 
 export interface ColumnDef {
@@ -263,17 +275,17 @@ export interface ColumnDef {
   gllTableRenderer?: GllTableRenderer;
   gllTableCustomRender?: Function;
   checkboxValue?: Function;
-  trueFaIcon?: FontAwesomeIconColorBoolPair,
-  falseFaIcon?: FontAwesomeIconColorBoolPair
+  trueFaIcon?: FontAwesomeIconColorBoolPair;
+  falseFaIcon?: FontAwesomeIconColorBoolPair;
 }
 
 interface ClientSideInformation {
-  inputData: any[],
+  inputData: any[];
   pagination: {
     pageSize: number,
     currentPage: number,
     buckets: Array<{ start: number, stop: number }>
-  }
+  };
 }
 
-export type GllTableRenderer = 'gllTableCheckboxRenderer' | 'gllTableDateTimeRenderer' | 'gllTableBooleanRenderer'
+export type GllTableRenderer = 'gllTableCheckboxRenderer' | 'gllTableDateTimeRenderer' | 'gllTableBooleanRenderer';

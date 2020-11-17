@@ -29,7 +29,7 @@ export class FormsComponent {
       <form [formGroup]="userFormGroup">
         <gll-input [label]="'Name'" inputLabelPosition="left"
                           [associatedFormGroup]="userFormGroup"
-        [errorsMessages]="{'required': 'This field is required'}"
+        [errorsMessages]="{'required': 'This field is required', 'pattern': 'pattern error'}"
         >
           <input id="name" type="text" formControlName="name" class="form-control">
         </gll-input>
@@ -52,7 +52,7 @@ Inside class just create FormGroup
 \`\`\`
   `;
   userFormGroup: FormGroup = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.pattern('a')]),
     surname: new FormControl('', [Validators.required])
   });
 

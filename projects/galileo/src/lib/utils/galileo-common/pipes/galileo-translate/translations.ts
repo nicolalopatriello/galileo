@@ -12,6 +12,7 @@ export interface GalileoTranslations {
   actions: string;
   delete: string;
   deleteMsg: string;
+  deleteConfirmInput: string;
   confirm: string;
   cancel: string;
   update: string;
@@ -33,6 +34,7 @@ export const gllEn: GalileoTranslations = {
   actions: 'Actions',
   delete: 'Delete',
   deleteMsg: 'Are you sure?',
+  deleteConfirmInput: 'Please write Delete to confirm',
   confirm: 'Confirm',
   cancel: 'Cancel',
   update: 'Update',
@@ -54,6 +56,7 @@ export const gllIt: GalileoTranslations = {
   actions: 'Azioni',
   delete: 'Elimina',
   deleteMsg: 'Sei sicuro?',
+  deleteConfirmInput: 'Scrivi Cancella per confermare.',
   confirm: 'Conferma',
   cancel: 'Annulla',
   update: 'Aggiorna',
