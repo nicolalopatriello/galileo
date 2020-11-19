@@ -6,6 +6,7 @@
                      [relativeFormGroup]="userFormGroup">
       <form [formGroup]="userFormGroup">
         <gll-input [label]="'Name'" inputLabelPosition="left"
+                   [popoverHelp]="{message: 'This is a short message about Name input', showGotItButton: true}"
                           [associatedFormGroup]="userFormGroup"
         [errorsMessages]="{'required': 'This field is required'}"
         >

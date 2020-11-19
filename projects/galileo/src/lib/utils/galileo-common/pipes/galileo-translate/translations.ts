@@ -18,6 +18,7 @@ export interface GalileoTranslations {
   update: string;
   close: string;
   toConfirmWrite: string;
+  gotIt: string;
 }
 
 export const gllEn: GalileoTranslations = {
@@ -39,7 +40,8 @@ export const gllEn: GalileoTranslations = {
   cancel: 'Cancel',
   update: 'Update',
   close: 'Close',
-  toConfirmWrite: 'To confirm write'
+  toConfirmWrite: 'To confirm write',
+  gotIt: 'Got it'
 };
 
 export const gllIt: GalileoTranslations = {
@@ -61,5 +63,6 @@ export const gllIt: GalileoTranslations = {
   cancel: 'Annulla',
   update: 'Aggiorna',
   close: 'Chiudi',
-  toConfirmWrite: 'Per confermare scrivi'
+  toConfirmWrite: 'Per confermare scrivi',
+  gotIt: 'Capito'
 };

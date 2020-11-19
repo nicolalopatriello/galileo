@@ -22,6 +22,7 @@
     "@angular/router": ">= 9.1.6 <= 10.1.1",
     "@fortawesome/angular-fontawesome": "^0.7.0",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/free-regular-svg-icons": "^5.14.0",
     "@ng-bootstrap/ng-bootstrap": "^6.0.2",
     "ng-sidebar": "^9.2.1",
     "rxjs": "~6.6.0"

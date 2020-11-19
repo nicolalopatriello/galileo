@@ -55,7 +55,7 @@ export class DashboardContainerComponent implements OnInit {
         }
       }
     ).set('tools', {
-      items: [{id: 'settings', label: 'Settings', routerLink: 'settings', faIcon: 'cog', show: of(true)},
+      items: [{id: 'settings', label: 'Settings', routerLink: 'settings', faIcon: 'arrow-alt-circle-right', show: of(true)},
       ],
       groupLabel: {
         background: of('blue'),

@@ -7,3 +7,4 @@ export * from './dialog-type';
 export * from './galileo-available-languages';
 export * from './confirm-dialog-options';
 export * from './galielo-confirm-code-config';
+export * from './galileo-popover';
