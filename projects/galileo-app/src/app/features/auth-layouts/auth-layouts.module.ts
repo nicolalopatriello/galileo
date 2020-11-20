@@ -6,14 +6,17 @@ import {AuthLayoutsComponent} from './auth-layouts/auth-layouts.component';
 
 
 @NgModule({
-  declarations: [AuthLayoutsComponent],
-  imports: [
-    MarkdownModule.forRoot(),
-    GalileoSimpleCardModule,
-    RouterModule.forChild([{
-      path: '', component: AuthLayoutsComponent
-    }])
-  ]
+    declarations: [AuthLayoutsComponent],
+    exports: [
+        AuthLayoutsComponent
+    ],
+    imports: [
+        MarkdownModule.forRoot(),
+        GalileoSimpleCardModule,
+        RouterModule.forChild([{
+            path: '', component: AuthLayoutsComponent
+        }])
+    ]
 })
 export class AuthLayoutsModule {
 }

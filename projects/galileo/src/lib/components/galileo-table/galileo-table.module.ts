@@ -2,16 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from './table.component';
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FiltersComponent} from './components/filters';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {GalileoCommonModule} from '../../utils/galileo-common/galileo-common.module';
 import {PaginationComponent} from './components';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {DatePickerFilterComponent} from './components/date-picker-filter/date-picker-filter.component';
 
 
 @NgModule({
-  declarations: [TableComponent, FiltersComponent, PaginationComponent],
+  declarations: [TableComponent, FiltersComponent, PaginationComponent, DatePickerFilterComponent],
   exports: [
     TableComponent,
     PaginationComponent
@@ -21,7 +22,8 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     FontAwesomeModule,
     CommonModule,
     NgbModule,
-    GalileoCommonModule
+    GalileoCommonModule,
+    ReactiveFormsModule
   ]
 })
 export class GalileoTableModule { }

@@ -1,0 +1,45 @@
+<div class="w-100 d-flex flex-column p-3">
+  <div class="w-100 d-flex flex-row justify-content-between mt-2 text-center px-3">
+    <div class="font-weight-bold mr-4 d-flex flex-column align-items-center justify-content-center">
+      <span class="badge badge-primary">{{columnHeaderName}}</span>
+    </div>
+    <div [formGroup]="dateFilterOptionsFormGroup">
+      <select formControlName="option" class="form-control py-0 d-flex">
+        <option *ngFor="let o of availableFilterOptions" [value]="o">
+          <span *ngIf="o === 'equals'">{{'dateEquals' | galileoTranslate | async}}</span>
+          <span *ngIf="o === 'greaterThanOrEqual'">{{'after' | galileoTranslate | async}}</span>
+          <span *ngIf="o === 'lessThanOrEqual'">{{'before' | galileoTranslate | async}}</span>
+          <span *ngIf="o === 'inRange'">{{'range' | galileoTranslate | async}}</span>
+
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="w-100 mt-2 text-center">
+    <div [ngSwitch]="selectedFilterOption">
+      <ngb-datepicker #dp (dateSelect)="onDateSelection($event)"
+                      *ngSwitchCase="'inRange'"
+                      [displayMonths]="1"
+                      [dayTemplate]="t"
+                      outsideDays="hidden">
+      </ngb-datepicker>
+      <ngb-datepicker #dp (dateSelect)="onDateSelection($event)"
+                      *ngSwitchDefault
+                      [displayMonths]="1"
+                      outsideDays="hidden">
+      </ngb-datepicker>
+    </div>
+
+  </div>
+</div>
+
+<ng-template #t let-date let-focused="focused">
+  <span class="custom-day"
+        [class.focused]="focused"
+        [class.range]="isRange(date)"
+        [class.faded]="isHovered(date) || isInside(date)"
+        (mouseenter)="hoveredDate = date"
+        (mouseleave)="hoveredDate = null">
+    {{ date.day }}
+  </span>
+</ng-template>

@@ -40,15 +40,6 @@ export class DashboardContainerComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-/*    const domElement = this.elementRef.nativeElement.querySelector(`#sidebarElementId_auth-layouts`);
-    console.log(domElement);
-    console.log(domElement.childNodes);
-
-    this.userOnBoardingService.showPopover({
-      where: domElement,
-      what: this.explanation,
-      placement: 'right'
-    });*/
   }
 
   ngOnInit(): void {
