@@ -51,6 +51,7 @@ export * from './lib/galileo.module';
 
 export * from './lib/services/galileo-theme.service';
 export * from './lib/services/galileo.service';
+export * from './lib/services/user-on-boarding.service';
 export * from './lib/services/galileo-config.service';
 export * from './lib/services/galileo-language.service';
 
