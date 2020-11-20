@@ -27,6 +27,7 @@ import {Utils} from '../../../utils/utils';
           <ng-container *ngFor="let item of getValueOf(groupLabel)" class="mt-2">
             <ng-container *ngIf="item.show | async">
               <div
+                [id]="'sidebarElementId_' + item.id"
                 [routerLink]="'/'+item.routerLink" routerLinkActive="sidenav__item-active"
                 #rla="routerLinkActive"
                 (click)="onClickAction(item, groupLabel)" class="d-flex flex-row cursor-pointer sidenav__item

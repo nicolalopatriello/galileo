@@ -3,12 +3,12 @@
 <div class="container-fluid">
   <div class="row d-flex w-100 justify-content-center">
     <gll-form [showBuiltInButtons]="true"
-                     [relativeFormGroup]="userFormGroup">
+              [relativeFormGroup]="userFormGroup">
       <form [formGroup]="userFormGroup">
         <gll-input [label]="'Name'" inputLabelPosition="left"
                    [popoverHelp]="{message: 'This is a short message about Name input', showGotItButton: true}"
-                          [associatedFormGroup]="userFormGroup"
-        [errorsMessages]="{'required': 'This field is required'}"
+                   [associatedFormGroup]="userFormGroup"
+                   [errorsMessages]="{'required': 'This field is required'}"
         >
           <input id="name" type="text" formControlName="name" class="form-control">
         </gll-input>

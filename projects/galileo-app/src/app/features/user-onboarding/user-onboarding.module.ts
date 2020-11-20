@@ -2,20 +2,20 @@ import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {GalileoSimpleCardModule} from '@nicolalopatriello/galileo';
 import {MarkdownModule} from 'ngx-markdown';
-import {ThemingComponent} from './theming/theming.component';
-import {NgbPopoverModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
+import {UserOnboardingComponent} from "./user-onboarding/user-onboarding.component";
 
 
 @NgModule({
-  declarations: [ThemingComponent],
+  declarations: [UserOnboardingComponent],
   imports: [
     MarkdownModule.forRoot(),
     GalileoSimpleCardModule,
     NgbPopoverModule,
     RouterModule.forChild([{
-      path: '', component: ThemingComponent
+      path: '', component: UserOnboardingComponent
     }])
   ]
 })
-export class ThemingModule {
+export class UserOnboardingModule {
 }

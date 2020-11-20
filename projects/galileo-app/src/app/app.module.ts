@@ -15,6 +15,7 @@ import {GalileoModule} from '../../../galileo/src/lib/galileo.module';
 import {GalileoTableModule} from '../../../galileo/src/lib/components/galileo-table/galileo-table.module';
 import {GalileoAvailableLanguages} from '../../../galileo/src/lib/models';
 import {ReactiveFormsModule} from '@angular/forms';
+import {NgbPopoverModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     DashboardContainerComponent
   ],
   imports: [
+    NgbPopoverModule,
     GalileoTableModule,
     AppRoutingModule,
     BrowserModule,

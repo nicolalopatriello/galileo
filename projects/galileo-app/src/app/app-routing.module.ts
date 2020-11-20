@@ -47,6 +47,13 @@ const routes: Routes = [
         },
       },
       {
+        path: 'user-onboarding',
+        loadChildren: () => import('./features/user-onboarding/user-onboarding.module').then(t => t.UserOnboardingModule),
+        data: {
+          breadcrumb: 'User onboarding'
+        },
+      },
+      {
         path: 'dialogs',
         loadChildren: () => import('./features/dialogs/dialogs.module').then(t => t.DialogsModule),
         data: {

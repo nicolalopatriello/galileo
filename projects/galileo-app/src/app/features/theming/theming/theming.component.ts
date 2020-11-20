@@ -8,9 +8,6 @@ import {Component} from '@angular/core';
 export class ThemingComponent {
 
 
-  constructor() {
-  }
-
   markDown = `
   \`Galileo\` supports real-time theme switcher. Mechanism is based on CSS variables and available variables are declared inside \`GalileoThemeInterface\`
 
@@ -60,5 +57,6 @@ export class ThemingComponent {
 
 To use it just overrides variables in styles.scss of our project or use methods provided by GalileoThemeService
   `;
+
 
 }
