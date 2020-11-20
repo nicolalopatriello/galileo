@@ -19,6 +19,12 @@ export interface GalileoTranslations {
   close: string;
   toConfirmWrite: string;
   gotIt: string;
+  from: string;
+  to: string;
+  before: string;
+  after: string;
+  dateEquals: string;
+  range: string;
 }
 
 export const gllEn: GalileoTranslations = {
@@ -41,7 +47,13 @@ export const gllEn: GalileoTranslations = {
   update: 'Update',
   close: 'Close',
   toConfirmWrite: 'To confirm write',
-  gotIt: 'Got it'
+  gotIt: 'Got it',
+  from: 'From',
+  to: 'To',
+  before: 'Before',
+  after: 'After',
+  dateEquals: 'On',
+  range: 'Range'
 };
 
 export const gllIt: GalileoTranslations = {
@@ -64,5 +76,11 @@ export const gllIt: GalileoTranslations = {
   update: 'Aggiorna',
   close: 'Chiudi',
   toConfirmWrite: 'Per confermare scrivi',
-  gotIt: 'Capito'
+  gotIt: 'Capito',
+  from: 'Da',
+  to: 'A',
+  before: 'Prima di',
+  after: 'Dopo il',
+  dateEquals: 'Il',
+  range: 'Intevallo'
 };

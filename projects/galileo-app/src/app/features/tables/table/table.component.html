@@ -1,5 +1,19 @@
 <div class="h2 font-weight-bold">Tables</div>
 <div style="height: 300px; max-height: 300px; min-height: 300px">
+  <div class="w-100">Client side</div>
 <gll-table [tableConfig]="tableConfig" [data]="tableData"></gll-table>
 </div>
+
+<div style="height: 300px; max-height: 300px; min-height: 300px">
+  <div class="w-100">Spring Server side</div>
+  <gll-table [tableConfig]="tableConfigServerSide"
+             (tableFilter)="onTableServerSideFilter($event)"
+             [data]="tableData"></gll-table>
+  <div class="w-100 text-center bg-info">
+    <pre class="bold">
+      {{currentServerSideFilter}}
+    </pre>
+  </div>
+</div>
+
 <markdown [data]="markDown"></markdown>

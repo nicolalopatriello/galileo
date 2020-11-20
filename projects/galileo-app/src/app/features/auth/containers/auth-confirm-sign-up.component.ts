@@ -34,6 +34,5 @@ export class AuthConfirmSignUpComponent implements OnInit {
   }
 
   onConfirmCodeFormChange($event: { value: string; complete: boolean }) {
-    console.log($event);
   }
 }

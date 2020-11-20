@@ -34,6 +34,7 @@
         <ng-container>
           <gll-filters *ngIf="c.filterConfig"
                        [columnField]="c.field"
+                       [columnHeaderName]="isObs(c.headerName) ? (c.headerName | async) : c.headerName"
                        [columnFilterConfig]="c.filterConfig"
                        (columnFilterValue)="onColumnFilterValue($event)">
           </gll-filters>
