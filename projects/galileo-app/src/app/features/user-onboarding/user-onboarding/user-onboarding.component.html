@@ -1,0 +1,30 @@
+<div class="h2 font-weight-bold">Theming</div>
+
+<div class="d-flex w-100 flex-row justify-content-between col-md-6 offset-md-3">
+  <div style="width: 150px" class="card p-2 bg-info" #complexElementOne>Explanation 1</div>
+  <div style="width: 150px" class="card p-2 bg-light" #complexElementTwo>Explanation 2</div>
+</div>
+
+<markdown [data]="markDown"></markdown>
+
+
+<ng-template #explanationOne>
+  <div class="w-100">
+    <div class="font-weight-bold">Help</div>
+    <p>This is a simple explanation</p>
+    <div class="w-100 justify-content-end d-flex flex-row">
+      <button (click)="explanationOneGotInt()" class="btn btn-outline-primary">Got it</button>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #explanationTwo>
+  <div class="w-100">
+    <div class="font-weight-bold">Help</div>
+    <p>This is a simple explanation</p>
+    <div class="w-100 justify-content-end d-flex flex-row">
+      <button (click)="userOnBoardingService.resetUserOnBoarding()" class="btn btn-outline-primary">Got it</button>
+    </div>
+  </div>
+</ng-template>

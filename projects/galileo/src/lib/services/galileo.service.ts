@@ -8,8 +8,10 @@ import {ConfirmDialogComponent} from '../utils/galileo-common/components/confirm
   providedIn: 'root'
 })
 export class GalileoService {
-  constructor(private modalService: NgbModal) {
-  }
+
+
+  constructor(private modalService: NgbModal
+  ) {}
 
   showConfirmDialog = (options: ConfirmDialogOptions): Observable<string> => {
     const modalRef = this.modalService.open(ConfirmDialogComponent, {

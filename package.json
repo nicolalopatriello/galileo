@@ -29,17 +29,19 @@
     "@angular/router": "~10.1.1",
     "@fortawesome/angular-fontawesome": "^0.7.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-regular-svg-icons": "^5.14.0",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@ng-bootstrap/ng-bootstrap": "^6.0.2",
     "@nicolalopatriello/galileo": "0.1.46",
     "bootstrap": "^4.5.2",
     "jquery": "^3.4.1",
+    "ng-sidebar": "^9.2.1",
     "ngx-markdown": "^10.1.1",
+    "popper.js": "^1.16.1",
     "prismjs": "^1.21.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2",
-    "ng-sidebar": "^9.2.1"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1001.1",

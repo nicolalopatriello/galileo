@@ -18,5 +18,4 @@ export class SimpleCardComponent {
 
   @Input() heightPx: number;
   @Input() backgroundColor: string;
-
 }

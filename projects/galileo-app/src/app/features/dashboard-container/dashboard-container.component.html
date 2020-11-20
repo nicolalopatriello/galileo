@@ -9,6 +9,7 @@
     (toggleSideBar)="onToggleSidebar($event)">
     <div *gllDlSidebar="let sideBarOpened">
       <gll-sidebar
+        #sidebar
         [sideBarOpened]="sideBarOpened"
         [sidebarItemsGroups]="sidebarItemsGroups"
         (itemClick)="omSidebarItemClick($event)">
@@ -35,3 +36,14 @@
     </div>
   </gll-dashboard-layout>
 </div>
+
+
+<ng-template #explanation>
+  <div class="w-100">
+    <div class="font-weight-bold">Help</div>
+    <p>This is a simple explanation</p>
+    <div class="w-100 justify-content-end d-flex flex-row">
+      <button (click)="userOnBoardingService.resetUserOnBoarding()" class="btn btn-outline-primary">Got it</button>
+    </div>
+  </div>
+</ng-template>

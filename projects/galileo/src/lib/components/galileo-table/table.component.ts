@@ -12,13 +12,13 @@ import {
 } from '@angular/core';
 import {Observable, of, Subject} from 'rxjs';
 import {ColumnFilterConfig, ColumnFilterEvent, columnFilterOptions, columnFilterType} from './components/filters';
-import {FontAwesomeIconColorBoolPair} from '../../models';
+import {FontAwesomeIconColorBoolPair, GalileoPopover} from '../../models';
 import {TableCellDirective} from './table-cell.directive';
 import {FilterParser} from './utils/filter-parser';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Utils} from '../../utils/utils';
-import {GalileoLanguageService} from "../../services";
-import {map} from "rxjs/operators";
+import {GalileoLanguageService} from '../../services';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'gll-table',
@@ -161,7 +161,7 @@ export class TableComponent implements OnInit, OnChanges {
         currentPage: 0,
         buckets: this.buildBuckets(filteredData.length, this.clientSideInformation.pagination.pageSize)
       }
-    }
+    };
 
   }
 
@@ -274,6 +274,7 @@ export interface ColumnDef {
   filterConfig?: ColumnFilterConfig;
   gllTableRenderer?: GllTableRenderer;
   gllTableCustomRender?: Function;
+  popoverHelp?: GalileoPopover;
   checkboxValue?: Function;
   trueFaIcon?: FontAwesomeIconColorBoolPair;
   falseFaIcon?: FontAwesomeIconColorBoolPair;
