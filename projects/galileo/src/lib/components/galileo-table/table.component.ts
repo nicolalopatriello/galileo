@@ -270,6 +270,7 @@ export interface TableActionDef {
 export interface ColumnDef {
   headerName: string | Observable<string>;
   field: string;
+  widthPx?: number;
   sortEnabled?: boolean;
   filterConfig?: ColumnFilterConfig;
   gllTableRenderer?: GllTableRenderer;
