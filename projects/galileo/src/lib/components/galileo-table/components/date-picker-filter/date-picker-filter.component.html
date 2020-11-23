@@ -10,20 +10,23 @@
           <span *ngIf="o === 'greaterThanOrEqual'">{{'after' | galileoTranslate | async}}</span>
           <span *ngIf="o === 'lessThanOrEqual'">{{'before' | galileoTranslate | async}}</span>
           <span *ngIf="o === 'inRange'">{{'range' | galileoTranslate | async}}</span>
-
         </option>
       </select>
     </div>
   </div>
   <div class="w-100 mt-2 text-center">
     <div [ngSwitch]="selectedFilterOption">
-      <ngb-datepicker #dp (dateSelect)="onDateSelection($event)"
+      <ngb-datepicker (dateSelect)="onDateSelection($event)"
+                      #dp
+                      [(ngModel)]="dpDateModel"
                       *ngSwitchCase="'inRange'"
                       [displayMonths]="1"
                       [dayTemplate]="t"
                       outsideDays="hidden">
       </ngb-datepicker>
-      <ngb-datepicker #dp (dateSelect)="onDateSelection($event)"
+      <ngb-datepicker (dateSelect)="onDateSelection($event)"
+                      #dp
+                      [(ngModel)]="dpDateModel"
                       *ngSwitchDefault
                       [displayMonths]="1"
                       outsideDays="hidden">

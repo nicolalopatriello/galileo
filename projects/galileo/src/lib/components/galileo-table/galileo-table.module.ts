@@ -8,7 +8,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {GalileoCommonModule} from '../../utils/galileo-common/galileo-common.module';
 import {PaginationComponent} from './components';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {DatePickerFilterComponent} from './components/date-picker-filter/date-picker-filter.component';
+import {DatePickerFilterComponent} from './components/date-picker-filter';
 
 
 @NgModule({

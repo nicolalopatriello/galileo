@@ -1,9 +1,19 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {NgbCalendar, NgbDate} from '@ng-bootstrap/ng-bootstrap';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
+import {NgbCalendar, NgbDate, NgbDatepicker, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {columnFilterOptions} from '../filters';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import {filter, takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'gll-date-picker-filter',
@@ -34,42 +44,48 @@ import {takeUntil} from 'rxjs/operators';
     `
   ]
 })
-export class DatePickerFilterComponent implements OnDestroy, OnInit {
+export class DatePickerFilterComponent implements OnDestroy, OnInit, OnChanges {
+
+  @ViewChild(NgbDatepicker) private dp: NgbDatepicker;
+
 
   @Input() columnHeaderName: string;
   @Input() availableFilterOptions: columnFilterOptions[];
   @Input() selectedFilterOption: columnFilterOptions;
+  @Input() from: number;
+  @Input() to: number;
 
   @Output() dateFilterValue: EventEmitter<{ filterOptions: columnFilterOptions, from: number | null, to: number | null }>
     = new EventEmitter<{ filterOptions: columnFilterOptions; from: number | null; to: number | null }>();
 
 
-  private fromDate: NgbDate;
+  private fromDate: NgbDate | null;
   private toDate: NgbDate | null = null;
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
   public columnFilterOptions: columnFilterOptions = 'equals';
   public dateFilterOptionsFormGroup: FormGroup;
   public hoveredDate: NgbDate | null = null;
+  public dpDateModel: NgbDateStruct;
 
-  constructor(calendar: NgbCalendar) {
-    this.fromDate = calendar.getToday();
-    this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+  constructor(public calendar: NgbCalendar) {
 
     this.dateFilterOptionsFormGroup = new FormGroup({
       option: new FormControl('equals')
     });
 
     this.dateFilterOptionsFormGroup.controls.option.valueChanges.pipe(
-      takeUntil(this.destroy$)
+      takeUntil(this.destroy$),
+      filter(() => !!this.fromDate)
     ).subscribe(t => {
       this.dateFilterValue.emit({
         filterOptions: t,
-        from: !!this.fromDate ? new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day).getTime() : null,
-        to: !!this.toDate ? new Date(this.toDate.year, this.toDate.month - 1, this.toDate.day).getTime() : null
+        from: !!this.fromDate ? new Date(new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day).setHours(0, 0, 0, 0)).getTime() : null,
+        to: !!this.toDate ? new Date(new Date(this.toDate.year, this.toDate.month - 1, this.toDate.day).setHours(0, 0, 0, 0)).getTime() : null
       });
     });
   }
+
 
   onDateSelection(date: NgbDate) {
     switch (this.selectedFilterOption) {
@@ -84,7 +100,11 @@ export class DatePickerFilterComponent implements OnDestroy, OnInit {
         }
         break;
       }
-      case 'equals':
+      case 'equals': {
+        this.fromDate = date;
+        this.toDate = this.calendar.getNext(date, 'd', 1);
+        break;
+      }
       case 'greaterThanOrEqual':
       case 'lessThanOrEqual': {
         this.fromDate = date;
@@ -124,6 +144,34 @@ export class DatePickerFilterComponent implements OnDestroy, OnInit {
     } else {
       this.dateFilterOptionsFormGroup.controls.option.setValue(this.availableFilterOptions[0]);
     }
+  }
+
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!!changes.from && changes.from.currentValue) {
+      setTimeout(() => {
+        const from = new Date(changes.from.currentValue);
+        this.fromDate = new NgbDate(from.getFullYear(), from.getMonth() + 1, from.getDate());
+        this.dpDateModel = {day: this.fromDate.day, month: this.fromDate.month, year: this.fromDate.year};
+        this.dp.navigateTo({day: this.fromDate.day, month: this.fromDate.month, year: this.fromDate.year});
+      }, 1);
+    }
+
+    if (!!changes.to && changes.to.currentValue) {
+      setTimeout(() => {
+        const to = new Date(changes.to.currentValue);
+        this.toDate = new NgbDate(to.getFullYear(), to.getMonth() + 1, to.getDate());
+        this.dp.navigateTo({day: this.fromDate.day, month: this.fromDate.month, year: this.fromDate.year});
+        //   this.dpDateModel = {day: this.fromDate.day, month: this.fromDate.month, year: this.fromDate.year};
+      }, 1);
+    }
+
+    /*    if (changes.to.currentValue) {
+          console.log('to', changes.to.currentValue);
+          const to = new Date(changes.to.currentValue);
+          this.toDate = new NgbDate(to.getFullYear(), to.getMonth(), to.getDay() - 1);
+          console.log(this.toDate);
+        }*/
   }
 
 }

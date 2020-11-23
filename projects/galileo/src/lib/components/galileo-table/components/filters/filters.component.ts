@@ -38,7 +38,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
                     <div class="d-flex"> {{value | date}}</div>
                   </div>
                   <div style="line-height: 1" class="text-dark small d-flex flex-row justify-content-between"
-                       *ngIf="valueTo">
+                       *ngIf="valueTo && selectedFilterOption === 'inRange'">
                     <div class="d-flex">
                       {{'to' | galileoTranslate | async}}:
                     </div>
@@ -46,7 +46,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
                   </div>
                 </div>
                 <div class="d-flex flex-column justify-content-around" *ngIf="value || valueTo">
-                  <fa-icon class="cursor-pointer text-black-50" [icon]="['fas', 'trash-alt']"
+                  <fa-icon style="font-size: 13px" class="cursor-pointer clear-date-icon" [icon]="['far', 'trash-alt']"
                            (click)="clearDateFilter()"></fa-icon>
                 </div>
               </div>
@@ -84,7 +84,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
         <div class="d-flex pt-1 pl-1" ngbDropdown placement="bottom-right"
              *ngIf="columnFilterConfig?.type === 'gllDateColumnFilter'">
           <fa-icon class="cursor-pointer"
-                   (click)="dialogService.open(calendarContainerDialog, {size: 'sm'})"
+                   (click)="dialogService.open(calendarContainerDialog, {size: 'sm', backdrop: true, centered: true})"
                    [attr.data-cy]="columnField + '-filter-options'"
                    [icon]="['fas', 'filter']">
           </fa-icon>
@@ -95,6 +95,8 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
           <gll-date-picker-filter (dateFilterValue)="onDateFilterValue($event)"
                                   [selectedFilterOption]="selectedFilterOption"
                                   [columnHeaderName]="columnHeaderName"
+                                  [from]="value"
+                                  [to]="valueTo"
                                   [availableFilterOptions]="columnFilterConfig.options">
           </gll-date-picker-filter>
         </ng-template>
@@ -143,7 +145,7 @@ export class FiltersComponent implements OnInit {
       filterType: this.columnFilterConfig.type,
       filterOption: 'equals',
       columnField: this.columnField,
-      value: value,
+      value,
       valueTo: null
     };
     this.columnFilterValue.emit(e);
@@ -155,11 +157,12 @@ export class FiltersComponent implements OnInit {
     this.valueTo = $event.to;
     const e: ColumnFilterEvent = {
       filterType: this.columnFilterConfig.type,
-      filterOption: this.selectedFilterOption,
+      filterOption: this.selectedFilterOption === 'equals' ? 'inRange' : this.selectedFilterOption,
       columnField: this.columnField,
       value: $event.from,
       valueTo: $event.to
     };
+    console.log('[DEBUG]', e);
     this.columnFilterValue.emit(e);
   }
 

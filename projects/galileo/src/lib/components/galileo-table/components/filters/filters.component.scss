@@ -1,5 +1,8 @@
-.uik-filter {
-  .dropdown-toggle::after {
-    display:none;
+.gll-filter {
+  .clear-date-icon {
+    color: #ec7474;
+    &:hover {
+      color: red;
+    }
   }
 }
