@@ -1,12 +1,14 @@
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { catchError, filter, map, switchMap, take, tap } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {catchError, filter, switchMap, take} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export abstract class GllBaseAuthTokenInterceptor implements HttpInterceptor {
   private isRefreshing = false;
   private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+
+  private readonly GLL_AUTH_INTERCEPTOR_SKIP = 'gllAuthInterceptorSkip';
 
   protected abstract getLocalStorageAuthTokenInfo(): { tokenKey: string, refreshTokenKey: string }
 
@@ -16,22 +18,31 @@ export abstract class GllBaseAuthTokenInterceptor implements HttpInterceptor {
 
   protected abstract appendHeaders(): { [name: string]: string | string[]; }
 
+  get interceptorSkipKey() {
+    return this.GLL_AUTH_INTERCEPTOR_SKIP;
+  }
+
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = this.readTokenFromLocalStorage();
-    if (!!token) {
-      request = this.addToken(request, token);
-    }
-    request = this.addOptionalHeaders(request);
-    return next.handle(request).pipe(
-      catchError(err => {
-        if (err.status === 401) {
-          return this.handle401Error(request, next);
-        } else {
-          return throwError(err);
-        }
-      }));
+    const toSkip = request.headers.get(this.GLL_AUTH_INTERCEPTOR_SKIP);
+    if (toSkip) {
+      return next.handle(request);
+    } else {
+      const token = this.readTokenFromLocalStorage();
+      if (!!token) {
+        request = this.addToken(request, token);
+      }
+      request = this.addOptionalHeaders(request);
+      return next.handle(request).pipe(
+        catchError(err => {
+          if (err.status === 401) {
+            return this.handle401Error(request, next);
+          } else {
+            return throwError(err);
+          }
+        }));
 
+    }
   }
 
   private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
