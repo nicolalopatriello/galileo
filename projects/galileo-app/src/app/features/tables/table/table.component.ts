@@ -11,10 +11,42 @@ export class TableComponent implements OnInit {
 
 
   tableData = [
-    {date: 1605871315000, name: 'Nicola', surname: 'Lopatriello', isAdmin: true, isEnabled: true, age: 30},
-    {date: 1606871315000, name: 'Greta', surname: 'Sasso', isAdmin: false, isEnabled: false, age: 27},
-    {date: 1606871315000, name: 'Domenico', surname: 'Grieco', isAdmin: false, isEnabled: false, age: 33},
-    {date: 1605871315000, name: 'Georgy', surname: 'Alarcon', isAdmin: true, isEnabled: false, age: 20}
+    {
+      date: 1605871315000,
+      name: 'Nicola',
+      surname: 'Lopatriello',
+      isAdmin: true,
+      isEnabled: true,
+      age: 30,
+      description: 'this is a description'
+    },
+    {
+      date: 1606871315000,
+      name: 'Greta',
+      surname: 'Sasso',
+      isAdmin: false,
+      isEnabled: false,
+      age: 27,
+      description: 'this is a long description with some lorem ipsum and lorem'
+    },
+    {
+      date: 1606871315000,
+      name: 'Domenico',
+      surname: 'Grieco',
+      isAdmin: false,
+      isEnabled: false,
+      age: 33,
+      description: 'r since the 1500s, when an unknown printer took a galley of type and scrambled it'
+    },
+    {
+      date: 1605871315000,
+      name: 'Georgy',
+      surname: 'Alarcon',
+      isAdmin: true,
+      isEnabled: false,
+      age: 20,
+      description: '2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum'
+    }
   ];
   tableConfig: TableConfig = {
     mode: 'clientSide',
@@ -24,19 +56,32 @@ export class TableComponent implements OnInit {
         field: 'date',
         headerName: of('Date'),
         gllTableRenderer: 'gllTableDateTimeRenderer',
-        filterConfig: {type: 'gllDateColumnFilter', options: ['equals', 'greaterThanOrEqual', 'lessThanOrEqual', 'inRange']},
+        filterConfig: {
+          type: 'gllDateColumnFilter',
+          options: ['equals', 'greaterThanOrEqual', 'lessThanOrEqual', 'inRange']
+        },
       },
       {
         field: 'name',
         headerName: of('Name'),
         filterConfig: {type: 'gllTextColumnFilter', options: ['contains']},
-        popoverHelp: {showGotItButton: true, message: 'This is a short message about Name field.'}
+        popoverHelp: {showGotItButton: true, message: 'This is a short message about Name field.'},
+
       },
-      {field: 'surname', headerName: 'Surname', filterConfig: {type: 'gllTextColumnFilter', options: ['contains']}},
+      {
+        field: 'surname',
+        headerName: 'Surname',
+        filterConfig: {type: 'gllTextColumnFilter', options: ['contains']},
+
+      },
       {
         field: 'age',
         headerName: 'Age',
-        filterConfig: {type: 'gllNumberColumnFilter', options: ['equals', 'greaterThanOrEqual', 'lessThanOrEqual']}
+        filterConfig: {type: 'gllNumberColumnFilter', options: ['equals', 'greaterThanOrEqual', 'lessThanOrEqual']},
+      },
+      {
+        field: 'description',
+        headerName: 'Description',
       },
       {
         field: 'isAdmin',
@@ -44,15 +89,25 @@ export class TableComponent implements OnInit {
         gllTableRenderer: 'gllTableBooleanRenderer',
         trueFaIcon: {color: 'green', icon: 'user-shield'},
         falseFaIcon: {color: 'red', icon: 'user'},
-        popoverHelp: {showGotItButton: true, message: 'This is a short message about Admin field.'}
+        popoverHelp: {showGotItButton: true, message: 'This is a short message about Admin field.'},
       },
-      {field: 'isEnabled', headerName: 'Enabled', gllTableRenderer: 'gllTableBooleanRenderer'}
+      {
+        field: 'isEnabled',
+        headerName: 'Enabled',
+        gllTableRenderer: 'gllTableBooleanRenderer',
+
+      }
     ],
     actions: {
       delete: {builtIn: true, show: true, disabled: () => false, showDeleteConfirmInput: true}
     },
     extraActions: [
-      {hide: false, label: 'Extra action', eventKey: 'extraAction1', iconColorProp: {color: 'black', icon: 'arrow-alt-circle-right'}}
+      {
+        hide: false,
+        label: 'Extra action',
+        eventKey: 'extraAction1',
+        iconColorProp: {color: 'black', icon: 'arrow-alt-circle-right'}
+      }
     ]
   };
 
@@ -65,19 +120,30 @@ export class TableComponent implements OnInit {
         field: 'date',
         headerName: of('Date'),
         gllTableRenderer: 'gllTableDateTimeRenderer',
-        filterConfig: {type: 'gllDateColumnFilter', options: ['equals', 'greaterThanOrEqual', 'lessThanOrEqual', 'inRange']},
+        filterConfig: {
+          type: 'gllDateColumnFilter',
+          options: ['equals', 'greaterThanOrEqual', 'lessThanOrEqual', 'inRange']
+        },
       },
       {
         field: 'name',
         headerName: of('Name'),
         filterConfig: {type: 'gllTextColumnFilter', options: ['contains']},
-        popoverHelp: {showGotItButton: true, message: 'This is a short message about Name field.'}
+        popoverHelp: {showGotItButton: true, message: 'This is a short message about Name field.'},
       },
-      {field: 'surname', headerName: 'Surname', filterConfig: {type: 'gllTextColumnFilter', options: ['contains']}},
+      {
+        field: 'surname',
+        headerName: 'Surname',
+        filterConfig: {type: 'gllTextColumnFilter', options: ['contains']},
+      },
       {
         field: 'age',
         headerName: 'Age',
-        filterConfig: {type: 'gllNumberColumnFilter', options: ['equals', 'greaterThanOrEqual', 'lessThanOrEqual']}
+        filterConfig: {type: 'gllNumberColumnFilter', options: ['equals', 'greaterThanOrEqual', 'lessThanOrEqual']},
+      },
+      {
+        field: 'description',
+        headerName: 'Description',
       },
       {
         field: 'isAdmin',
@@ -85,18 +151,15 @@ export class TableComponent implements OnInit {
         gllTableRenderer: 'gllTableBooleanRenderer',
         trueFaIcon: {color: 'green', icon: 'user-shield'},
         falseFaIcon: {color: 'red', icon: 'user'},
-        popoverHelp: {showGotItButton: true, message: 'This is a short message about Admin field.'}
+        popoverHelp: {showGotItButton: true, message: 'This is a short message about Admin field.'},
       },
       {field: 'isEnabled', headerName: 'Enabled', gllTableRenderer: 'gllTableBooleanRenderer'}
     ],
     actions: {
       delete: {builtIn: true, show: true, disabled: () => false, showDeleteConfirmInput: true}
     },
-    extraActions: [
-      {hide: false, label: 'Extra action', eventKey: 'extraAction1', iconColorProp: {color: 'black', icon: 'arrow-alt-circle-right'}}
-    ]
+    extraActions: []
   };
-
 
 
   markDown = `

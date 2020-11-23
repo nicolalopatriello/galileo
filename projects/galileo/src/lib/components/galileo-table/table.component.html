@@ -1,11 +1,13 @@
 <div class="w-100 table-responsive gll-table-container"
      [ngStyle]="{'max-height': tableConfig?.maxHeight, 'min-height': tableConfig?.maxHeight}">
   <table class="table table-sm w-100 gll-table m-0">
-
     <thead>
     <tr id="tableHeader">
       <th *ngFor="let c of tableConfig?.columnsDef"
-          scope="col">{{isObs(c.headerName) ? (c.headerName | async) : c.headerName}}
+          scope="col"
+          [style.width.px]="c.widthPx"
+          [style.maxWidth.px]="c.widthPx"
+      >{{isObs(c.headerName) ? (c.headerName | async) : c.headerName}}
         <ng-container *ngIf="c.popoverHelp">
           <fa-icon [ngbPopover]="popoverContainer" class="cursor-pointer"
                    [icon]="['far', 'question-circle']"></fa-icon>
@@ -30,7 +32,10 @@
 
     <tbody>
     <tr id="filtersRow" *ngIf="atLeastOneFilter()">
-      <td *ngFor="let c of tableConfig?.columnsDef" class="p-1">
+      <td *ngFor="let c of tableConfig?.columnsDef"
+          [style.width.px]="c.widthPx"
+          [style.maxWidth.px]="c.widthPx"
+          class="p-1">
         <ng-container>
           <gll-filters *ngIf="c.filterConfig"
                        [columnField]="c.field"
@@ -49,6 +54,8 @@
     -->
     <tr class="tableRow" *ngFor="let r of data">
       <td *ngFor="let c of tableConfig?.columnsDef"
+          [style.width.px]="c.widthPx"
+          [style.maxWidth.px]="c.widthPx"
           (click)="rowSelected.emit(r)"
           [ngClass]="{'cursor-pointer': tableConfig?.cursorPointerOnRow, 'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
 
@@ -83,6 +90,7 @@
       </td>
 
       <td *ngIf="atLeastOneAction()"
+          style="width:1px; white-space:nowrap;"
           [ngClass]="{'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
 
         <fa-icon [attr.data-cy]="'delete-action'"

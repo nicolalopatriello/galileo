@@ -18,10 +18,6 @@ export abstract class GllBaseAuthTokenInterceptor implements HttpInterceptor {
 
   protected abstract appendHeaders(): { [name: string]: string | string[]; }
 
-  get interceptorSkipKey() {
-    return this.GLL_AUTH_INTERCEPTOR_SKIP;
-  }
-
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const toSkip = request.headers.get(this.GLL_AUTH_INTERCEPTOR_SKIP);
