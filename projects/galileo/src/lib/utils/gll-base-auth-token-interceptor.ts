@@ -34,6 +34,7 @@ export abstract class GllBaseAuthTokenInterceptor implements HttpInterceptor {
           if (err.status === 401) {
             return this.handle401Error(request, next);
           } else {
+            this.ifErrorsAction();
             return throwError(err);
           }
         }));
