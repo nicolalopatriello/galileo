@@ -32,7 +32,9 @@ import {Utils} from '../../../utils/utils';
                 #rla="routerLinkActive"
                 (click)="onClickAction(item, groupLabel)" class="d-flex flex-row cursor-pointer sidenav__item
               pl-3 w-100 "
-                [ngStyle]="{'border-left': belongToGroup(isObs(item.label) ? (item.label | async) : item.label) && sidebarItemsGroups.get(groupLabel)?.groupLabel && (sidebarItemsGroups.get(groupLabel).groupLabel.show | async) ? '5px solid ' + (sidebarItemsGroups.get(groupLabel).groupLabel.activeItemGroupBorderColor | async) : null}"
+                [ngStyle]="{'border-left': belongToGroup(isObs(item.label) ? (item.label | async) : item.label) &&
+                sidebarItemsGroups.get(groupLabel)?.groupLabel &&
+                (sidebarItemsGroups.get(groupLabel).groupLabel.show | async) ? '5px solid ' + (sidebarItemsGroups.get(groupLabel).groupLabel.activeItemGroupBorderColor | async) : null}"
                 [ngClass]="{'sidenav--closed': !sideBarOpened}">
                 <fa-icon
                   [icon]="['fas', item.faIcon]"
