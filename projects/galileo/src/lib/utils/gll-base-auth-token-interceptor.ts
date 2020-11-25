@@ -12,7 +12,7 @@ export abstract class GllBaseAuthTokenInterceptor implements HttpInterceptor {
 
   protected abstract getLocalStorageAuthTokenInfo(): { tokenKey: string, refreshTokenKey: string }
 
-  protected abstract ifErrorsAction(): void;
+  protected abstract onError(err: any): void;
 
   protected abstract refreshTokenRequest(): Observable<{ newToken: string, newRefreshToken: string }>
 
@@ -34,7 +34,7 @@ export abstract class GllBaseAuthTokenInterceptor implements HttpInterceptor {
           if (err.status === 401) {
             return this.handle401Error(request, next);
           } else {
-            this.ifErrorsAction();
+            this.onError(err);
             return throwError(err);
           }
         }));
@@ -56,7 +56,7 @@ export abstract class GllBaseAuthTokenInterceptor implements HttpInterceptor {
         })).pipe(
         catchError(err => {
           this.isRefreshing = false;
-          this.ifErrorsAction();
+          this.onError(err);
           return throwError(err);
         })
       );
