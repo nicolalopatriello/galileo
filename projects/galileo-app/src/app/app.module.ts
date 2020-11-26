@@ -15,7 +15,18 @@ import {GalileoModule} from '../../../galileo/src/lib/galileo.module';
 import {GalileoTableModule} from '../../../galileo/src/lib/components/galileo-table/galileo-table.module';
 import {GalileoAvailableLanguages} from '../../../galileo/src/lib/models';
 import {ReactiveFormsModule} from '@angular/forms';
-import {NgbPopoverModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
+import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {faArrowAltCircleRight} from '@fortawesome/free-solid-svg-icons/faArrowAltCircleRight';
+import {faWindowMaximize} from '@fortawesome/free-solid-svg-icons/faWindowMaximize';
+import {faUser} from "@fortawesome/free-solid-svg-icons/faUser";
+import {faFillDrip} from "@fortawesome/free-solid-svg-icons/faFillDrip";
+import {faAlignJustify} from "@fortawesome/free-solid-svg-icons/faAlignJustify";
+import {faLayerGroup} from "@fortawesome/free-solid-svg-icons/faLayerGroup";
+import {faAddressCard} from "@fortawesome/free-solid-svg-icons/faAddressCard";
+import {faTable} from "@fortawesome/free-solid-svg-icons/faTable";
+import {faAngleDoubleLeft} from "@fortawesome/free-solid-svg-icons/faAngleDoubleLeft";
+import {faUserShield} from "@fortawesome/free-solid-svg-icons/faUserShield";
 
 
 @NgModule({
@@ -28,6 +39,7 @@ import {NgbPopoverModule} from "@ng-bootstrap/ng-bootstrap";
     GalileoTableModule,
     AppRoutingModule,
     BrowserModule,
+    FontAwesomeModule,
     MarkdownModule.forRoot(),
     GalileoModule.forRoot({
       language: GalileoAvailableLanguages.EN
@@ -41,5 +53,19 @@ import {NgbPopoverModule} from "@ng-bootstrap/ng-bootstrap";
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(
+      faArrowAltCircleRight,
+      faWindowMaximize,
+      faUser,
+      faFillDrip,
+      faAlignJustify,
+      faLayerGroup,
+      faAddressCard,
+      faTable,
+      faAngleDoubleLeft,
+      faUserShield
+    );
+  }
 }
 
