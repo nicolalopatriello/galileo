@@ -19,7 +19,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
           <div class="d-flex flex-row">
             <div class="d-flex">
               <div class="d-flex flex-row justify-content-around bg-white"
-                   style="border-radius: 5px; height: 31px; padding: 2px; width: 150px">
+                   style="border-radius: 5px; height: 31px; padding: 2px; width: 150px; border: 1px solid #ced4da">
                 <div class="d-flex flex-column justify-content-around w-100 px-1">
                   <div style="line-height: 1" class="text-dark small d-flex flex-row justify-content-between"
                        *ngIf="value">
