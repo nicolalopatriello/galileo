@@ -7,6 +7,8 @@ import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome
 import {faQuestionCircle} from '@fortawesome/free-regular-svg-icons/faQuestionCircle';
 import {faFilter} from '@fortawesome/free-solid-svg-icons/faFilter';
 import {faTrashAlt} from '@fortawesome/free-solid-svg-icons/faTrashAlt';
+import {faEyeSlash} from "@fortawesome/free-solid-svg-icons/faEyeSlash";
+import {faEye} from "@fortawesome/free-solid-svg-icons/faEye";
 
 
 @NgModule({
@@ -19,7 +21,11 @@ import {faTrashAlt} from '@fortawesome/free-solid-svg-icons/faTrashAlt';
 export class GalileoModule {
 
   constructor(library: FaIconLibrary) {
-    library.addIcons(faFilter, faQuestionCircle, faTrashAlt);
+    library.addIcons(faFilter,
+      faQuestionCircle,
+      faTrashAlt,
+      faEyeSlash,
+      faEye);
   }
 
   static forRoot(config: GalileoConfig): ModuleWithProviders<GalileoModule> {
