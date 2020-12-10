@@ -108,11 +108,11 @@
           <fa-icon [attr.data-cy]="e.iconColorProp.icon"
                    *ngIf="isObs(e.hide) ? !(e.hide | async) : !e.hide"
                    class="ml-1 mr-1"
-                   [ngClass]="{'cursor-pointer': !e.disabled}"
-                   [ngStyle]="{'color': !e.disabled ? e.iconColorProp.color : 'rgba(0, 0, 0, 0.5)'}"
+                   [ngClass]="{'cursor-pointer': !e.disabled(r)}"
+                   [ngStyle]="{'color': !e.disabled(r) ? e.iconColorProp.color : 'rgba(0, 0, 0, 0.5)'}"
                    [icon]="['fas', e.iconColorProp.icon]"
                    [ngbTooltip]="isObs(e.label) ? (e.label | async) : e.label" placement="bottom"
-                   (click)="!e.disabled ? extraAction.emit({data: r, eventKey: e.eventKey}) : null"></fa-icon>
+                   (click)="!e.disabled(r) ? extraAction.emit({data: r, eventKey: e.eventKey}) : null"></fa-icon>
         </ng-container>
       </td>
     </tr>
