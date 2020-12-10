@@ -106,6 +106,7 @@ export class TableComponent implements OnInit {
         hide: false,
         label: 'Extra action',
         eventKey: 'extraAction1',
+        disabled: (t) => !(t.age > 20),
         iconColorProp: {color: 'black', icon: 'arrow-alt-circle-right'}
       }
     ]
@@ -199,5 +200,9 @@ where \`tableConfig\` is
 
   onTableServerSideFilter($event: any) {
     this.currentServerSideFilter = $event;
+  }
+
+  onExtraAction($event: { eventKey: string; data: any }) {
+    console.log($event);
   }
 }
