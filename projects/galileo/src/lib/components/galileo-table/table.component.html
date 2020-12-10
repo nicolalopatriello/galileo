@@ -108,7 +108,7 @@
           <fa-icon [attr.data-cy]="e.iconColorProp.icon"
                    *ngIf="isObs(e.hide) ? !(e.hide | async) : !e.hide"
                    class="ml-1 mr-1"
-                   [ngClass]="{'cursor-pointer': !!e.disabled ? e.disabled(r) : true}"
+                   [ngClass]="{'cursor-pointer': !!e.disabled ? !e.disabled(r) : true}"
                    [ngStyle]="{'color': !!e.disabled ? !e.disabled(r) ? e.iconColorProp.color : 'rgba(0, 0, 0, 0.5)' : e.iconColorProp.color}"
                    [icon]="['fas', e.iconColorProp.icon]"
                    [ngbTooltip]="isObs(e.label) ? (e.label | async) : e.label" placement="bottom"
