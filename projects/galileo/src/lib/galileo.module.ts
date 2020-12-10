@@ -27,7 +27,6 @@ export class GalileoModule {
       faEyeSlash,
       faEye);
   }
-
   static forRoot(config: GalileoConfig): ModuleWithProviders<GalileoModule> {
     return {
       ngModule: GalileoModule,
