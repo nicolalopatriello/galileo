@@ -21,6 +21,7 @@ export interface GalileoThemeInterface {
   '--gll-sidenav-toggler-bg'?: string;
   '--gll-sidenav-toggler-bg-hover'?: string;
   '--gll-sidenav-toggler-color'?: string;
+  '--gll-sidenav-toggler-color-hover'?: string;
   '--gll-auth-layout--only-form-bg'?: string;
   '--gll-sign-in-form-box-shadow'?: string;
 

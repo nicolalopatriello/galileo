@@ -12,7 +12,7 @@ import {Utils} from '../../../utils/utils';
       <div class="d-flex align-items-end flex-column h-100 w-100">
         <ng-container *ngFor="let groupLabel of getKeys(sidebarItemsGroups); let i = index">
           <p
-            *ngIf="sidebarItemsGroups.get(groupLabel)?.groupLabel && (sidebarItemsGroups.get(groupLabel).groupLabel.show | async)"
+            *ngIf="sideBarOpened && sidebarItemsGroups.get(groupLabel)?.groupLabel && (sidebarItemsGroups.get(groupLabel).groupLabel.show | async)"
             [ngStyle]="{background: (sidebarItemsGroups.get(groupLabel).groupLabel.background | async), color: (sidebarItemsGroups.get(groupLabel).groupLabel.color | async)}"
             class="small d-flex w-100 p-1 m-0 justify-content-center font-weight-bolder"
             [id]="'groupLabelId_' + i"
