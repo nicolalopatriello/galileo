@@ -4,6 +4,7 @@ $gll-breadcrumb-label-color-hover: var(--gll-breadcrumb-label-color-hover);
 $gll-breadcrumb-box-shadow: var(--gll-breadcrumb-box-shadow);
 
 .breadcrumb {
+  border-radius: 0;
   background: $gll-breadcrumb-bg;
 
   -webkit-box-shadow: $gll-breadcrumb-box-shadow;
