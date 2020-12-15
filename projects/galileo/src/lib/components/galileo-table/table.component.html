@@ -131,29 +131,34 @@
 
 
 <ng-template #deleteRowDialog>
-  <div class="modal-header bg-success text-light bg-danger">
-    <h4 class="modal-title text-white">
+  <div class="modal-header text-light bg-danger p-2 d-flex flex-row justify-content-center">
+    <h4 class="modal-title text-white d-flex flex-row justify-content-center">
       <fa-icon [icon]="['fas', 'trash']" class="text-white"></fa-icon>
-      {{'delete' | galileoTranslate | async}}
     </h4>
   </div>
   <div class="modal-body">
-    <p>{{'deleteMsg' | galileoTranslate | async}}</p>
+    <h5 class="text-center font-weight-bold" style="color: #444444">{{'deleteMsg' | galileoTranslate | async}}</h5>
     <ng-container *ngIf="showDeleteConfirmInput">
-      <p class="mt-1 mb-1">{{'deleteConfirmInput' | galileoTranslate | async}}</p>
+      <p class="mt-4 mb-1 text-center">{{'deleteConfirmInput' | galileoTranslate | async}}</p>
       <input ngbAutofocus [(ngModel)]="deleteConfirmInputValue" class="form-control" type="text">
     </ng-container>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-danger"
-            [disabled]="showDeleteConfirmInput ? (deleteBtmDisabled() | async) : false"
-            (click)="confirmDelete()">
-      {{'delete' | galileoTranslate | async}}
-    </button>
-    <button ngbAutofocus type="button" class="btn btn-outline-secondary"
-            (click)="cancelDelete()">
-      {{'cancel' | galileoTranslate | async}}
-    </button>
+  <div class="modal-footer d-flex flex-row justify-content-between">
+    <div class="row w-100">
+      <div class="col-6 p-0 pr-1">
+        <button ngbAutofocus type="button" class="btn btn-outline-secondary btn-block"
+                (click)="cancelDelete()">
+          {{'cancel' | galileoTranslate | async}}
+        </button>
+      </div>
+      <div class="col-6 p-0 pl-1">
+        <button type="button" class="btn btn-danger btn-block"
+                [disabled]="showDeleteConfirmInput ? (deleteBtmDisabled() | async) : false"
+                (click)="confirmDelete()">
+          {{'delete' | galileoTranslate | async}}
+        </button>
+      </div>
+    </div>
   </div>
 </ng-template>
 

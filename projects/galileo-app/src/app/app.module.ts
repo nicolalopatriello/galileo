@@ -27,6 +27,7 @@ import {faAddressCard} from "@fortawesome/free-solid-svg-icons/faAddressCard";
 import {faTable} from "@fortawesome/free-solid-svg-icons/faTable";
 import {faAngleDoubleLeft} from "@fortawesome/free-solid-svg-icons/faAngleDoubleLeft";
 import {faUserShield} from "@fortawesome/free-solid-svg-icons/faUserShield";
+import {faTrash} from "@fortawesome/free-solid-svg-icons";
 
 
 @NgModule({
@@ -64,7 +65,7 @@ export class AppModule {
       faAddressCard,
       faTable,
       faAngleDoubleLeft,
-      faUserShield
+      faUserShield,
     );
   }
 }
