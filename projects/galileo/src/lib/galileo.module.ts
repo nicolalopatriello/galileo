@@ -10,6 +10,7 @@ import {faTrashAlt} from '@fortawesome/free-solid-svg-icons/faTrashAlt';
 import { faTrashAlt as faTrashAltRegular} from '@fortawesome/free-regular-svg-icons/faTrashAlt';
 import {faEyeSlash} from '@fortawesome/free-solid-svg-icons/faEyeSlash';
 import {faEye} from '@fortawesome/free-solid-svg-icons/faEye';
+import {faTrash} from '@fortawesome/free-solid-svg-icons/faTrash';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ export class GalileoModule {
     library.addIcons(faFilter,
       faQuestionCircle,
       faTrashAlt,
+      faTrash,
       faEyeSlash,
       faTrashAltRegular,
       faEye);
