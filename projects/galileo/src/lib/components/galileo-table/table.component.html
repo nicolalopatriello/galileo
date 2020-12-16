@@ -8,17 +8,12 @@
           [style.width.px]="c.widthPx"
           [style.maxWidth.px]="c.widthPx"
       >{{isObs(c.headerName) ? (c.headerName | async) : c.headerName}}
-        <ng-container *ngIf="c.popoverHelp">
-          <fa-icon [ngbPopover]="popoverContainer" class="cursor-pointer"
+        <ng-container *ngIf="c.helpMessage">
+          <fa-icon [ngbTooltip]="helpContainer" class="cursor-pointer"
                    [icon]="['far', 'question-circle']"></fa-icon>
-          <ng-template #popoverContainer>
+          <ng-template #helpContainer>
             <div class="p-1">
-              {{c.popoverHelp.message}}
-            </div>
-            <div class="w-100 d-flex flex-row justify-content-end" *ngIf="c.popoverHelp.showGotItButton">
-              <button class="btn-outline-primary btn btn-sm">
-                {{'gotIt' | galileoTranslate | async}}
-              </button>
+              {{c.helpMessage.message}}
             </div>
           </ng-template>
         </ng-container>

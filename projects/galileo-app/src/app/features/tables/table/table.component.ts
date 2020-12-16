@@ -65,7 +65,7 @@ export class TableComponent implements OnInit {
         field: 'name',
         headerName: of('Name'),
         filterConfig: {type: 'gllTextColumnFilter', options: ['contains']},
-        popoverHelp: {showGotItButton: true, message: 'This is a short message about Name field.'},
+        helpMessage: {type: 'tooltip', message: 'This is a short message about Name field.'},
 
       },
       {
@@ -89,7 +89,7 @@ export class TableComponent implements OnInit {
         gllTableRenderer: 'gllTableBooleanRenderer',
         trueFaIcon: {color: 'green', icon: 'user-shield'},
         falseFaIcon: {color: 'red', icon: 'user'},
-        popoverHelp: {showGotItButton: true, message: 'This is a short message about Admin field.'},
+        helpMessage: {type: 'tooltip', message: 'This is a short message about Admin field.'},
       },
       {
         field: 'isEnabled',
@@ -130,7 +130,7 @@ export class TableComponent implements OnInit {
         field: 'name',
         headerName: of('Name'),
         filterConfig: {type: 'gllTextColumnFilter', options: ['contains']},
-        popoverHelp: {showGotItButton: true, message: 'This is a short message about Name field.'},
+        helpMessage: {type: 'tooltip', message: 'This is a short message about name field.'},
       },
       {
         field: 'surname',
@@ -152,7 +152,7 @@ export class TableComponent implements OnInit {
         gllTableRenderer: 'gllTableBooleanRenderer',
         trueFaIcon: {color: 'green', icon: 'user-shield'},
         falseFaIcon: {color: 'red', icon: 'user'},
-        popoverHelp: {showGotItButton: true, message: 'This is a short message about Admin field.'},
+        helpMessage: {type: 'tooltip', message: 'This is a short message about Admin field.'},
       },
       {field: 'isEnabled', headerName: 'Enabled', gllTableRenderer: 'gllTableBooleanRenderer'}
     ],

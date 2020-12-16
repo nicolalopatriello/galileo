@@ -6,7 +6,7 @@
               [relativeFormGroup]="userFormGroup">
       <form [formGroup]="userFormGroup">
         <gll-input [label]="'Name'" inputLabelPosition="left"
-                   [popoverHelp]="{message: 'This is a short message about Name input', showGotItButton: true}"
+                   [helpMessage]="{message: 'This is a short message about Name input', type: 'tooltip'}"
                    [associatedFormGroup]="userFormGroup"
                    [errorsMessages]="{'required': 'This field is required'}"
         >
@@ -18,6 +18,15 @@
         >
           <input id="surname" type="text" formControlName="surname" class="form-control">
         </gll-input>
+
+        <gll-input [associatedFormGroup]="userFormGroup"
+                   [inputLabelPosition]="'left'"
+                   [helpMessage]="{message: 'This is a short message about Name input', type: 'tooltip'}"
+                   [label]="'Admin'">
+          <input id="admin" formControlName="admin" type="checkbox" class="form-check"
+                 style="margin-top: 12px">
+        </gll-input>
+
       </form>
     </gll-form>
   </div>
