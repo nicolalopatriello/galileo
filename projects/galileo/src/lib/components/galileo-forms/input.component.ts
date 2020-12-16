@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ElementRef, Input, OnDestroy, Renderer2, ViewC
 import {FormGroup} from '@angular/forms';
 import {Observable, Subject} from 'rxjs';
 import {Utils} from '../../utils/utils';
-import {GalileoPopover} from '../../models';
+import {GalileoHelpMessage} from '../../models';
 
 @Component({
   selector: 'gll-input',
@@ -11,16 +11,11 @@ import {GalileoPopover} from '../../models';
       <div [ngClass]="{'d-flex flex-row justify-content-around': inputLabelPosition === 'left'}">
         <label id="label-container" #inputLabel [ngClass]="{'label-left-position': inputLabelPosition === 'left'}"
                *ngIf="label">{{isObs(label) ? (label | async) : label}}
-          <ng-container *ngIf="popoverHelp">
-            <fa-icon class="cursor-pointer" [ngbPopover]="popoverContainer" [icon]="['far', 'question-circle']"></fa-icon>
-            <ng-template #popoverContainer>
+          <ng-container *ngIf="helpMessage">
+            <fa-icon class="cursor-pointer" [ngbTooltip]="helpContainer" [icon]="['far', 'question-circle']"></fa-icon>
+            <ng-template #helpContainer>
               <div class="p-1">
-                {{popoverHelp.message}}
-              </div>
-              <div class="w-100 d-flex flex-row justify-content-end" *ngIf="popoverHelp.showGotItButton">
-                <button class="btn-outline-primary btn btn-sm">
-                  {{'gotIt' | galileoTranslate | async}}
-                </button>
+                {{helpMessage.message}}
               </div>
             </ng-template>
           </ng-container>
@@ -74,7 +69,7 @@ export class InputComponent implements AfterViewInit, OnDestroy {
   @Input() associatedFormGroup: FormGroup;
   @Input() errorsMessages: object;
   @Input() fallBackFormControlName: string; // used if formControlName is not found (e.g when [formControlName] instead of formControlName is used
-  @Input() popoverHelp: GalileoPopover = null;
+  @Input() helpMessage: GalileoHelpMessage = null;
 
   private formControlName: string = null;
   private destroy$: Subject<boolean> = new Subject<boolean>();

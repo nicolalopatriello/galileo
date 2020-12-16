@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import {Observable, of, Subject} from 'rxjs';
 import {ColumnFilterConfig, ColumnFilterEvent, columnFilterOptions, columnFilterType} from './components/filters';
-import {FontAwesomeIconColorBoolPair, GalileoPopover} from '../../models';
+import {FontAwesomeIconColorBoolPair, GalileoHelpMessage} from '../../models';
 import {TableCellDirective} from './table-cell.directive';
 import {FilterParser} from './utils/filter-parser';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
@@ -275,7 +275,7 @@ export interface ColumnDef {
   filterConfig?: ColumnFilterConfig;
   gllTableRenderer?: GllTableRenderer;
   gllTableCustomRender?: Function;
-  popoverHelp?: GalileoPopover;
+  helpMessage?: GalileoHelpMessage;
   checkboxValue?: Function;
   trueFaIcon?: FontAwesomeIconColorBoolPair;
   falseFaIcon?: FontAwesomeIconColorBoolPair;
