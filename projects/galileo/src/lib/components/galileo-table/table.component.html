@@ -88,16 +88,6 @@
           style="width:1px; white-space:nowrap;"
           [ngClass]="{'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
 
-        <fa-icon [attr.data-cy]="'delete-action'"
-                 (click)="onDelete(r)"
-                 class="ml-1 mr-1 text-danger"
-                 [ngClass]="{'cursor-pointer': !tableConfig?.actions?.delete?.disabled(r),
-                 'text-black-50 no-pointer-event': tableConfig?.actions?.delete?.disabled(r),
-                 'text-danger': !tableConfig?.actions?.delete?.disabled(r)}"
-                 [icon]="['fas', 'trash-alt']"
-                 *ngIf="isObs(tableConfig?.actions?.delete?.show) ? (tableConfig?.actions?.delete?.show | async) : tableConfig?.actions?.delete?.show">
-        </fa-icon>
-
 
         <ng-container *ngFor="let e of tableConfig?.extraActions">
           <fa-icon [attr.data-cy]="e.iconColorProp.icon"
@@ -109,6 +99,16 @@
                    [ngbTooltip]="isObs(e.label) ? (e.label | async) : e.label" placement="bottom"
                    (click)="!!e.disabled ? !e.disabled(r) ? extraAction.emit({data: r, eventKey: e.eventKey}) : null : extraAction.emit({data: r, eventKey: e.eventKey})"></fa-icon>
         </ng-container>
+
+        <fa-icon [attr.data-cy]="'delete-action'"
+                 (click)="onDelete(r)"
+                 class="ml-1 mr-1 text-danger"
+                 [ngClass]="{'cursor-pointer': !tableConfig?.actions?.delete?.disabled(r),
+                 'text-black-50 no-pointer-event': tableConfig?.actions?.delete?.disabled(r),
+                 'text-danger': !tableConfig?.actions?.delete?.disabled(r)}"
+                 [icon]="['fas', 'trash-alt']"
+                 *ngIf="isObs(tableConfig?.actions?.delete?.show) ? (tableConfig?.actions?.delete?.show | async) : tableConfig?.actions?.delete?.show">
+        </fa-icon>
       </td>
     </tr>
     </tbody>
