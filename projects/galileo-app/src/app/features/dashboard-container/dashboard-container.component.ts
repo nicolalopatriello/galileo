@@ -62,7 +62,7 @@ export class DashboardContainerComponent implements OnInit, AfterViewInit {
             label: 'User onboarding',
             show: of(true),
             routerLink: 'user-onboarding',
-            faIcon: 'user'
+            svgPath: './assets/images/logs.svg'
           },
           {id: 'dialogs', label: 'Dialogs', routerLink: 'dialogs', faIcon: 'window-maximize', show: of(true)}
         ],

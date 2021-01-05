@@ -9,4 +9,5 @@ export interface SidebarItem {
   active?: boolean;
   disabled?: boolean;
   faIcon?: any; //todo restore to IconProp
+  svgPath?: string;
 }
