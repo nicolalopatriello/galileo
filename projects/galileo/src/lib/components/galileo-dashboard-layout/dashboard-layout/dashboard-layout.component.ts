@@ -17,6 +17,7 @@ export class DashboardLayoutComponent {
     @Input() sideBarOpened = false;
     @Input() dockSizePx = 50;
     @Input() navbarHeightPx = 70;
+    @Input() hideSidebar = false;
 
     @Input() breadcrumbs: GllBreadCrumb[] = null;
 
