@@ -1,5 +1,6 @@
 <ng-sidebar-container>
   <ng-sidebar
+    *ngIf="!hideSidebar"
     [(opened)]="sideBarOpened"
     [mode]="'push'"
     [dock]="true"
