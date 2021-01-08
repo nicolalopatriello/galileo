@@ -37,7 +37,7 @@ import {GalileoHelpMessage} from '../../models';
     </div>
   `,
   styles: [
-      `
+    `
       .msg-error-left-position {
         width: 70%;
         float: right;
@@ -82,10 +82,14 @@ export class InputComponent implements AfterViewInit, OnDestroy {
       .querySelector('#input-container [formControlName]')?.getAttribute('formControlName');
     if (!!i) {
       this.formControlName = i;
-      this.renderer2.setAttribute(this.inputLabel.nativeElement, 'for', i);
+      if (!!this.input) {
+        this.renderer2.setAttribute(this.inputLabel.nativeElement, 'for', i);
+      }
     } else {
       this.formControlName = this.fallBackFormControlName;
-      this.renderer2.setAttribute(this.inputLabel.nativeElement, 'for', this.fallBackFormControlName);
+      if (!!this.input) {
+        this.renderer2.setAttribute(this.inputLabel.nativeElement, 'for', this.fallBackFormControlName);
+      }
     }
   }
 
