@@ -82,12 +82,12 @@ export class InputComponent implements AfterViewInit, OnDestroy {
       .querySelector('#input-container [formControlName]')?.getAttribute('formControlName');
     if (!!i) {
       this.formControlName = i;
-      if (!!this.input) {
+      if (!!this.inputLabel) {
         this.renderer2.setAttribute(this.inputLabel.nativeElement, 'for', i);
       }
     } else {
       this.formControlName = this.fallBackFormControlName;
-      if (!!this.input) {
+      if (!!this.inputLabel) {
         this.renderer2.setAttribute(this.inputLabel.nativeElement, 'for', this.fallBackFormControlName);
       }
     }
