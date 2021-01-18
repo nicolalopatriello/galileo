@@ -13,7 +13,7 @@
                    [icon]="['far', 'question-circle']"></fa-icon>
           <ng-template #helpContainer>
             <div class="p-1">
-              {{c.helpMessage.message}}
+              {{isObs(c.helpMessage.message) ? (c.helpMessage.message | async) : c.helpMessage.message}}
             </div>
           </ng-template>
         </ng-container>

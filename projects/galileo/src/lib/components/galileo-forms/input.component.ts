@@ -15,7 +15,7 @@ import {GalileoHelpMessage} from '../../models';
             <fa-icon class="cursor-pointer" [ngbTooltip]="helpContainer" [icon]="['far', 'question-circle']"></fa-icon>
             <ng-template #helpContainer>
               <div class="p-1">
-                {{helpMessage.message}}
+                {{ isObs(helpMessage.message) ? (helpMessage.message | async) : helpMessage.message}}
               </div>
             </ng-template>
           </ng-container>
