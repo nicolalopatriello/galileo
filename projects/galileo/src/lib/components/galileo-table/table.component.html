@@ -52,6 +52,9 @@
           [style.width.px]="c.widthPx"
           [style.maxWidth.px]="c.widthPx"
           (click)="rowSelected.emit(r)"
+          [ngStyle]="{'background': tableConfig.isRowHighLighted?.condition(r) ? tableConfig.isRowHighLighted.backgroundColor : 'initial',
+          'color': tableConfig.isRowHighLighted?.condition(r) ? tableConfig.isRowHighLighted.textColor : 'initial'
+          }"
           [ngClass]="{'cursor-pointer': tableConfig?.cursorPointerOnRow, 'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
 
         <ng-container *ngIf="!c.gllTableRenderer && !c.gllTableCustomRender">
@@ -86,9 +89,10 @@
 
       <td *ngIf="atLeastOneAction()"
           style="width:1px; white-space:nowrap;"
+            [ngStyle]="{'background': tableConfig.isRowHighLighted?.condition(r) ? tableConfig.isRowHighLighted.backgroundColor : 'initial',
+          'color': tableConfig.isRowHighLighted?.condition(r) ? tableConfig.isRowHighLighted.textColor : 'initial'
+          }"
           [ngClass]="{'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
-
-
         <ng-container *ngFor="let e of tableConfig?.extraActions">
           <fa-icon [attr.data-cy]="e.iconColorProp.icon"
                    *ngIf="isObs(e.hide) ? !(e.hide | async) : !e.hide"
