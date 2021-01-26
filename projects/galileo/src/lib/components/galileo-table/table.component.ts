@@ -241,10 +241,17 @@ export class TableComponent implements OnInit, OnChanges {
 
 export type tableFilterParser = 'spring';
 
+export interface RoWHighLighted {
+  backgroundColor: string;
+  textColor: string;
+  condition: (row) => boolean;
+}
+
 export interface TableConfig {
   mode: 'clientSide' | 'serverSide';
   builtInPagination?: boolean;
-  isRowSelected?: Function;
+  isRowSelected?: (row) => boolean;
+  isRowHighLighted?: RoWHighLighted;
   cursorPointerOnRow?: boolean;
   tableFilterParser?: tableFilterParser;
   noDataMessage?: string | Observable<string>;

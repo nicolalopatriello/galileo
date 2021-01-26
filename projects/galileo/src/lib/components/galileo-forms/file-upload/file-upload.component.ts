@@ -1,4 +1,4 @@
-import {Component, forwardRef} from '@angular/core';
+import {Component, forwardRef, Input} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
@@ -7,7 +7,7 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
     <div class="file-drop-area">
       <span class="fake-btn">{{'chooseFile' | galileoTranslate | async}}</span>
       <span class="file-msg">{{file ? file.name : 'orDragAndDrop' | galileoTranslate | async }}</span>
-      <input (change)="onChangeFile($event)" class="file-input" type="file">
+      <input (change)="onChangeFile($event)" class="file-input" type="file" [accept]="accept">
     </div>
   `,
   providers: [
@@ -20,6 +20,8 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
   styleUrls: ['./file-upload.component.scss']
 })
 export class FileUploadComponent implements ControlValueAccessor {
+
+  @Input() accept: string;
 
   public onChange: any = Function.prototype;
 

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TableConfig} from '../../../../../../galileo/src/lib/components/galileo-table/table.component';
-import {of} from "rxjs";
+import {of} from 'rxjs';
 
 @Component({
   selector: 'app-table',
@@ -51,6 +51,11 @@ export class TableComponent implements OnInit {
   tableConfig: TableConfig = {
     mode: 'clientSide',
     builtInPagination: true,
+    isRowHighLighted: {
+      textColor: 'red',
+      backgroundColor: 'yellow',
+      condition: (t) => this.isHighLighted(t)
+    },
     columnsDef: [
       {
         field: 'date',
@@ -204,5 +209,9 @@ where \`tableConfig\` is
 
   onExtraAction($event: { eventKey: string; data: any }) {
     console.log($event);
+  }
+
+  private isHighLighted(t) {
+    return t.age > 20;
   }
 }
