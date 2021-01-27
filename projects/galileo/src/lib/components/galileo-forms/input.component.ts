@@ -25,7 +25,7 @@ import {GalileoHelpMessage} from '../../models';
         </div>
       </div>
 
-      <div style="min-height: 25px">
+      <div style="min-height: 15px">
         <div class="m-0 p-0">
           <ng-container *ngFor="let m of getMsgsKeys()">
             <small [ngClass]="{'msg-error-left-position': inputLabelPosition === 'left'}"
