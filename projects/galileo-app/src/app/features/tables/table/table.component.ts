@@ -155,8 +155,8 @@ export class TableComponent implements OnInit {
         field: 'isAdmin',
         headerName: 'Admin',
         gllTableRenderer: 'gllTableBooleanRenderer',
-        trueFaIcon: {color: 'green', icon: 'user-shield'},
-        falseFaIcon: {color: 'red', icon: 'user'},
+        trueFaIcon: {color: 'green', icon: 'user-shield', tooltip: of('byObservable')},
+        falseFaIcon: {color: 'red', icon: 'user', tooltip: 'Simple text'},
         helpMessage: {type: 'tooltip', message: 'This is a short message about Admin field.'},
       },
       {field: 'isEnabled', headerName: 'Enabled', gllTableRenderer: 'gllTableBooleanRenderer'}

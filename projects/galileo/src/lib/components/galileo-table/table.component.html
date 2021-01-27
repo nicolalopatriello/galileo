@@ -78,8 +78,10 @@
             </ng-container>
             <ng-container *ngSwitchCase="'gllTableBooleanRenderer'">
               <fa-icon *ngIf="r[c.field] && !!c.trueFaIcon" [icon]="['fas', c.trueFaIcon.icon]"
+                       [ngbTooltip]="isObs(c.trueFaIcon.tooltip) ? (c.trueFaIcon.tooltip | async) : c.trueFaIcon.tooltip"
                        [ngStyle]="{color: c.trueFaIcon.color}"></fa-icon>
               <fa-icon *ngIf="!r[c.field] && !!c.falseFaIcon" [icon]="['fas', c.falseFaIcon.icon]"
+                       [ngbTooltip]="isObs(c.falseFaIcon.tooltip) ? (c.falseFaIcon.tooltip | async) : c.falseFaIcon.tooltip"
                        [ngStyle]="{color: c.falseFaIcon.color}"></fa-icon>
               <span *ngIf="!c.trueFaIcon || !c.falseFaIcon">{{r[c.field]}}</span>
             </ng-container>
