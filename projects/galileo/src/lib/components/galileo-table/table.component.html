@@ -58,24 +58,27 @@
           [ngClass]="{'cursor-pointer': tableConfig?.cursorPointerOnRow, 'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
 
         <ng-container *ngIf="!c.gllTableRenderer && !c.gllTableCustomRender">
-          {{r[c.field]}}
+          <span [ngbTooltip]="r[c.field]">{{r[c.field]}}</span>
         </ng-container>
 
         <ng-container *ngIf="c.gllTableCustomRender && !c.gllTableRenderer">
-          {{c.gllTableCustomRender(r)}}
+          <span [ngbTooltip]="r[c.field]">{{c.gllTableCustomRender(r)}}</span>
         </ng-container>
 
         <ng-container *ngIf="c.gllTableRenderer && !c.gllTableCustomRender">
           <ng-container [ngSwitch]="c.gllTableRenderer">
+
             <ng-container *ngSwitchCase="'gllTableCheckboxRenderer'">
               <input data-cy="gll-table-checkbox" type="checkbox"
                      [checked]="c.checkboxValue ? c.checkboxValue(r) : r[c.field]"
                      (click)="checkboxRendererEvent.emit({data: r, checked: $event.target.checked, field: c.field})"
                      class="cursor-pointer">
             </ng-container>
+
             <ng-container *ngSwitchCase="'gllTableDateTimeRenderer'">
-              {{r[c.field] | date:'short'}}
+              <span [ngbTooltip]="r[c.field]">{{r[c.field] | date:'short'}}</span>
             </ng-container>
+
             <ng-container *ngSwitchCase="'gllTableBooleanRenderer'">
               <fa-icon *ngIf="r[c.field] && !!c.trueFaIcon" [icon]="['fas', c.trueFaIcon.icon]"
                        [ngbTooltip]="isObs(c.trueFaIcon.tooltip) ? (c.trueFaIcon.tooltip | async) : c.trueFaIcon.tooltip"
@@ -85,6 +88,7 @@
                        [ngStyle]="{color: c.falseFaIcon.color}"></fa-icon>
               <span *ngIf="!c.trueFaIcon || !c.falseFaIcon">{{r[c.field]}}</span>
             </ng-container>
+
           </ng-container>
         </ng-container>
       </td>
