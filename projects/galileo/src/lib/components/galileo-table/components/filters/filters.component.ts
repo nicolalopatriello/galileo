@@ -10,7 +10,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
         <input *ngSwitchCase="'gllNumberColumnFilter'" [attr.data-cy]="columnField + '-filter-input'"
                (input)="filterValueChange()" type="number" [(ngModel)]="value" class="form-control-sm form-control">
         <div *ngSwitchCase="'gllSelectMenuColumnFilter'">
-          <select (change)="selectMenuFilterChange($event.target.value)" [value]="null" class="form-control-sm">
+          <select (change)="selectMenuFilterChange($event.target.value)" [value]="null" class="form-control form-control-sm">
             <option [value]="'NO_FILTER'">All</option>
             <option [value]="o" *ngFor="let o of columnFilterConfig?.selectMenuOptions">{{o}}</option>
           </select>
