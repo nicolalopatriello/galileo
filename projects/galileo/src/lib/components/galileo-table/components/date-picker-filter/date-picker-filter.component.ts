@@ -63,7 +63,7 @@ export class DatePickerFilterComponent implements OnDestroy, OnInit, OnChanges {
   private toDate: NgbDate | null = null;
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
-  public columnFilterOptions: columnFilterOptions = 'equals';
+  public columnFilterOptions: columnFilterOptions = 'inRange';
   public dateFilterOptionsFormGroup: FormGroup;
   public hoveredDate: NgbDate | null = null;
   public dpDateModel: NgbDateStruct;
