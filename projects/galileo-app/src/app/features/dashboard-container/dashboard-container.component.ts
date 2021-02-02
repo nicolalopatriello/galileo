@@ -45,6 +45,8 @@ export class DashboardContainerComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.sidebarItemsGroups.set('Galileo', {
         items: [
+          {id: 'home', label: 'Go to home', show: of(true), routerLink: null, faIcon: 'fill-drip'},
+
           {id: 'tables', label: 'Tables', show: of(true), routerLink: 'tables', faIcon: 'table'},
           {id: 'cards', label: 'Cards', show: of(true), routerLink: 'cards', faIcon: 'address-card'},
           {id: 'auth-layouts', label: 'Auth layout', show: of(true), routerLink: 'auth-layout', faIcon: 'layer-group'},
@@ -107,6 +109,7 @@ export class DashboardContainerComponent implements OnInit, AfterViewInit {
   }
 
   omSidebarItemClick($event: { item: SidebarItem; groupLabel: string; groupColor: string }): void {
+    console.log('click to ' + JSON.stringify($event));
   }
 
 
