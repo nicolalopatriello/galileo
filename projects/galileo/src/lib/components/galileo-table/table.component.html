@@ -51,11 +51,10 @@
       <td *ngFor="let c of tableConfig?.columnsDef"
           [style.width.px]="c.widthPx"
           [style.maxWidth.px]="c.widthPx"
-          (click)="rowSelected.emit(r)"
+          (click)="rowClickHandler(r)"
           [ngStyle]="{'background': tableConfig.isRowHighLighted?.condition(r) ? tableConfig.isRowHighLighted.backgroundColor : 'initial',
-          'color': tableConfig.isRowHighLighted?.condition(r) ? tableConfig.isRowHighLighted.textColor : 'initial'
-          }"
-          [ngClass]="{'cursor-pointer': tableConfig?.cursorPointerOnRow, 'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
+          'color': tableConfig.isRowHighLighted?.condition(r) ? tableConfig.isRowHighLighted.textColor : 'initial'}"
+          [ngClass]="{'cursor-pointer': tableConfig?.cursorPointerOnRow || tableConfig?.navigableRowBehavior?.enabled, 'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
 
         <ng-container *ngIf="!c.gllTableRenderer && !c.gllTableCustomRender">
           <span [ngbTooltip]="r[c.field]">{{r[c.field]}}</span>
@@ -112,7 +111,10 @@
               </button>
               <div class="dropdown-divider" *ngIf="!last"></div>
             </ng-container>
-            <div class="dropdown-divider" *ngIf="isObs(tableConfig?.actions?.delete?.show) ? (tableConfig?.actions?.delete?.show | async) : tableConfig?.actions?.delete?.show"></div>
+            <ng-container *ngIf="tableConfig?.extraActions > 0">
+              <div class="dropdown-divider"
+                   *ngIf="isObs(tableConfig?.actions?.delete?.show) ? (tableConfig?.actions?.delete?.show | async) : tableConfig?.actions?.delete?.show"></div>
+            </ng-container>
             <button class="btn-sm py-0" ngbDropdownItem
                     [attr.data-cy]="'delete-action'"
                     (click)="onDelete(r)"
