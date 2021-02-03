@@ -112,6 +112,7 @@
               </button>
               <div class="dropdown-divider" *ngIf="!last"></div>
             </ng-container>
+            <div class="dropdown-divider" *ngIf="isObs(tableConfig?.actions?.delete?.show) ? (tableConfig?.actions?.delete?.show | async) : tableConfig?.actions?.delete?.show"></div>
             <button class="btn-sm py-0" ngbDropdownItem
                     [attr.data-cy]="'delete-action'"
                     (click)="onDelete(r)"
