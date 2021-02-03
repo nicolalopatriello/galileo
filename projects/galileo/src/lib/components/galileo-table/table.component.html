@@ -110,7 +110,7 @@
                       (click)="!!e.disabled ? !e.disabled(r) ? extraAction.emit({data: r, eventKey: e.eventKey}) : null : extraAction.emit({data: r, eventKey: e.eventKey})">
                 <span>{{isObs(e.label) ? (e.label | async) : e.label}}</span>
               </button>
-              <div class="dropdown-divider"></div>
+              <div class="dropdown-divider" *ngIf="!last"></div>
             </ng-container>
             <button class="btn-sm py-0" ngbDropdownItem
                     [attr.data-cy]="'delete-action'"
