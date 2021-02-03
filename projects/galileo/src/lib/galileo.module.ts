@@ -13,6 +13,8 @@ import {faEye} from '@fortawesome/free-solid-svg-icons/faEye';
 import {faTrash} from '@fortawesome/free-solid-svg-icons/faTrash';
 import {faAngleDoubleRight} from '@fortawesome/free-solid-svg-icons/faAngleDoubleRight';
 import {faAngleDoubleLeft} from '@fortawesome/free-solid-svg-icons/faAngleDoubleLeft';
+import {faEllipsisV} from '@fortawesome/free-solid-svg-icons/faEllipsisV';
+import {faAlignJustify} from '@fortawesome/free-solid-svg-icons/faAlignJustify';
 
 
 @NgModule({
@@ -33,7 +35,10 @@ export class GalileoModule {
       faTrashAltRegular,
       faAngleDoubleRight,
       faAngleDoubleLeft,
-      faEye);
+      faEye,
+      faEllipsisV,
+      faAlignJustify
+      );
   }
   static forRoot(config: GalileoConfig): ModuleWithProviders<GalileoModule> {
     return {

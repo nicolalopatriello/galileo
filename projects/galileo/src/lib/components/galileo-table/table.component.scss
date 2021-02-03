@@ -109,3 +109,10 @@ $gll-table-bg: var(--gll-table-bg);
   }
 }
 
+.dropdown-toggle::after {
+  display:none;
+}
+
+.gll-actions-column {
+  width: 100px;
+}
