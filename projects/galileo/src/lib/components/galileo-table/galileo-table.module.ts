@@ -4,7 +4,7 @@ import { TableComponent } from './table.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FiltersComponent} from './components/filters';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {GalileoCommonModule} from '../../utils/galileo-common/galileo-common.module';
 import {PaginationComponent} from './components';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
@@ -23,7 +23,8 @@ import {DatePickerFilterComponent} from './components/date-picker-filter';
     CommonModule,
     NgbModule,
     GalileoCommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbDropdownModule,
   ]
 })
 export class GalileoTableModule { }
