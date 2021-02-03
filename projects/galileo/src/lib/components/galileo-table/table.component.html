@@ -102,7 +102,8 @@
           <fa-icon class="cursor-pointer text-dark"
                    [icon]="['fas','align-justify']" id="gll-table-dropdown-menu" ngbDropdownToggle></fa-icon>
           <div ngbDropdownMenu [attr.data-cy]="'gll-table-actions-menu'">
-            <ng-container *ngFor="let e of tableConfig?.extraActions; let index = index; let first = first; let last = last">
+            <ng-container
+              *ngFor="let e of tableConfig?.extraActions; let index = index; let first = first; let last = last">
               <button class="btn-sm py-0" ngbDropdownItem
                       *ngIf="isObs(e.hide) ? !(e.hide | async) : !e.hide"
                       [disabled]="!!e.disabled ? e.disabled(r) : false"
@@ -116,7 +117,10 @@
                     (click)="onDelete(r)"
                     [disabled]="tableConfig?.actions?.delete?.disabled(r)"
                     *ngIf="isObs(tableConfig?.actions?.delete?.show) ? (tableConfig?.actions?.delete?.show | async) : tableConfig?.actions?.delete?.show">
-              <span class="text-danger font-weight-bold">Delete</span>
+              <span [ngClass]="{'text-danger': !tableConfig?.actions?.delete?.disabled(r)}"
+                    class="text-danger font-weight-bold">
+        {{'delete' | galileoTranslate | async}}
+              </span>
             </button>
           </div>
         </div>
