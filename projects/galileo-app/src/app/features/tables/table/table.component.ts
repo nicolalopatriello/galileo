@@ -121,6 +121,9 @@ export class TableComponent implements OnInit {
     mode: 'serverSide',
     tableFilterParser: 'spring',
     builtInPagination: true,
+    navigableRowBehavior: {
+      enabled: true
+    },
     columnsDef: [
       {
         field: 'date',
