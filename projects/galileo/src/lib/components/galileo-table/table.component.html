@@ -109,7 +109,7 @@
               </button>
               <div class="dropdown-divider" *ngIf="!last"></div>
             </ng-container>
-            <ng-container *ngIf="tableConfig?.extraActions?.length === 0">
+            <ng-container *ngIf="tableConfig?.extraActions?.length > 0">
               <div class="dropdown-divider"
                    *ngIf="isObs(tableConfig?.actions?.delete?.show) ? (tableConfig?.actions?.delete?.show | async) : tableConfig?.actions?.delete?.show"></div>
             </ng-container>
