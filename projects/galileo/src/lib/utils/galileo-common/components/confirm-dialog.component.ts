@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {ConfirmDialogOptions, DialogType, FontAwesomeIconColorBoolPair} from '../../../models';
+import {Observable} from 'rxjs';
+import {Utils} from '../../utils';
 
 @Component({
   selector: 'gll-confirm-dialog',
@@ -9,12 +11,12 @@ import {ConfirmDialogOptions, DialogType, FontAwesomeIconColorBoolPair} from '..
       <h4 class="modal-title" [ngClass]="{'text-white': options?.dialogType === DialogType.DANGER}">
         <fa-icon *ngIf="options?.iconColorPair" [icon]="['fas', options?.iconColorPair.icon]"
                  [ngStyle]="{'color': options?.iconColorPair.color}"></fa-icon>
-        {{options?.title}}</h4>
+        {{isObs(options?.title) ? (options?.title | async) : options?.title}}</h4>
     </div>
     <div class="modal-body">
-      <p>{{options?.body}}</p>
+      <p>{{isObs(options?.body) ? (options?.body | async) : options?.body}}</p>
       <div *ngIf="options?.confirmButtonCheck">
-        {{'toConfirmWrite' | galileoTranslate | async}} <span class="font-weight-bold">{{options?.confirmButtonCheck}}</span>:
+        {{'toConfirmWrite' | galileoTranslate | async}} <span class="font-weight-bold">{{isObs(options?.confirmButtonCheck) ? (options?.confirmButtonCheck | async) : options?.confirmButtonCheck}}</span>:
         <input data-cy="confirmButtonCheck" [(ngModel)]="confirmButtonCheckInput" ngbAutofocus class="form-control" type="text">
       </div>
     </div>
@@ -22,13 +24,13 @@ import {ConfirmDialogOptions, DialogType, FontAwesomeIconColorBoolPair} from '..
       <button *ngIf="options?.dismissButtonLabel" ngbAutofocus
               type="button" class="btn btn-outline-secondary"
               (click)="activeModal.close(options?.dismissButtonLabel)">
-        {{options?.dismissButtonLabel}}
+        {{isObs(options?.dismissButtonLabel) ? (options?.dismissButtonLabel | async) : options?.dismissButtonLabel}}
       </button>
       <button type="button" class="btn btn-primary btn-default"
               [ngClass]="{'btn-success': options?.dialogType == DialogType.SUCCESS, 'btn-danger': options?.dialogType == DialogType.DANGER}"
               [disabled]="options?.confirmButtonCheck && confirmButtonCheckInput !== options?.confirmButtonCheck"
               (click)="activeModal.close(options?.confirmButtonLabel)">
-        {{options?.confirmButtonLabel}}
+        {{isObs(options?.confirmButtonLabel) ? (options?.confirmButtonLabel | async) : options?.confirmButtonLabel}}
       </button>
     </div>
   `,
@@ -42,6 +44,10 @@ export class ConfirmDialogComponent {
   public confirmButtonCheckInput: string;
 
   constructor(public activeModal: NgbActiveModal) {
+  }
+
+  isObs(label: string | Observable<string>) {
+    return Utils.isObs<string>(label);
   }
 
 }
