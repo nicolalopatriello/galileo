@@ -5,13 +5,14 @@
     [mode]="'push'"
     [dock]="true"
     [dockedSize]="dockSizePx + 'px'">
+
     <div *ngIf="sideBarOpened" [ngStyle]="{'height': navbarHeightPx+'px'}"
          class="dl-brand d-flex justify-content-center align-items-center">
       <img [src]="brandSrc">
     </div>
 
     <div *ngIf="!sideBarOpened" [ngStyle]="{'height': navbarHeightPx+'px'}"
-         class="dl-brand--mini d-flex flex-column justify-content-center">
+         class="dl-brand--mini bg-danger w-100">
       <img [src]="closedSidebarBrandSrc">
     </div>
 

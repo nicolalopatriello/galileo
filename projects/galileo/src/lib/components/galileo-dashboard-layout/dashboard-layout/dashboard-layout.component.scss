@@ -24,12 +24,12 @@ $gll-sidenav-brand-bg: var(--gll-sidenav-brand-bg);
 
 .dl-brand--mini {
   background: $gll-sidenav-brand-bg;
-  float: right;
   width: 50px;
   height: 50px;
   img {
-    width: 100%;
-    padding: 5px;
+    float: right;
+    width: 50px;
+    padding: 3px;
   }
 }
 
