@@ -12,8 +12,8 @@
     </div>
 
     <div *ngIf="!sideBarOpened" [ngStyle]="{'height': navbarHeightPx+'px'}"
-         class="dl-brand--mini bg-danger w-100">
-      <img [src]="closedSidebarBrandSrc">
+         class="dl-brand--mini w-100">
+      <img class="mt-2" [src]="closedSidebarBrandSrc">
     </div>
 
     <div class="dl-sidenav" [style.height]="getSideNavHeight()">
