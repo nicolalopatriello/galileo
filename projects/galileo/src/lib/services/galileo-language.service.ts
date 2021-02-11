@@ -8,7 +8,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class GalileoLanguageService {
-  private currentLanguage: BehaviorSubject<GalileoAvailableLanguages> = new BehaviorSubject<GalileoAvailableLanguages>(GalileoAvailableLanguages.EN);
+  private currentLanguage: BehaviorSubject<GalileoAvailableLanguages> = new BehaviorSubject<GalileoAvailableLanguages>(GalileoAvailableLanguages.en);
 
   constructor(@Inject('GalileoConfigService') private config) {
     this.currentLanguage.next(config.language);
