@@ -19,14 +19,14 @@ export class GalileoTranslatePipe implements PipeTransform {
     return this.galileoLanguageService.getLanguage().pipe(
       map((lang: GalileoAvailableLanguages) => {
         switch (lang) {
-          case GalileoAvailableLanguages.EN: {
+          case GalileoAvailableLanguages.en: {
             let r = gllEn[value];
             if (!!args) {
               r = this.setAdditionalParams(r, args[0]);
             }
             return r;
           }
-          case GalileoAvailableLanguages.IT: {
+          case GalileoAvailableLanguages.it: {
             let r = gllIt[value];
             if (!!args) {
               r = this.setAdditionalParams(r, args[0]);
