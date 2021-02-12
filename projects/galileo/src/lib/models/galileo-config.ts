@@ -2,5 +2,8 @@ import {GalileoAvailableLanguages} from './galileo-available-languages';
 
 export interface GalileoConfig {
   language: GalileoAvailableLanguages;
-  dateFormat: string;
+  dateFormats: {
+    [GalileoAvailableLanguages.en]: string,
+    [GalileoAvailableLanguages.it]: string
+  };
 }
