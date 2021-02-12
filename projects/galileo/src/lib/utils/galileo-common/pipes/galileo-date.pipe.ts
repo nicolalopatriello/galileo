@@ -11,12 +11,14 @@ import {GalileoAvailableLanguages} from '../../../models';
   name: 'galileoDate'
 })
 export class GalileoDatePipe implements PipeTransform {
+  private language: GalileoAvailableLanguages;
+  public dateFormats: Map<GalileoAvailableLanguages, string> = new Map<GalileoAvailableLanguages, string>();
   private locale: string;
-  private dateFormat: string;
 
   constructor(private languageService: GalileoLanguageService, @Inject('GalileoConfigService') private config) {
-    this.dateFormat = config.dateFormat;
+    this.dateFormats = config.dateFormats;
     this.languageService.getLanguage().subscribe(t => {
+      this.language = t;
       switch (t) {
         case GalileoAvailableLanguages.en:
           this.locale = 'en-EN';
@@ -30,6 +32,6 @@ export class GalileoDatePipe implements PipeTransform {
 
   transform(value: any) {
     if (!value) { return ''; }
-    return formatDate(value, this.dateFormat, this.locale);
+    return formatDate(value, this.dateFormats[this.language], this.locale);
   }
 }
