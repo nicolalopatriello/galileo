@@ -73,7 +73,7 @@
             </ng-container>
 
             <ng-container *ngSwitchCase="'gllTableDateTimeRenderer'">
-              <span [ngbTooltip]="r[c.field]">{{r[c.field] | date:'short'}}</span>
+              <span [ngbTooltip]="r[c.field]">{{r[c.field] | galileoDate}}</span>
             </ng-container>
 
             <ng-container *ngSwitchCase="'gllTableBooleanRenderer'">

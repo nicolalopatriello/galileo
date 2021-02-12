@@ -1,8 +1,8 @@
-import {APP_INITIALIZER, ModuleWithProviders, NgModule} from '@angular/core';
+import {APP_INITIALIZER, LOCALE_ID, ModuleWithProviders, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {GalileoConfig} from './models';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {GalileoConfigService, GalileoThemeService} from './services';
+import {GalileoConfigService, GalileoLanguageService, GalileoThemeService} from './services';
 import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {faQuestionCircle} from '@fortawesome/free-regular-svg-icons/faQuestionCircle';
 import {faFilter} from '@fortawesome/free-solid-svg-icons/faFilter';
@@ -15,6 +15,9 @@ import {faAngleDoubleRight} from '@fortawesome/free-solid-svg-icons/faAngleDoubl
 import {faAngleDoubleLeft} from '@fortawesome/free-solid-svg-icons/faAngleDoubleLeft';
 import {faEllipsisV} from '@fortawesome/free-solid-svg-icons/faEllipsisV';
 import {faAlignJustify} from '@fortawesome/free-solid-svg-icons/faAlignJustify';
+import { registerLocaleData } from '@angular/common';
+import localeEn from '@angular/common/locales/en';
+import localeIt from '@angular/common/locales/it';
 
 
 @NgModule({
@@ -58,6 +61,8 @@ export class GalileoModule {
 
 export function initializeModule(themeService: GalileoThemeService) {
   const t = () => themeService.initBaseTheme();
+  registerLocaleData(localeEn);
+  registerLocaleData(localeIt);
   return t;
 }
 
