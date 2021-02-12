@@ -44,7 +44,8 @@ import {faAngleDoubleRight} from "@fortawesome/free-solid-svg-icons/faAngleDoubl
     FontAwesomeModule,
     MarkdownModule.forRoot(),
     GalileoModule.forRoot({
-      language: GalileoAvailableLanguages.en
+      language: GalileoAvailableLanguages.en,
+      dateFormat: 'medium'
     }),
     GalileoDashboardLayoutModule,
     GalileoSidebarModule,

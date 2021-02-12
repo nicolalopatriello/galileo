@@ -7,10 +7,11 @@ import {NgModule} from '@angular/core';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule} from '@angular/forms';
 import {PopoverLayerComponent, PopoverWrapperComponent} from './components/popover-wrapper.component';
+import {GalileoDatePipe} from './pipes/galileo-date.pipe';
 
 
 @NgModule({
-  declarations: [GalileoTranslatePipe, ConfirmDialogComponent, CarouselComponent, PopoverWrapperComponent, PopoverLayerComponent],
+  declarations: [GalileoTranslatePipe, GalileoDatePipe, ConfirmDialogComponent, CarouselComponent, PopoverWrapperComponent, PopoverLayerComponent],
   entryComponents: [PopoverWrapperComponent, PopoverLayerComponent],
   imports: [
     NgbModule,
@@ -20,7 +21,7 @@ import {PopoverLayerComponent, PopoverWrapperComponent} from './components/popov
     NgbPopoverModule,
     NgbTooltipModule
   ],
-  exports: [GalileoTranslatePipe, ConfirmDialogComponent, CarouselComponent, PopoverWrapperComponent]
+  exports: [GalileoTranslatePipe, GalileoDatePipe, ConfirmDialogComponent, CarouselComponent, PopoverWrapperComponent]
 })
 export class GalileoCommonModule {
 }
