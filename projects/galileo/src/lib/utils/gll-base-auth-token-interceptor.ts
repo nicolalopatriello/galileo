@@ -43,11 +43,14 @@ export abstract class GllBaseAuthTokenInterceptor implements HttpInterceptor {
   }
 
   private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
+    console.log('[DEBUG] Handle 401');
     if (!this.isRefreshing) {
+      console.log('[DEBUG] 1');
       this.isRefreshing = true;
       this.refreshTokenSubject.next(null);
       return this.refreshTokenRequest().pipe(
         switchMap((resp: { newToken: string, newRefreshToken: string }) => {
+          console.log('[DEBUG] 2');
           this.isRefreshing = false;
           this.refreshTokenSubject.next(resp.newToken);
           localStorage.setItem(this.getLocalStorageAuthTokenInfo().tokenKey, resp.newToken);
@@ -55,6 +58,7 @@ export abstract class GllBaseAuthTokenInterceptor implements HttpInterceptor {
           return next.handle(this.addToken(request, resp.newToken));
         })).pipe(
         catchError(err => {
+          console.log('[DEBUG] 3');
           this.isRefreshing = false;
           this.onError(err);
           return throwError(err);
@@ -62,10 +66,12 @@ export abstract class GllBaseAuthTokenInterceptor implements HttpInterceptor {
       );
 
     } else {
+      console.log('[DEBUG] 4');
       return this.refreshTokenSubject.pipe(
         filter(token => token != null),
         take(1),
         switchMap(jwt => {
+          console.log('[DEBUG] 5');
           return next.handle(this.addToken(request, jwt));
         }));
     }
