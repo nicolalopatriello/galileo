@@ -13,11 +13,11 @@ import {Utils} from '../../utils';
                  [ngStyle]="{'color': options?.iconColorPair.color}"></fa-icon>
         {{isObs(options?.title) ? (options?.title | async) : options?.title}}</h4>
     </div>
-    <div class="modal-body">
+    <div class="modal-body mt-2">
       <p>{{isObs(options?.body) ? (options?.body | async) : options?.body}}</p>
-      <div *ngIf="options?.confirmButtonCheck">
+      <div *ngIf="options?.confirmButtonCheck" class="mt-1">
         {{'toConfirmWrite' | galileoTranslate | async}} <span class="font-weight-bold">{{isObs(options?.confirmButtonCheck) ? (options?.confirmButtonCheck | async) : options?.confirmButtonCheck}}</span>:
-        <input data-cy="confirmButtonCheck" [(ngModel)]="confirmButtonCheckInput" ngbAutofocus class="form-control" type="text">
+        <input data-cy="confirmButtonCheck" [(ngModel)]="confirmButtonCheckInput" ngbAutofocus class="form-control mt-1" type="text">
       </div>
     </div>
     <div class="modal-footer">
