@@ -3,7 +3,7 @@
  **/
 
 import {Inject, Pipe, PipeTransform} from '@angular/core';
-import { formatDate } from '@angular/common';
+import {formatDate} from '@angular/common';
 import {GalileoLanguageService} from '../../../services';
 import {GalileoAvailableLanguages} from '../../../models';
 
@@ -31,7 +31,10 @@ export class GalileoDatePipe implements PipeTransform {
   }
 
   transform(value: any) {
-    if (!value) { return ''; }
-    return formatDate(value, this.dateFormats[this.language], this.locale);
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if (!value) {
+      return '';
+    }
+    return formatDate(value, this.dateFormats[this.language], this.locale, tz);
   }
 }
