@@ -167,7 +167,9 @@ export class TableComponent implements OnInit {
     actions: {
       delete: {builtIn: true, show: true, disabled: () => false, showDeleteConfirmInput: true}
     },
-    extraActions: []
+    extraActions: [
+      {label: 'extraAction', disabled: (f) => false, eventKey: 'extraAction', iconColorProp: {color: 'black', icon: 'user'}}
+    ]
   };
 
 
@@ -216,5 +218,9 @@ where \`tableConfig\` is
 
   private isHighLighted(t) {
     return t.age > 20;
+  }
+
+  onExtraActionFromServer($event: { eventKey: string; data: any }) {
+    console.log($event)
   }
 }
