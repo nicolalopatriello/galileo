@@ -242,7 +242,7 @@ export class TableComponent implements OnInit, OnChanges {
     this.rowSelected.emit(r);
     if (this.tableConfig?.navigableRowBehavior?.enabled) {
       const actionEvent = this.tableConfig?.extraActions[this.tableConfig?.navigableRowBehavior?.extraActionIndex ? this.tableConfig.navigableRowBehavior.extraActionIndex : 0];
-      if (!!actionEvent && !actionEvent.disabled(r)) {
+      if (!!actionEvent && !!actionEvent.disabled && !actionEvent.disabled(r)) {
         this.extraAction.emit({data: r, eventKey: actionEvent.eventKey});
       }
     }
