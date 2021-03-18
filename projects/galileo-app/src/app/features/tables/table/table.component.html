@@ -8,6 +8,7 @@
   <div class="w-100">Spring Server side</div>
   <gll-table [tableConfig]="tableConfigServerSide"
              (tableFilter)="onTableServerSideFilter($event)"
+             (extraAction)="onExtraActionFromServer($event)"
              [data]="tableData"></gll-table>
   <div class="w-100 text-center bg-info">
     <pre class="bold">
