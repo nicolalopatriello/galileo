@@ -161,6 +161,9 @@ export class TableComponent implements OnInit {
         trueFaIcon: {color: 'green', icon: 'user-shield', tooltip: of('byObservable')},
         falseFaIcon: {color: 'red', icon: 'user', tooltip: 'Simple text'},
         helpMessage: {type: 'tooltip', message: 'This is a short message about Admin field.'},
+        filterConfig: {
+          type: 'gllSelectMenuColumnFilter', options: ['equals'], selectMenuOptions: ['true', 'false']
+        }
       },
       {field: 'isEnabled', headerName: 'Enabled', gllTableRenderer: 'gllTableBooleanRenderer'}
     ],
