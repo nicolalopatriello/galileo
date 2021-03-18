@@ -245,6 +245,9 @@ export class TableComponent implements OnInit, OnChanges {
       if (!!actionEvent && !!actionEvent.disabled && !actionEvent.disabled(r)) {
         this.extraAction.emit({data: r, eventKey: actionEvent.eventKey});
       }
+      if (!!actionEvent) {
+        this.extraAction.emit({data: r, eventKey: actionEvent.eventKey});
+      }
     }
   }
 }
