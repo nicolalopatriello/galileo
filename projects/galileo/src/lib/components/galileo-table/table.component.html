@@ -18,7 +18,6 @@
           </ng-template>
         </ng-container>
       </th>
-
       <th class="gll-actions-column" *ngIf="atLeastOneAction()" scope="col"></th>
     </tr>
     </thead>
@@ -73,7 +72,7 @@
             </ng-container>
 
             <ng-container *ngSwitchCase="'gllTableDateTimeRenderer'">
-              <span [ngbTooltip]="r[c.field]">{{r[c.field] | galileoDate}}</span>
+              <span>{{r[c.field] | galileoDate}}</span>
             </ng-container>
 
             <ng-container *ngSwitchCase="'gllTableBooleanRenderer'">
