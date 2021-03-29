@@ -5,31 +5,38 @@
     [mode]="'push'"
     [dock]="true"
     [dockedSize]="dockSizePx + 'px'">
+    <div class="d-flex flex-column w-100">
+      <div>
+        <div *ngIf="sideBarOpened" [ngStyle]="{'height': navbarHeightPx+'px'}"
+             class="dl-brand d-flex justify-content-center align-items-center">
+          <img [src]="brandSrc">
+        </div>
 
-    <div *ngIf="sideBarOpened" [ngStyle]="{'height': navbarHeightPx+'px'}"
-         class="dl-brand d-flex justify-content-center align-items-center">
-      <img [src]="brandSrc">
-    </div>
-
-    <div *ngIf="!sideBarOpened" [ngStyle]="{'height': navbarHeightPx+'px'}"
-         class="dl-brand--mini w-100">
-      <img class="mt-2" [src]="closedSidebarBrandSrc">
-    </div>
-
-    <div class="dl-sidenav" [style.height]="getSideNavHeight()">
-      <ng-container
-        *ngTemplateOutlet="dlSidebarTemplate; context: {$implicit: sideBarOpened}">
-      </ng-container>
-    </div>
-
-    <a (click)="toggleOpened()" class="list-group-item list-group-item-action d-flex align-items-center cursor-pointer
-        dl-sidenav-toggler"
-       [ngStyle]="{'height': navbarHeightPx+'px'}">
-
-      <div class="d-flex w-100 justify-content-end">
-        <fa-icon [icon]="['fas', sideBarOpened ? 'angle-double-left' : 'angle-double-right']"></fa-icon>
+        <div *ngIf="!sideBarOpened" [ngStyle]="{'height': navbarHeightPx+'px'}"
+             class="dl-brand--mini w-100">
+          <img class="mt-2" [src]="closedSidebarBrandSrc">
+        </div>
       </div>
-    </a>
+      <div style="overflow: auto; position: relative" >
+        <ng-container
+          *ngTemplateOutlet="dlSidebarTemplate; context: {$implicit: sideBarOpened}">
+        </ng-container>
+      </div>
+      <div style="position: fixed; bottom: 0; width: 250px">
+        <a (click)="toggleOpened()" class="list-group-item list-group-item-action d-flex align-items-center cursor-pointer
+        dl-sidenav-toggler"
+           [ngStyle]="{'height': navbarHeightPx+'px'}">
+
+          <div class="d-flex w-100 justify-content-end">
+            <fa-icon [icon]="['fas', sideBarOpened ? 'angle-double-left' : 'angle-double-right']"></fa-icon>
+          </div>
+        </a>
+      </div>
+    </div>
+
+
+
+
 
   </ng-sidebar>
 

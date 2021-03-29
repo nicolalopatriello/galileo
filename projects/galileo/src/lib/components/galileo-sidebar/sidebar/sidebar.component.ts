@@ -21,8 +21,8 @@ import {Utils} from '../../../utils/utils';
 
           <div class="w-100" style="height: 3px"
                [ngStyle]="{background: (sidebarItemsGroups.get(groupLabel).groupLabel.background | async)}"
-               *ngIf="
-               !sideBarOpened && sidebarItemsGroups.get(groupLabel).groupLabel && (sidebarItemsGroups.get(groupLabel).groupLabel.show | async)">
+               *ngIf="!sideBarOpened &&
+               sidebarItemsGroups.get(groupLabel).groupLabel && (sidebarItemsGroups.get(groupLabel).groupLabel.show | async)">
           </div>
           <ng-container *ngFor="let item of getValueOf(groupLabel)" class="mt-2">
             <ng-container *ngIf="item.show | async">
@@ -62,10 +62,8 @@ export class SidebarComponent implements OnInit {
 
   @Output() itemClick = new EventEmitter<{ item: SidebarItem, groupLabel: string }>();
   @Output() sideNavToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
-  private currentItemGroup: string;
 
-  constructor() {
-  }
+  private currentItemGroup: string;
 
   onClickAction(item: SidebarItem, groupLabel: string): void {
     this.currentItemGroup = groupLabel;
