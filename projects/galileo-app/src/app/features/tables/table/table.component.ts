@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TableConfig} from '../../../../../../galileo/src/lib/components/galileo-table/table.component';
-import {of} from 'rxjs';
+import {from, of} from 'rxjs';
 
 @Component({
   selector: 'app-table',
@@ -108,14 +108,20 @@ export class TableComponent implements OnInit {
     },
     extraActions: [
       {
-        hide: false,
-        label: 'Extra action',
+        hide: from(this.hasFakePermissions.then(res => !res)),
+        label: 'Test to hide',
         eventKey: 'extraAction1',
         disabled: (t) => !(t.age > 20),
         iconColorProp: {color: 'black', icon: 'arrow-alt-circle-right'}
       }
     ]
   };
+
+  get hasFakePermissions(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      resolve(true);
+    });
+  }
 
   tableConfigServerSide: TableConfig = {
     mode: 'serverSide',
@@ -224,6 +230,6 @@ where \`tableConfig\` is
   }
 
   onExtraActionFromServer($event: { eventKey: string; data: any }) {
-    console.log($event)
+    console.log($event);
   }
 }
