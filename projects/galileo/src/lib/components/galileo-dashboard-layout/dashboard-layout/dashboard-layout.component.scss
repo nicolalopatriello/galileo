@@ -13,6 +13,8 @@ $gll-sidenav-brand-bg: var(--gll-sidenav-brand-bg);
 
 .dl-sidenav {
   background: $gll-sidenav-background;
+  display: flex;
+  flex-direction: column;
 }
 
 .dl-brand {

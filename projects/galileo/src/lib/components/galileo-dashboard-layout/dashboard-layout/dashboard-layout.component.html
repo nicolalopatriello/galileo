@@ -5,37 +5,32 @@
     [mode]="'push'"
     [dock]="true"
     [dockedSize]="dockSizePx + 'px'">
-    <div class="d-flex flex-column w-100 dl-sidenav">
-      <div>
-        <div *ngIf="sideBarOpened" [ngStyle]="{'height': navbarHeightPx+'px'}"
+    <div class="w-100 dl-sidenav h-100">
+      <div style="flex: 0 0 auto;background-color: #dcdcdc;" [ngStyle]="{'height': navbarHeightPx+'px'}">
+        <div *ngIf="sideBarOpened" style="height: 100%"
              class="dl-brand d-flex justify-content-center align-items-center">
           <img [src]="brandSrc">
         </div>
 
-        <div *ngIf="!sideBarOpened" [ngStyle]="{'height': navbarHeightPx+'px'}"
+        <div *ngIf="!sideBarOpened" style="height: 100%"
              class="dl-brand--mini w-100">
           <img class="mt-2" [src]="closedSidebarBrandSrc">
         </div>
       </div>
-      <div style="overflow: auto; position: relative" >
+      <div style="flex: 1 1 auto;position: relative;overflow-y: auto;">
         <ng-container
           *ngTemplateOutlet="dlSidebarTemplate; context: {$implicit: sideBarOpened}">
         </ng-container>
       </div>
-      <div style="position: fixed; bottom: 0; width: 220px">
-        <a (click)="toggleOpened()" class="list-group-item list-group-item-action d-flex align-items-center cursor-pointer
-        dl-sidenav-toggler"
-           [ngStyle]="{'height': navbarHeightPx+'px'}">
-
+      <div class="cursor-pointer" style="flex: 0 0 auto;background-color: #dcdcdc; width: 100%" (click)="toggleOpened()" [ngStyle]="{'height': navbarHeightPx+'px'}">
+        <a class="list-group-item list-group-item-action d-flex align-items-center
+        dl-sidenav-toggler">
           <div class="d-flex w-100 justify-content-end">
             <fa-icon [icon]="['fas', sideBarOpened ? 'angle-double-left' : 'angle-double-right']"></fa-icon>
           </div>
         </a>
       </div>
     </div>
-
-
-
 
 
   </ng-sidebar>
