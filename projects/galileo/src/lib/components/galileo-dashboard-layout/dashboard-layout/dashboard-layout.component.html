@@ -5,7 +5,7 @@
     [mode]="'push'"
     [dock]="true"
     [dockedSize]="dockSizePx + 'px'">
-    <div class="d-flex flex-column w-100">
+    <div class="d-flex flex-column w-100 dl-sidenav">
       <div>
         <div *ngIf="sideBarOpened" [ngStyle]="{'height': navbarHeightPx+'px'}"
              class="dl-brand d-flex justify-content-center align-items-center">
@@ -22,7 +22,7 @@
           *ngTemplateOutlet="dlSidebarTemplate; context: {$implicit: sideBarOpened}">
         </ng-container>
       </div>
-      <div style="position: fixed; bottom: 0; width: 250px">
+      <div style="position: fixed; bottom: 0; width: 220px">
         <a (click)="toggleOpened()" class="list-group-item list-group-item-action d-flex align-items-center cursor-pointer
         dl-sidenav-toggler"
            [ngStyle]="{'height': navbarHeightPx+'px'}">
