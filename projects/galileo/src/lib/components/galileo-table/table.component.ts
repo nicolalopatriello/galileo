@@ -2,6 +2,7 @@ import {
   Component,
   ContentChild,
   EventEmitter,
+  Inject,
   Input,
   OnChanges,
   OnInit,
@@ -19,6 +20,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Utils} from '../../utils/utils';
 import {GalileoLanguageService} from '../../services';
 import {map} from 'rxjs/operators';
+import {DOCUMENT} from '@angular/common';
 
 @Component({
   selector: 'gll-table',
@@ -53,13 +55,22 @@ export class TableComponent implements OnInit, OnChanges {
   };
   public showDeleteConfirmInput = false;
   public deleteConfirmInputValue: string;
+  public tableId: string;
 
 
-  constructor(private dialogService: NgbModal, private galileoLanguageService: GalileoLanguageService) {
+  constructor(private dialogService: NgbModal,
+              @Inject(DOCUMENT) public document: Document,
+              private galileoLanguageService: GalileoLanguageService) {
+    this.tableId = 'gllTable' + Math.random().toString(12).substring(3, 6);
+
   }
 
   trackByFn(index: any, item: any) {
     return index;
+  }
+
+  showMenuBtn(tableContainerId: string, rowIdx: number): boolean {
+    return this.document.querySelectorAll('#' + tableContainerId + '_gll-table-action_' + rowIdx).length > 0;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -106,7 +117,7 @@ export class TableComponent implements OnInit, OnChanges {
     return this.tableConfig.columnsDef?.filter(t => !!t.filterConfig).length > 0;
   }
 
-  atLeastOneAction() {
+  atLeastOneAction(row: any = null) {
     return this.tableConfig?.actions?.delete?.show || this.tableConfig?.extraActions?.length > 0;
   }
 

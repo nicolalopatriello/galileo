@@ -100,11 +100,10 @@ export class TableComponent implements OnInit {
         field: 'isEnabled',
         headerName: 'Enabled',
         gllTableRenderer: 'gllTableBooleanRenderer',
-
       }
     ],
     actions: {
-      delete: {builtIn: true, show: true, disabled: () => false, showDeleteConfirmInput: true}
+      delete: {builtIn: true, show: false, disabled: () => false, showDeleteConfirmInput: true}
     },
     extraActions: [
       {
@@ -119,7 +118,7 @@ export class TableComponent implements OnInit {
 
   get hasFakePermissions(): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      resolve(true);
+      resolve(false);
     });
   }
 
