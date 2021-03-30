@@ -20,7 +20,6 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Utils} from '../../utils/utils';
 import {GalileoLanguageService} from '../../services';
 import {map} from 'rxjs/operators';
-import {DOCUMENT} from '@angular/common';
 
 @Component({
   selector: 'gll-table',
@@ -59,7 +58,6 @@ export class TableComponent implements OnInit, OnChanges {
 
 
   constructor(private dialogService: NgbModal,
-              @Inject(DOCUMENT) public document: Document,
               private galileoLanguageService: GalileoLanguageService) {
     this.tableId = 'gllTable' + Math.random().toString(12).substring(3, 6);
 
@@ -70,7 +68,7 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   showMenuBtn(tableContainerId: string, rowIdx: number): boolean {
-    return this.document.querySelectorAll('#' + tableContainerId + '_gll-table-action_' + rowIdx).length > 0;
+    return document.querySelectorAll('#' + tableContainerId + '_gll-table-action_' + rowIdx).length > 0;
   }
 
   ngOnChanges(changes: SimpleChanges) {
