@@ -1,4 +1,5 @@
-<div class="w-100 table-responsive gll-table-container"
+<div class="w-100 table-responsive gll-table-container" #gllTableContainer
+     [id]="tableId"
      [ngStyle]="{'max-height': tableConfig?.maxHeight, 'min-height': tableConfig?.maxHeight}">
   <table class="table table-sm w-100 gll-table m-0">
     <thead>
@@ -44,7 +45,7 @@
     Evaluate tu add a trackBy fn to table ngFor loop
     (e. g) let i = index; trackBy:trackByFn
     -->
-    <tr class="tableRow" *ngFor="let r of data">
+    <tr class="tableRow" *ngFor="let r of data; let rowIdx = index">
       <td *ngFor="let c of tableConfig?.columnsDef"
           [style.width.px]="c.widthPx"
           [style.maxWidth.px]="c.widthPx"
@@ -89,18 +90,20 @@
         </ng-container>
       </td>
 
-      <td *ngIf="atLeastOneAction()"
+      <td *ngIf="atLeastOneAction(r)"
           class="gll-actions-column"
           [ngStyle]="{'background': tableConfig.isRowHighLighted?.condition(r) ? tableConfig.isRowHighLighted.backgroundColor : 'initial',
           'color': tableConfig.isRowHighLighted?.condition(r) ? tableConfig.isRowHighLighted.textColor : 'initial'}"
           [ngClass]="{'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
         <div container="body" ngbDropdown class="d-inline-block">
           <fa-icon class="cursor-pointer text-dark"
+                   *ngIf="showMenuBtn(gllTableContainer.id, rowIdx)"
                    [icon]="['fas','align-justify']" id="gll-table-dropdown-menu" ngbDropdownToggle></fa-icon>
           <div ngbDropdownMenu [attr.data-cy]="'gll-table-actions-menu'">
             <ng-container
               *ngFor="let e of tableConfig?.extraActions; let index = index; let first = first; let last = last">
               <button class="btn-sm py-0" ngbDropdownItem
+                      [id]="gllTableContainer.id+'_gll-table-action_'+rowIdx"
                       *ngIf="isObs(e.hide) ? !(e.hide | async) : !e.hide"
                       [disabled]="!!e.disabled ? e.disabled(r) : false"
                       (click)="!!e.disabled ? !e.disabled(r) ?
@@ -114,16 +117,19 @@
               <div class="dropdown-divider"
                    *ngIf="isObs(tableConfig?.actions?.delete?.show) ? (tableConfig?.actions?.delete?.show | async) : tableConfig?.actions?.delete?.show"></div>
             </ng-container>
-            <button class="btn-sm py-0" ngbDropdownItem
-                    [attr.data-cy]="'delete-action'"
-                    (click)="onDelete(r)"
-                    [disabled]="tableConfig?.actions?.delete?.disabled(r)"
-                    *ngIf="isObs(tableConfig?.actions?.delete?.show) ? (tableConfig?.actions?.delete?.show | async) : tableConfig?.actions?.delete?.show">
+            <ng-container>
+              <button class="btn-sm py-0" ngbDropdownItem
+                      [id]="gllTableContainer.id+'_gll-table-action_'+rowIdx"
+                      [attr.data-cy]="'delete-action'"
+                      (click)="onDelete(r)"
+                      [disabled]="tableConfig?.actions?.delete?.disabled(r)"
+                      *ngIf="isObs(tableConfig?.actions?.delete?.show) ? (tableConfig?.actions?.delete?.show | async) : tableConfig?.actions?.delete?.show">
               <span [ngClass]="{'text-danger': !tableConfig?.actions?.delete?.disabled(r)}"
                     class="text-danger font-weight-bold">
         {{'delete' | galileoTranslate | async}}
               </span>
-            </button>
+              </button>
+            </ng-container>
           </div>
         </div>
       </td>
