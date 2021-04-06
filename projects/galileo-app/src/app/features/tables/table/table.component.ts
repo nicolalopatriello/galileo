@@ -118,7 +118,7 @@ export class TableComponent implements OnInit {
 
   get hasFakePermissions(): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      resolve(false);
+      resolve(true);
     });
   }
 
