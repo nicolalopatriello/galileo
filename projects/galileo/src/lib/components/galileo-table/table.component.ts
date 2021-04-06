@@ -1,8 +1,9 @@
 import {
+  AfterContentChecked,
+  ChangeDetectorRef,
   Component,
   ContentChild,
   EventEmitter,
-  Inject,
   Input,
   OnChanges,
   OnInit,
@@ -26,7 +27,7 @@ import {map} from 'rxjs/operators';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit, OnChanges {
+export class TableComponent implements OnInit, OnChanges, AfterContentChecked {
   @ViewChild('deleteRowDialog', {static: true}) deleteRowDialog: TemplateRef<any>;
   @ContentChild(TableCellDirective, {read: TemplateRef}) tableCellTemplate;
 
@@ -58,9 +59,9 @@ export class TableComponent implements OnInit, OnChanges {
 
 
   constructor(private dialogService: NgbModal,
+              private changeDetectorRef: ChangeDetectorRef,
               private galileoLanguageService: GalileoLanguageService) {
     this.tableId = 'gllTable' + Math.random().toString(12).substring(3, 6);
-
   }
 
   trackByFn(index: any, item: any) {
@@ -257,6 +258,10 @@ export class TableComponent implements OnInit, OnChanges {
         this.extraAction.emit({data: r, eventKey: actionEvent.eventKey});
       }
     }
+  }
+
+  ngAfterContentChecked(): void {
+    this.changeDetectorRef.detectChanges();
   }
 }
 
