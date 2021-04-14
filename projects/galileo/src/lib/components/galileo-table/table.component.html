@@ -52,7 +52,7 @@
           (click)="rowClickHandler(r)"
           [ngStyle]="{'background': tableConfig.isRowHighLighted?.condition(r) ? tableConfig.isRowHighLighted.backgroundColor : 'initial',
           'color': tableConfig.isRowHighLighted?.condition(r) ? tableConfig.isRowHighLighted.textColor : 'initial'}"
-          [ngClass]="{'cursor-pointer': tableConfig?.cursorPointerOnRow || tableConfig?.navigableRowBehavior?.enabled, 'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
+          [ngClass]="{'cursor-pointer': tableConfig?.cursorPointerOnRow || (tableConfig?.navigableRowBehavior?.enabled | async), 'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
 
         <ng-container *ngIf="!c.gllTableRenderer && !c.gllTableCustomRender">
           <span [ngbTooltip]="r[c.field]">{{r[c.field]}}</span>
