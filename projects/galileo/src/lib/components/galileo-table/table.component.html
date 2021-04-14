@@ -95,9 +95,11 @@
           'color': tableConfig.isRowHighLighted?.condition(r) ? tableConfig.isRowHighLighted.textColor : 'initial'}"
           [ngClass]="{'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
         <div container="body" ngbDropdown class="d-inline-block">
-          <fa-icon class="cursor-pointer text-dark"
-                   *ngIf="showMenuBtn(gllTableContainer.id, rowIdx)"
-                   [icon]="['fas','align-justify']" id="gll-table-dropdown-menu" ngbDropdownToggle></fa-icon>
+          <ng-container *ngIf="(tableConfig?.hideActionsMenu | async) == undefined ? true : !(tableConfig?.hideActionsMenu | async)">
+            <fa-icon class="cursor-pointer text-dark"
+                     *ngIf="showMenuBtn(gllTableContainer.id, rowIdx)"
+                     [icon]="['fas','align-justify']" id="gll-table-dropdown-menu" ngbDropdownToggle></fa-icon>
+          </ng-container>
           <div ngbDropdownMenu [attr.data-cy]="'gll-table-actions-menu'">
             <ng-container
               *ngFor="let e of tableConfig?.extraActions; let index = index; let first = first; let last = last">

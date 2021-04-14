@@ -291,6 +291,7 @@ export interface TableConfig {
   noDataMessage?: string | Observable<string>;
   maxHeight?: string;
   columnsDef: ColumnDef[];
+  hideActionsMenu?: Observable<boolean>;
   actions?: TableActionDef;
   extraActions?: ExtraAction[];
   filtersInputDebounceTime?: number;
