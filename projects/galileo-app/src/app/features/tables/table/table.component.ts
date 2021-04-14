@@ -127,7 +127,7 @@ export class TableComponent implements OnInit {
     tableFilterParser: 'spring',
     builtInPagination: true,
     navigableRowBehavior: {
-      enabled: true
+      enabled: of(true)
     },
     columnsDef: [
       {
