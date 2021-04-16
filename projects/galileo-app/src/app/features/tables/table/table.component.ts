@@ -123,6 +123,7 @@ export class TableComponent implements OnInit {
   }
 
   tableConfigServerSide: TableConfig = {
+    hideActionsMenu: of(true),
     mode: 'serverSide',
     tableFilterParser: 'spring',
     builtInPagination: true,
