@@ -6,6 +6,7 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
@@ -20,14 +21,14 @@ import {FilterParser} from './utils/filter-parser';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Utils} from '../../utils/utils';
 import {GalileoLanguageService} from '../../services';
-import {map, take, takeUntil} from 'rxjs/operators';
+import {debounceTime, map, take, takeUntil, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'gll-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit, OnChanges, AfterContentChecked {
+export class TableComponent implements OnInit, OnChanges, AfterContentChecked, OnDestroy {
   @ViewChild('deleteRowDialog', {static: true}) deleteRowDialog: TemplateRef<any>;
   @ContentChild(TableCellDirective, {read: TemplateRef}) tableCellTemplate;
 
@@ -44,6 +45,9 @@ export class TableComponent implements OnInit, OnChanges, AfterContentChecked {
   public currentRowToDelete: null;
   private currentFilters: Map<string, ColumnFilterEvent> = new Map<string, ColumnFilterEvent>();
   private filtersSubject: Subject<Map<string, ColumnFilterEvent>> = new Subject<Map<string, ColumnFilterEvent>>();
+  private tableFilterSubject: Subject<any> = new Subject<any>();
+
+  private destroy$: Subject<boolean> = new Subject<boolean>();
 
   public clientSideInformation: ClientSideInformation = {
     inputData: [],
@@ -56,12 +60,17 @@ export class TableComponent implements OnInit, OnChanges, AfterContentChecked {
   public showDeleteConfirmInput = false;
   public deleteConfirmInputValue: string;
   public tableId: string;
+  private readonly defaultFilterDebounceTime = 500;
 
 
   constructor(private dialogService: NgbModal,
               private changeDetectorRef: ChangeDetectorRef,
               private galileoLanguageService: GalileoLanguageService) {
     this.tableId = 'gllTable' + Math.random().toString(12).substring(3, 6);
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
   }
 
   trackByFn(index: any, item: any) {
@@ -82,6 +91,12 @@ export class TableComponent implements OnInit, OnChanges, AfterContentChecked {
   }
 
   ngOnInit(): void {
+
+    this.tableFilterSubject.pipe(
+      debounceTime(this.defaultFilterDebounceTime),
+      takeUntil(this.destroy$)
+    ).subscribe(t => this.tableFilter.emit(t));
+
     if (this.tableConfig.mode === 'clientSide') {
       this.clientSideInformation = {
         ...this.clientSideInformation,
@@ -105,7 +120,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentChecked {
           this.handleClientSideFilter(t);
           break;
         case 'serverSide':
-          this.tableFilter.emit(parsed);
+          this.tableFilterSubject.next(parsed);
           break;
       }
     });
@@ -294,7 +309,6 @@ export interface TableConfig {
   hideActionsMenu?: Observable<boolean>;
   actions?: TableActionDef;
   extraActions?: ExtraAction[];
-  filtersInputDebounceTime?: number;
 }
 
 export interface ExtraAction {
