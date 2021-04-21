@@ -45,98 +45,109 @@
     Evaluate tu add a trackBy fn to table ngFor loop
     (e. g) let i = index; trackBy:trackByFn
     -->
-    <tr class="tableRow" *ngFor="let r of data; let rowIdx = index">
-      <td *ngFor="let c of tableConfig?.columnsDef"
-          [style.width.px]="c.widthPx"
-          [style.maxWidth.px]="c.widthPx"
-          (click)="rowClickHandler(r)"
-          [ngStyle]="{'background': tableConfig.isRowHighLighted?.condition(r) ? tableConfig.isRowHighLighted.backgroundColor : 'initial',
+    <ng-container *ngIf="!loadingData">
+      <tr class="tableRow" *ngFor="let r of data; let rowIdx = index">
+        <td *ngFor="let c of tableConfig?.columnsDef"
+            [style.width.px]="c.widthPx"
+            [style.maxWidth.px]="c.widthPx"
+            (click)="rowClickHandler(r)"
+            [ngStyle]="{'background': tableConfig.isRowHighLighted?.condition(r) ? tableConfig.isRowHighLighted.backgroundColor : 'initial',
           'color': tableConfig.isRowHighLighted?.condition(r) ? tableConfig.isRowHighLighted.textColor : 'initial'}"
-          [ngClass]="{'cursor-pointer': tableConfig?.cursorPointerOnRow || (tableConfig?.navigableRowBehavior?.enabled | async), 'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
+            [ngClass]="{'cursor-pointer': tableConfig?.cursorPointerOnRow || (tableConfig?.navigableRowBehavior?.enabled | async), 'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
 
-        <ng-container *ngIf="!c.gllTableRenderer && !c.gllTableCustomRender">
-          <span [ngbTooltip]="r[c.field]">{{r[c.field]}}</span>
-        </ng-container>
-
-        <ng-container *ngIf="c.gllTableCustomRender && !c.gllTableRenderer">
-          <span [ngbTooltip]="r[c.field]">{{c.gllTableCustomRender(r)}}</span>
-        </ng-container>
-
-        <ng-container *ngIf="c.gllTableRenderer && !c.gllTableCustomRender">
-          <ng-container [ngSwitch]="c.gllTableRenderer">
-
-            <ng-container *ngSwitchCase="'gllTableCheckboxRenderer'">
-              <input data-cy="gll-table-checkbox" type="checkbox"
-                     [checked]="c.checkboxValue ? c.checkboxValue(r) : r[c.field]"
-                     (click)="checkboxRendererEvent.emit({data: r, checked: $event.target.checked, field: c.field})"
-                     class="cursor-pointer">
-            </ng-container>
-
-            <ng-container *ngSwitchCase="'gllTableDateTimeRenderer'">
-              <span>{{r[c.field] | galileoDate}}</span>
-            </ng-container>
-
-            <ng-container *ngSwitchCase="'gllTableBooleanRenderer'">
-              <fa-icon *ngIf="r[c.field] && !!c.trueFaIcon" [icon]="['fas', c.trueFaIcon.icon]"
-                       [ngbTooltip]="isObs(c.trueFaIcon.tooltip) ? (c.trueFaIcon.tooltip | async) : c.trueFaIcon.tooltip"
-                       [ngStyle]="{color: c.trueFaIcon.color}"></fa-icon>
-              <fa-icon *ngIf="!r[c.field] && !!c.falseFaIcon" [icon]="['fas', c.falseFaIcon.icon]"
-                       [ngbTooltip]="isObs(c.falseFaIcon.tooltip) ? (c.falseFaIcon.tooltip | async) : c.falseFaIcon.tooltip"
-                       [ngStyle]="{color: c.falseFaIcon.color}"></fa-icon>
-              <span *ngIf="!c.trueFaIcon || !c.falseFaIcon">{{r[c.field]}}</span>
-            </ng-container>
-
+          <ng-container *ngIf="!c.gllTableRenderer && !c.gllTableCustomRender">
+            <span [ngbTooltip]="r[c.field]">{{r[c.field]}}</span>
           </ng-container>
-        </ng-container>
-      </td>
-      <td *ngIf="atLeastOneAction(r)"
-          class="gll-actions-column"
-          [ngStyle]="{'background': tableConfig.isRowHighLighted?.condition(r) ? tableConfig.isRowHighLighted.backgroundColor : 'initial',
+
+          <ng-container *ngIf="c.gllTableCustomRender && !c.gllTableRenderer">
+            <span [ngbTooltip]="r[c.field]">{{c.gllTableCustomRender(r)}}</span>
+          </ng-container>
+
+          <ng-container *ngIf="c.gllTableRenderer && !c.gllTableCustomRender">
+            <ng-container [ngSwitch]="c.gllTableRenderer">
+
+              <ng-container *ngSwitchCase="'gllTableCheckboxRenderer'">
+                <input data-cy="gll-table-checkbox" type="checkbox"
+                       [checked]="c.checkboxValue ? c.checkboxValue(r) : r[c.field]"
+                       (click)="checkboxRendererEvent.emit({data: r, checked: $event.target.checked, field: c.field})"
+                       class="cursor-pointer">
+              </ng-container>
+
+              <ng-container *ngSwitchCase="'gllTableDateTimeRenderer'">
+                <span>{{r[c.field] | galileoDate}}</span>
+              </ng-container>
+
+              <ng-container *ngSwitchCase="'gllTableBooleanRenderer'">
+                <fa-icon *ngIf="r[c.field] && !!c.trueFaIcon" [icon]="['fas', c.trueFaIcon.icon]"
+                         [ngbTooltip]="isObs(c.trueFaIcon.tooltip) ? (c.trueFaIcon.tooltip | async) : c.trueFaIcon.tooltip"
+                         [ngStyle]="{color: c.trueFaIcon.color}"></fa-icon>
+                <fa-icon *ngIf="!r[c.field] && !!c.falseFaIcon" [icon]="['fas', c.falseFaIcon.icon]"
+                         [ngbTooltip]="isObs(c.falseFaIcon.tooltip) ? (c.falseFaIcon.tooltip | async) : c.falseFaIcon.tooltip"
+                         [ngStyle]="{color: c.falseFaIcon.color}"></fa-icon>
+                <span *ngIf="!c.trueFaIcon || !c.falseFaIcon">{{r[c.field]}}</span>
+              </ng-container>
+
+            </ng-container>
+          </ng-container>
+        </td>
+        <td *ngIf="atLeastOneAction(r)"
+            class="gll-actions-column"
+            [ngStyle]="{'background': tableConfig.isRowHighLighted?.condition(r) ? tableConfig.isRowHighLighted.backgroundColor : 'initial',
           'color': tableConfig.isRowHighLighted?.condition(r) ? tableConfig.isRowHighLighted.textColor : 'initial'}"
-          [ngClass]="{'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
-        <div container="body" ngbDropdown class="d-inline-block">
-          <ng-container *ngIf="(tableConfig?.hideActionsMenu | async) == undefined ? true : !(tableConfig?.hideActionsMenu | async)">
-            <fa-icon class="cursor-pointer text-dark"
-                     *ngIf="showMenuBtn(gllTableContainer.id, rowIdx)"
-                     [icon]="['fas','align-justify']" id="gll-table-dropdown-menu" ngbDropdownToggle></fa-icon>
-          </ng-container>
-          <div ngbDropdownMenu [attr.data-cy]="'gll-table-actions-menu'">
+            [ngClass]="{'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
+          <div container="body" ngbDropdown class="d-inline-block">
             <ng-container
-              *ngFor="let e of tableConfig?.extraActions; let index = index; let first = first; let last = last">
-              <button class="btn-sm py-0" ngbDropdownItem
-                      [id]="gllTableContainer.id+'_gll-table-action_'+rowIdx"
-                      *ngIf="isObs(e.hide) ? !(e.hide | async) : !e.hide"
-                      [disabled]="!!e.disabled ? e.disabled(r) : false"
-                      (click)="!!e.disabled ? !e.disabled(r) ?
+              *ngIf="(tableConfig?.hideActionsMenu | async) == undefined ? true : !(tableConfig?.hideActionsMenu | async)">
+              <fa-icon class="cursor-pointer text-dark"
+                       *ngIf="showMenuBtn(gllTableContainer.id, rowIdx)"
+                       [icon]="['fas','align-justify']" id="gll-table-dropdown-menu" ngbDropdownToggle></fa-icon>
+            </ng-container>
+            <div ngbDropdownMenu [attr.data-cy]="'gll-table-actions-menu'">
+              <ng-container
+                *ngFor="let e of tableConfig?.extraActions; let index = index; let first = first; let last = last">
+                <button class="btn-sm py-0" ngbDropdownItem
+                        [id]="gllTableContainer.id+'_gll-table-action_'+rowIdx"
+                        *ngIf="isObs(e.hide) ? !(e.hide | async) : !e.hide"
+                        [disabled]="!!e.disabled ? e.disabled(r) : false"
+                        (click)="!!e.disabled ? !e.disabled(r) ?
                       extraAction.emit({data: r, eventKey: e.eventKey}) : null :
                       extraAction.emit({data: r, eventKey: e.eventKey})">
-                <span>{{isObs(e.label) ? (e.label | async) : e.label}}</span>
-              </button>
-              <div class="dropdown-divider" *ngIf="!last"></div>
-            </ng-container>
-            <ng-container *ngIf="tableConfig?.extraActions?.length > 0">
-              <div class="dropdown-divider"
-                   *ngIf="isObs(tableConfig?.actions?.delete?.show) ? (tableConfig?.actions?.delete?.show | async) : tableConfig?.actions?.delete?.show"></div>
-            </ng-container>
-            <ng-container>
-              <button class="btn-sm py-0" ngbDropdownItem
-                      [id]="gllTableContainer.id+'_gll-table-action_'+rowIdx"
-                      [attr.data-cy]="'delete-action'"
-                      (click)="onDelete(r)"
-                      [disabled]="tableConfig?.actions?.delete?.disabled(r)"
-                      *ngIf="isObs(tableConfig?.actions?.delete?.show) ? (tableConfig?.actions?.delete?.show | async) : tableConfig?.actions?.delete?.show">
+                  <span>{{isObs(e.label) ? (e.label | async) : e.label}}</span>
+                </button>
+                <div class="dropdown-divider" *ngIf="!last"></div>
+              </ng-container>
+              <ng-container *ngIf="tableConfig?.extraActions?.length > 0">
+                <div class="dropdown-divider"
+                     *ngIf="isObs(tableConfig?.actions?.delete?.show) ? (tableConfig?.actions?.delete?.show | async) : tableConfig?.actions?.delete?.show"></div>
+              </ng-container>
+              <ng-container>
+                <button class="btn-sm py-0" ngbDropdownItem
+                        [id]="gllTableContainer.id+'_gll-table-action_'+rowIdx"
+                        [attr.data-cy]="'delete-action'"
+                        (click)="onDelete(r)"
+                        [disabled]="tableConfig?.actions?.delete?.disabled(r)"
+                        *ngIf="isObs(tableConfig?.actions?.delete?.show) ? (tableConfig?.actions?.delete?.show | async) : tableConfig?.actions?.delete?.show">
               <span [ngClass]="{'text-danger': !tableConfig?.actions?.delete?.disabled(r)}"
                     class="text-danger font-weight-bold">
         {{'delete' | galileoTranslate | async}}
               </span>
-              </button>
-            </ng-container>
+                </button>
+              </ng-container>
+            </div>
           </div>
-        </div>
-      </td>
-    </tr>
+        </td>
+      </tr>
+    </ng-container>
     </tbody>
   </table>
+
+  <!--Loading handler-->
+  <ng-container *ngIf="loadingData">
+    <div class="w-100 mt-2">
+      <ngx-skeleton-loader [count]="5" class="w-100" [animation]="'pulse'"></ngx-skeleton-loader>
+    </div>
+  </ng-container>
+
   <div class="p-4 w-100 text-center" *ngIf="data?.length === 0" style="border: 1px solid gainsboro">
     {{isObs(tableConfig?.noDataMessage) ? (tableConfig?.noDataMessage | async) : tableConfig?.noDataMessage}}
   </div>
@@ -148,6 +159,11 @@
                   (selectPage)="onSelectPage($event)"></gll-pagination>
 </div>
 
+<ng-template #skeletonLoading>
+  <div class="w-100">
+    <ngx-skeleton-loader class="w-100" [count]="5" [animation]="'pulse'"></ngx-skeleton-loader>
+  </div>
+</ng-template>
 
 <ng-template #deleteRowDialog>
   <div class="modal-header text-light bg-danger p-2 d-flex flex-row justify-content-center">

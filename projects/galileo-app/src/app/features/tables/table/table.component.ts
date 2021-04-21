@@ -209,6 +209,7 @@ where \`tableConfig\` is
 \`\`\`
   `;
   public currentServerSideFilter: any;
+  isDataLoading = false;
 
 
   constructor() {
@@ -231,5 +232,10 @@ where \`tableConfig\` is
 
   onExtraActionFromServer($event: { eventKey: string; data: any }) {
     console.log($event);
+  }
+
+  testLoadingData() {
+    this.isDataLoading = true;
+    setTimeout(_ => this.isDataLoading = false, 5000);
   }
 }
