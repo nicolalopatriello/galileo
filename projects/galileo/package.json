@@ -24,7 +24,8 @@
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/free-regular-svg-icons": "^5.14.0",
     "@ng-bootstrap/ng-bootstrap": ">= 6.0.2",
-    "ng-sidebar": ">= 9.2.1"
+    "ng-sidebar": ">= 9.2.1",
+    "ngx-skeleton-loader": "^2.9.1"
   },
   "dependencies": {
     "tslib": "^2.0.0"

@@ -35,6 +35,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentChecked, O
 
   @Input() tableConfig: TableConfig;
   @Input() data: any[] = [];
+  @Input() loadingData = false;
 
   @Output() deleteConfirm: EventEmitter<any> = new EventEmitter();
   @Output() tableFilter: EventEmitter<any> = new EventEmitter<any>();
@@ -293,11 +294,12 @@ export interface RoWHighLighted {
 }
 
 export interface TableConfig {
+  mode: 'clientSide' | 'serverSide';
+  columnsDef: ColumnDef[];
   navigableRowBehavior?: {
     enabled: Observable<boolean>;
     extraActionIndex?: number
   };
-  mode: 'clientSide' | 'serverSide';
   builtInPagination?: boolean;
   isRowSelected?: (row) => boolean;
   isRowHighLighted?: RoWHighLighted;
@@ -305,10 +307,9 @@ export interface TableConfig {
   tableFilterParser?: tableFilterParser;
   noDataMessage?: string | Observable<string>;
   maxHeight?: string;
-  columnsDef: ColumnDef[];
   hideActionsMenu?: Observable<boolean>;
   actions?: TableActionDef;
-  extraActions?: ExtraAction[];
+  extraActions?: ExtraAction[]
 }
 
 export interface ExtraAction {

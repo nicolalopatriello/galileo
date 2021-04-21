@@ -6,9 +6,13 @@
 
 <div style="height: 300px; max-height: 300px; min-height: 300px">
   <div class="w-100">Spring Server side</div>
+  <div class="w-100 d-flex flex-row justify-content-center">
+    <button [disabled]="isDataLoading" class="btn btn-outline-primary" (click)="testLoadingData()">Test Loading data</button>
+  </div>
   <gll-table [tableConfig]="tableConfigServerSide"
              (tableFilter)="onTableServerSideFilter($event)"
              (extraAction)="onExtraActionFromServer($event)"
+             [loadingData]="isDataLoading"
              [data]="tableData"></gll-table>
   <div class="w-100 text-center bg-info">
     <pre class="bold">
