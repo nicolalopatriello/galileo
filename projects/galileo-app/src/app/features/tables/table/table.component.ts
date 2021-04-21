@@ -123,6 +123,7 @@ export class TableComponent implements OnInit {
   }
 
   tableConfigServerSide: TableConfig = {
+    maxHeight: '70vh',
     hideActionsMenu: of(true),
     mode: 'serverSide',
     tableFilterParser: 'spring',
@@ -236,6 +237,6 @@ where \`tableConfig\` is
 
   testLoadingData() {
     this.isDataLoading = true;
-    setTimeout(_ => this.isDataLoading = false, 5000);
+    setTimeout(_ => this.isDataLoading = false, 50000);
   }
 }
