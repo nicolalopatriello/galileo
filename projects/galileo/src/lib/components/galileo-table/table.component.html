@@ -105,16 +105,17 @@
             <div ngbDropdownMenu [attr.data-cy]="'gll-table-actions-menu'">
               <ng-container
                 *ngFor="let e of tableConfig?.extraActions; let index = index; let first = first; let last = last">
-                <button class="btn-sm py-0" ngbDropdownItem
-                        [id]="gllTableContainer.id+'_gll-table-action_'+rowIdx"
-                        *ngIf="isObs(e.hide) ? !(e.hide | async) : !e.hide"
-                        [disabled]="!!e.disabled ? e.disabled(r) : false"
-                        (click)="!!e.disabled ? !e.disabled(r) ?
+                <ng-container *ngIf="isObs(e.hide) ? !(e.hide | async) : !e.hide">
+                  <button class="btn-sm py-0" ngbDropdownItem
+                          [id]="gllTableContainer.id+'_gll-table-action_'+rowIdx"
+                          [disabled]="!!e.disabled ? e.disabled(r) : false"
+                          (click)="!!e.disabled ? !e.disabled(r) ?
                       extraAction.emit({data: r, eventKey: e.eventKey}) : null :
                       extraAction.emit({data: r, eventKey: e.eventKey})">
-                  <span>{{isObs(e.label) ? (e.label | async) : e.label}}</span>
-                </button>
-                <div class="dropdown-divider" *ngIf="!last"></div>
+                    <span>{{isObs(e.label) ? (e.label | async) : e.label}}</span>
+                  </button>
+                  <div class="dropdown-divider" *ngIf="!last"></div>
+                </ng-container>
               </ng-container>
               <ng-container *ngIf="tableConfig?.extraActions?.length > 0">
                 <div class="dropdown-divider"
