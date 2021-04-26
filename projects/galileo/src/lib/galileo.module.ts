@@ -18,6 +18,12 @@ import {faAlignJustify} from '@fortawesome/free-solid-svg-icons/faAlignJustify';
 import { registerLocaleData } from '@angular/common';
 import localeEn from '@angular/common/locales/en';
 import localeIt from '@angular/common/locales/it';
+import {faExclamationCircle} from '@fortawesome/free-solid-svg-icons/faExclamationCircle';
+import {faCalendar} from '@fortawesome/free-solid-svg-icons/faCalendar';
+import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
+import {faTimesCircle} from '@fortawesome/free-solid-svg-icons/faTimesCircle';
+import {faUserTag} from '@fortawesome/free-solid-svg-icons/faUserTag';
+import {faArrowCircleRight} from '@fortawesome/free-solid-svg-icons/faArrowCircleRight';
 
 
 @NgModule({
@@ -40,8 +46,15 @@ export class GalileoModule {
       faAngleDoubleLeft,
       faEye,
       faEllipsisV,
-      faAlignJustify
-      );
+      faAlignJustify,
+      faExclamationCircle,
+      faCalendar,
+      faTimesCircle,
+      faSignOutAlt,
+      faUserTag,
+      faArrowCircleRight,
+      faTrash,
+    );
   }
   static forRoot(config: GalileoConfig): ModuleWithProviders<GalileoModule> {
     return {
