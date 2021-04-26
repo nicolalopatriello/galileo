@@ -315,7 +315,7 @@ export interface TableConfig {
 export interface ExtraAction {
   eventKey: string;
   label: string | Observable<string>;
-  iconColorProp: FontAwesomeIconColorBoolPair;
+  iconColorProp?: FontAwesomeIconColorBoolPair;
   hide?: boolean | Observable<boolean>;
   disabled?: Function;
 }

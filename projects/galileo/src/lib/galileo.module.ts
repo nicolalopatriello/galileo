@@ -20,7 +20,6 @@ import localeEn from '@angular/common/locales/en';
 import localeIt from '@angular/common/locales/it';
 import {faExclamationCircle} from '@fortawesome/free-solid-svg-icons/faExclamationCircle';
 import {faCalendar} from '@fortawesome/free-solid-svg-icons/faCalendar';
-import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
 import {faTimesCircle} from '@fortawesome/free-solid-svg-icons/faTimesCircle';
 import {faUserTag} from '@fortawesome/free-solid-svg-icons/faUserTag';
 import {faArrowCircleRight} from '@fortawesome/free-solid-svg-icons/faArrowCircleRight';
@@ -50,7 +49,6 @@ export class GalileoModule {
       faExclamationCircle,
       faCalendar,
       faTimesCircle,
-      faSignOutAlt,
       faUserTag,
       faArrowCircleRight,
       faTrash,
