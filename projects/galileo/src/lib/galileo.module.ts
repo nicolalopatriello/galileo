@@ -24,6 +24,8 @@ import {faTimesCircle} from '@fortawesome/free-solid-svg-icons/faTimesCircle';
 import {faUserTag} from '@fortawesome/free-solid-svg-icons/faUserTag';
 import {faArrowCircleRight} from '@fortawesome/free-solid-svg-icons/faArrowCircleRight';
 import {faSearch} from '@fortawesome/free-solid-svg-icons/faSearch';
+import {faChevronLeft} from '@fortawesome/free-solid-svg-icons/faChevronLeft';
+import {faChevronRight} from '@fortawesome/free-solid-svg-icons/faChevronRight';
 
 
 @NgModule({
@@ -53,7 +55,9 @@ export class GalileoModule {
       faUserTag,
       faArrowCircleRight,
       faTrash,
-      faSearch
+      faSearch,
+      faChevronLeft,
+      faChevronRight
     );
   }
   static forRoot(config: GalileoConfig): ModuleWithProviders<GalileoModule> {
