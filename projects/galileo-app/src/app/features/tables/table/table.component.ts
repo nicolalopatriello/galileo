@@ -50,6 +50,7 @@ export class TableComponent implements OnInit {
   ];
   tableConfig: TableConfig = {
     mode: 'clientSide',
+    maxHeight: '60vh',
     builtInPagination: true,
     isRowHighLighted: {
       textColor: 'red',
