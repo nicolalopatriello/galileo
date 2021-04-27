@@ -9,7 +9,6 @@ import {GalileoCommonModule} from '../../utils/galileo-common/galileo-common.mod
 import {PaginationComponent} from './components';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {DatePickerFilterComponent} from './components/date-picker-filter';
-import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 
 
 @NgModule({
@@ -19,7 +18,6 @@ import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
     PaginationComponent
   ],
   imports: [
-    NgxSkeletonLoaderModule,
     FormsModule,
     FontAwesomeModule,
     CommonModule,

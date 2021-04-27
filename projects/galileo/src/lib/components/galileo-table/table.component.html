@@ -144,9 +144,14 @@
 
   <!--Loading handler-->
   <ng-container *ngIf="loadingData">
-    <div class="w-100 mt-2" [ngStyle]="{'max-height': tableConfig?.maxHeight, 'min-height': tableConfig?.maxHeight}"
-         style="overflow: auto; overflow-y: hidden">
-      <ngx-skeleton-loader [count]="20" class="w-100" [animation]="'pulse'"></ngx-skeleton-loader>
+    <div [ngStyle]="{
+   'max-height': 'calc(' + tableConfig?.maxHeight + ' - 100px)', 'min-height': 'calc(' + tableConfig?.maxHeight + ' - 100px)'}"
+         class="p-4 w-100 text-center h-100 d-flex flex-column justify-content-center">
+      <div class="m-auto">
+        <div class="spinner-grow text-secondary m" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
     </div>
   </ng-container>
 

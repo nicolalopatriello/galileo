@@ -31,7 +31,7 @@ import {Utils} from '../../../utils/utils';
                 [routerLink]="'/'+item.routerLink" routerLinkActive="sidenav__item-active"
                 #rla="routerLinkActive"
                 (click)="onClickAction(item, groupLabel)" class="d-flex flex-row cursor-pointer sidenav__item
-              pl-3 w-100 "
+              pl-3 pr-3 w-100 "
                 [ngStyle]="{'border-left': belongToGroup(isObs(item.label) ? (item.label | async) : item.label) &&
                 sidebarItemsGroups.get(groupLabel)?.groupLabel &&
                 (sidebarItemsGroups.get(groupLabel).groupLabel.show | async) ? '5px solid ' + (sidebarItemsGroups.get(groupLabel).groupLabel.activeItemGroupBorderColor | async) : null}"
