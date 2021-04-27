@@ -9,6 +9,8 @@ $gll-table-bg: var(--gll-table-bg);
   border: $gll-table-border;
   background: $gll-table-bg;
 
+  #gllTableNoDataFound {}
+
   table {
     table-layout: fixed;
     word-wrap: break-word;

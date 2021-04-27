@@ -25,6 +25,7 @@ export interface GalileoTranslations {
   after: string;
   dateEquals: string;
   range: string;
+  noData: string;
 }
 
 export const gllEn: GalileoTranslations = {
@@ -53,7 +54,8 @@ export const gllEn: GalileoTranslations = {
   before: 'Before',
   after: 'After',
   dateEquals: 'On',
-  range: 'Range'
+  range: 'Range',
+  noData: 'No data.'
 };
 
 export const gllIt: GalileoTranslations = {
@@ -82,5 +84,6 @@ export const gllIt: GalileoTranslations = {
   before: 'Prima di',
   after: 'Dopo il',
   dateEquals: 'Il',
-  range: 'Intevallo'
+  range: 'Intevallo',
+  noData: 'Nessun dato.'
 };

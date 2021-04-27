@@ -150,8 +150,17 @@
     </div>
   </ng-container>
 
-  <div class="p-4 w-100 text-center" *ngIf="data?.length === 0" style="border: 1px solid gainsboro">
-    {{isObs(tableConfig?.noDataMessage) ? (tableConfig?.noDataMessage | async) : tableConfig?.noDataMessage}}
+  <!--No-data-->
+  <div id="gllTableNoDataFound" [ngStyle]="{
+   'max-height': 'calc(' + tableConfig?.maxHeight + ' - 100px)', 'min-height': 'calc(' + tableConfig?.maxHeight + ' - 100px)'}"
+       class="p-4 w-100 text-center h-100 d-flex flex-column justify-content-center" *ngIf="data?.length === 0">
+    <fa-icon style="color: #9a9a9a" [icon]="['fas', 'search']" class="fa-2x"></fa-icon>
+    <ng-container *ngIf="!!tableConfig?.noDataMessage else defaultNoDataMessage">
+      {{isObs(tableConfig?.noDataMessage) ? (tableConfig?.noDataMessage | async) : tableConfig?.noDataMessage}}
+    </ng-container>
+    <ng-template #defaultNoDataMessage>
+      {{ 'noData' | galileoTranslate | async}}
+    </ng-template>
   </div>
 </div>
 <div class="d-flex w-100 justify-content-end"
