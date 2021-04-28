@@ -21,7 +21,7 @@ import {FilterParser} from './utils/filter-parser';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Utils} from '../../utils/utils';
 import {GalileoLanguageService} from '../../services';
-import {debounceTime, map, take, takeUntil, tap} from 'rxjs/operators';
+import {debounceTime, map, take, takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'gll-table',
@@ -266,18 +266,20 @@ export class TableComponent implements OnInit, OnChanges, AfterContentChecked, O
 
   rowClickHandler(r: any) {
     this.rowSelected.emit(r);
-    this.tableConfig?.navigableRowBehavior.enabled.pipe(
-      take(1),
-    ).subscribe(isNavigable => {
-      if (isNavigable === true) {
-        const actionEvent = this.tableConfig?.extraActions[this.tableConfig?.navigableRowBehavior?.extraActionIndex ? this.tableConfig.navigableRowBehavior.extraActionIndex : 0];
-        if (!!actionEvent && !!actionEvent.disabled && !actionEvent.disabled(r)) {
-          this.extraAction.emit({data: r, eventKey: actionEvent.eventKey});
-        } else if (!!actionEvent) {
-          this.extraAction.emit({data: r, eventKey: actionEvent.eventKey});
+    if (this.tableConfig?.navigableRowBehavior !== null) {
+      this.tableConfig?.navigableRowBehavior.enabled.pipe(
+        take(1),
+      ).subscribe(isNavigable => {
+        if (isNavigable === true) {
+          const actionEvent = this.tableConfig?.extraActions[this.tableConfig?.navigableRowBehavior?.extraActionIndex ? this.tableConfig.navigableRowBehavior.extraActionIndex : 0];
+          if (!!actionEvent && !!actionEvent.disabled && !actionEvent.disabled(r)) {
+            this.extraAction.emit({data: r, eventKey: actionEvent.eventKey});
+          } else if (!!actionEvent) {
+            this.extraAction.emit({data: r, eventKey: actionEvent.eventKey});
+          }
         }
-      }
-    });
+      });
+    }
   }
 
   ngAfterContentChecked(): void {
