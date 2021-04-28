@@ -46,6 +46,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
                   </div>
                 </div>
                 <div class="d-flex flex-column justify-content-around" *ngIf="value || valueTo">
+
                   <fa-icon style="font-size: 13px" class="cursor-pointer clear-date-icon" [icon]="['far', 'trash-alt']"
                            (click)="clearDateFilter()"></fa-icon>
                 </div>
@@ -57,11 +58,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
         <div class="d-flex pt-1 pl-1" ngbDropdown placement="bottom-right"
              *ngIf="columnFilterConfig?.type === 'gllTextColumnFilter'
            || columnFilterConfig?.type === 'gllNumberColumnFilter'">
-          <fa-icon class="cursor-pointer"
-                   [attr.data-cy]="columnField + '-filter-options'"
-                   id="dropdownBasic2" ngbDropdownToggle [icon]="['fas', 'filter']">
-          </fa-icon>
-
+            <gll-filter-icon ngbDropdownToggle class="cursor-pointer" [size]="16"  [attr.data-cy]="columnField + '-filter-options'"></gll-filter-icon>
           <div ngbDropdownMenu class="p-2"
                *ngIf="columnFilterConfig?.type === 'gllTextColumnFilter' || columnFilterConfig?.type === 'gllNumberColumnFilter'">
             <div>
@@ -83,11 +80,9 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
         <div class="d-flex pt-1 pl-1" ngbDropdown placement="bottom-right"
              *ngIf="columnFilterConfig?.type === 'gllDateColumnFilter'">
-          <fa-icon class="cursor-pointer"
-                   (click)="dialogService.open(calendarContainerDialog, {size: 'sm', backdrop: true, centered: true})"
-                   [attr.data-cy]="columnField + '-filter-options'"
-                   [icon]="['fas', 'filter']">
-          </fa-icon>
+          <gll-filter-icon (click)="dialogService.open(calendarContainerDialog, {size: 'sm', backdrop: true, centered: true})"
+                           class="cursor-pointer"
+                           [size]="16"  [attr.data-cy]="columnField + '-filter-options'"></gll-filter-icon>
         </div>
 
 
