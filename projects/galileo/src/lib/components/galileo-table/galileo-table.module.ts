@@ -9,10 +9,11 @@ import {GalileoCommonModule} from '../../utils/galileo-common/galileo-common.mod
 import {PaginationComponent} from './components';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {DatePickerFilterComponent} from './components/date-picker-filter';
+import {FilterIconComponent} from './components/filter-icon.component';
 
 
 @NgModule({
-  declarations: [TableComponent, FiltersComponent, PaginationComponent, DatePickerFilterComponent],
+  declarations: [TableComponent, FiltersComponent, PaginationComponent, DatePickerFilterComponent, FilterIconComponent],
   exports: [
     TableComponent,
     PaginationComponent
