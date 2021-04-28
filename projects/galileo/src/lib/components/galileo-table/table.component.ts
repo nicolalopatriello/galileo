@@ -267,7 +267,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentChecked, O
   rowClickHandler(r: any) {
     this.rowSelected.emit(r);
     if (this.tableConfig?.navigableRowBehavior !== null) {
-      this.tableConfig?.navigableRowBehavior.enabled.pipe(
+      this.tableConfig?.navigableRowBehavior?.enabled.pipe(
         take(1),
       ).subscribe(isNavigable => {
         if (isNavigable === true) {
