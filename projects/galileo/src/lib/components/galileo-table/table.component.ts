@@ -251,7 +251,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentChecked, O
     return Utils.isObs<string>(label);
   }
 
-  deleteBtmDisabled() {
+  deleteBtnDisabled() {
     return this.galileoLanguageService.getLanguage().pipe(
       map(lang => {
         switch (lang) {

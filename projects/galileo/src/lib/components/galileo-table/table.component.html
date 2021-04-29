@@ -4,7 +4,7 @@
   <table class="table table-sm w-100 gll-table m-0">
     <thead>
     <tr id="tableHeader">
-      <th *ngFor="let c of tableConfig?.columnsDef"
+      <th resizable *ngFor="let c of tableConfig?.columnsDef"
           scope="col"
           [style.width.px]="c.widthPx"
           [style.maxWidth.px]="c.widthPx"
@@ -56,11 +56,11 @@
             [ngClass]="{'cursor-pointer': tableConfig?.cursorPointerOnRow || (tableConfig?.navigableRowBehavior?.enabled | async), 'row-selected': !!tableConfig.isRowSelected ? tableConfig.isRowSelected(r) : false}">
 
           <ng-container *ngIf="!c.gllTableRenderer && !c.gllTableCustomRender">
-            <span [ngbTooltip]="r[c.field]">{{r[c.field]}}</span>
+            <span>{{r[c.field]}}</span>
           </ng-container>
 
           <ng-container *ngIf="c.gllTableCustomRender && !c.gllTableRenderer">
-            <span [ngbTooltip]="r[c.field]">{{c.gllTableCustomRender(r)}}</span>
+            <span>{{c.gllTableCustomRender(r)}}</span>
           </ng-container>
 
           <ng-container *ngIf="c.gllTableRenderer && !c.gllTableCustomRender">
@@ -199,7 +199,7 @@
       </div>
       <div class="col-6 p-0 pl-1">
         <button type="button" class="btn btn-danger btn-block"
-                [disabled]="showDeleteConfirmInput ? (deleteBtmDisabled() | async) : false"
+                [disabled]="showDeleteConfirmInput ? (deleteBtnDisabled() | async) : false"
                 (click)="confirmDelete()">
           {{'delete' | galileoTranslate | async}}
         </button>
