@@ -63,6 +63,19 @@ $gll-table-bg: var(--gll-table-bg);
 
   #tableHeader {
     background: $gll-table-header-bg;
+
+    th {
+      border-bottom: 0;
+      border-top: 0;
+      background: #f8f8f8;
+      height: 40px;
+      transition: background 0.3s;
+      font-size: 13px;
+    }
+
+    th:hover {
+      background: #ececec;
+    }
   }
 
   #filtersRow {
@@ -78,6 +91,8 @@ $gll-table-bg: var(--gll-table-bg);
 
   .tableRow {
     background: $gll-table-row-bg;
+    transition: background 0.3s;
+
 
     .row-selected {
       background: $gll-table-row-bg-hover;

@@ -8,12 +8,15 @@ import {NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {GalileoCommonModule} from '../../utils/galileo-common/galileo-common.module';
 import {PaginationComponent} from './components';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {DatePickerFilterComponent} from './components/date-picker-filter';
+import {DatePickerFilterComponent} from './components';
 import {FilterIconComponent} from './components/filter-icon.component';
+import {ResizableDirective} from './directives/resizable.directive';
+import {ResizableComponent} from './components/resizable/resizable.component';
 
 
 @NgModule({
-  declarations: [TableComponent, FiltersComponent, PaginationComponent, DatePickerFilterComponent, FilterIconComponent],
+  declarations: [TableComponent, FiltersComponent, PaginationComponent,
+    DatePickerFilterComponent, FilterIconComponent, ResizableDirective, ResizableComponent],
   exports: [
     TableComponent,
     PaginationComponent
