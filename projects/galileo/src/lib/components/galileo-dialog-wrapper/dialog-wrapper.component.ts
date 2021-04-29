@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
       <div>
           <div class="modal-header">
               <h4 class="modal-title" id="modal-basic-title">
-                <span [ngStyle]="{'color': iconColorPair.color}" class="material-icons-outlined">{{iconColorPair.icon}}</span>
+                <span [ngStyle]="{'color': iconColorPair?.color}" class="material-icons-outlined">{{iconColorPair?.icon}}</span>
                   {{title}}
               </h4>
           </div>
