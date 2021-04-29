@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SignInComponent } from './sign-in/sign-in.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-
 
 
 @NgModule({
@@ -11,7 +9,6 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
   imports: [
     ReactiveFormsModule,
     CommonModule,
-    FontAwesomeModule
   ],
   exports: [SignInComponent]
 })

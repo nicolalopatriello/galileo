@@ -4,7 +4,6 @@ import {ConfirmDialogComponent} from './components/confirm-dialog.component';
 import {CarouselComponent} from './components/carousel.component';
 import {NgbModule, NgbPopoverModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgModule} from '@angular/core';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule} from '@angular/forms';
 import {PopoverLayerComponent, PopoverWrapperComponent} from './components/popover-wrapper.component';
 import {GalileoDatePipe} from './pipes/galileo-date.pipe';
@@ -16,7 +15,6 @@ import {GalileoDatePipe} from './pipes/galileo-date.pipe';
   imports: [
     NgbModule,
     CommonModule,
-    FontAwesomeModule,
     FormsModule,
     NgbPopoverModule,
     NgbTooltipModule

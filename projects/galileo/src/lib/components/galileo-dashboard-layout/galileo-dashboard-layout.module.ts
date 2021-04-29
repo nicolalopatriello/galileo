@@ -6,7 +6,6 @@ import {DlSidebarDirective} from './dl-sidebar.directive';
 import {RouterModule} from '@angular/router';
 import {BreadcrumbComponent} from './breadcrumb/breadcrumb.component';
 import {SidebarModule} from 'ng-sidebar';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 
 export const sidebarModule = SidebarModule.forRoot();
@@ -17,7 +16,6 @@ export const sidebarModule = SidebarModule.forRoot();
     CommonModule,
     RouterModule,
     sidebarModule,
-    FontAwesomeModule,
   ], exports: [DashboardLayoutComponent, DlNavbarDirective, DlSidebarDirective]
 })
 export class GalileoDashboardLayoutModule { }

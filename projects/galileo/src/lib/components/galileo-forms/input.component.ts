@@ -12,7 +12,7 @@ import {GalileoHelpMessage} from '../../models';
         <label id="label-container" #inputLabel [ngClass]="{'label-left-position': inputLabelPosition === 'left'}"
                *ngIf="label">{{isObs(label) ? (label | async) : label}}
           <ng-container *ngIf="helpMessage">
-            <fa-icon class="cursor-pointer" [ngbTooltip]="helpContainer" [icon]="['far', 'question-circle']"></fa-icon>
+            <i style="font-size: 16px; vertical-align: text-bottom" [ngbTooltip]="helpContainer" class="material-icons-outlined cursor-pointer">help_outline</i>
             <ng-template #helpContainer>
               <div class="p-1">
                 {{ isObs(helpMessage.message) ? (helpMessage.message | async) : helpMessage.message}}

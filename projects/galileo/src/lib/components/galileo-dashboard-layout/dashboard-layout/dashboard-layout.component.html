@@ -25,7 +25,8 @@
       <div class="cursor-pointer" style="flex: 0 0 auto;background-color: #dcdcdc; width: 100%" (click)="toggleOpened()" [ngStyle]="{'height': navbarHeightPx+'px'}">
         <a class="list-group-item list-group-item-action d-flex align-items-center h-100 dl-sidenav-toggler">
           <div class="d-flex w-100 justify-content-end">
-            <fa-icon [icon]="['fas', sideBarOpened ? 'angle-double-left' : 'angle-double-right']"></fa-icon>
+            <span *ngIf="sideBarOpened" class="material-icons-outlined">chevron_left</span>
+            <span *ngIf="!sideBarOpened" class="material-icons-outlined">chevron_right</span>
           </div>
         </a>
       </div>

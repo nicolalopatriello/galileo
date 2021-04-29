@@ -13,20 +13,21 @@ import {GalileoLanguageService, UserOnBoardingService} from '../../../../../gali
 
 @Component({
   selector: 'app-dashboard-container',
-  templateUrl: './dashboard-container.component.html',
-  styles: []
+  templateUrl: './dashboard-container.component.html'
 })
 export class DashboardContainerComponent implements OnInit, AfterViewInit {
   @ViewChild('sidebar', {read: ElementRef}) sidebar: ElementRef<any>;
 
 
-//  @ViewChild('sidebar',  {static: true}) sidebar: ElementRef<any>;
-//  @ViewChild('sidebar') private sidebar: ElementRef;
-
   @ViewChild('explanation', {static: true}) explanation: TemplateRef<any>;
 
   public sidebarItemsGroups: Map<string, SidebarGroup> = new Map<string, SidebarGroup>();
-  userMenuItems: NavBarUserMenuItem[] = [{id: 'logout', label: 'Logout', type: UserMenuItemType.ITEM}];
+  userMenuItems: NavBarUserMenuItem[] = [{
+    id: 'logout', label: 'Logout', type: UserMenuItemType.ITEM, faIcon: {
+      icon: 'person',
+      color: 'grey'
+    }
+  }];
   sidebarOpened = true;
   breadcrumbs: any;
 
@@ -45,20 +46,19 @@ export class DashboardContainerComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.sidebarItemsGroups.set('Galileo', {
         items: [
-          {id: 'home', label: 'Go to home', show: of(true), routerLink: null, faIcon: 'fill-drip'},
-
-          {id: 'tables', label: 'Tables', show: of(true), routerLink: 'tables', faIcon: 'table'},
-          {id: 'cards', label: 'Cards', show: of(true), routerLink: 'cards', faIcon: 'address-card'},
-          {id: 'auth-layouts', label: 'Auth layout', show: of(true), routerLink: 'auth-layout', faIcon: 'layer-group'},
+          {id: 'home', label: 'Go to home', show: of(true), routerLink: null, faIcon: 'home'},
+          {id: 'tables', label: 'Tables', show: of(true), routerLink: 'tables', faIcon: 'table_view'},
+          {id: 'cards', label: 'Cards', show: of(true), routerLink: 'cards', faIcon: 'dashboard'},
+          {id: 'auth-layouts', label: 'Auth layout', show: of(true), routerLink: 'auth-layout', faIcon: 'layers'},
           {
             id: 'dashboard-layouts',
             label: 'Dashboard layout',
             show: of(true),
             routerLink: 'dashboard-layout',
-            faIcon: 'layer-group'
+            faIcon: 'layers'
           },
-          {id: 'forms', label: 'Forms', show: of(true), routerLink: 'forms', faIcon: 'align-justify'},
-          {id: 'theming', label: 'Theming', show: of(true), routerLink: 'theming', faIcon: 'fill-drip'},
+          {id: 'forms', label: 'Forms', show: of(true), routerLink: 'forms', faIcon: 'list_alt'},
+          {id: 'theming', label: 'Theming', show: of(true), routerLink: 'theming', faIcon: 'dark_mode'},
           {
             id: 'user-onboarding',
             label: 'User onboarding',
@@ -66,7 +66,7 @@ export class DashboardContainerComponent implements OnInit, AfterViewInit {
             routerLink: 'user-onboarding',
             svgPath: './assets/images/logs.svg'
           },
-          {id: 'dialogs', label: 'Dialogs', routerLink: 'dialogs', faIcon: 'window-maximize', show: of(true)}
+          {id: 'dialogs', label: 'Dialogs', routerLink: 'dialogs', faIcon: 'web_asset', show: of(true)}
         ],
         groupLabel: {
           label: of('Galileo'),
@@ -81,7 +81,7 @@ export class DashboardContainerComponent implements OnInit, AfterViewInit {
         id: 'settings',
         label: 'Settings',
         routerLink: 'settings',
-        faIcon: 'arrow-alt-circle-right',
+        faIcon: 'settings',
         show: of(true)
       },
       ],
