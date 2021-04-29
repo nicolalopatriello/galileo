@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
+
 @Component({
   template: `
     <div class="d-flex w-100 flex-row gll-filter">
