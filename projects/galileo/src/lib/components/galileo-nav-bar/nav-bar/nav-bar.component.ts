@@ -28,9 +28,9 @@ import {Utils} from "../../../utils/utils";
               <p class="font-weight-bold">{{loggedUsername}}</p>
             </div>
           </div>
-          <div class="dropdown-divider"></div>
+          <div class="dropdown-divider m-0"></div>
           <ng-container *ngFor="let item of userMenuItems">
-            <div class="dropdown-divider" *ngIf="item.type == UserMenuItemType.SEPARATOR"></div>
+            <div class="dropdown-divider m-0" *ngIf="item.type == UserMenuItemType.SEPARATOR"></div>
             <button *ngIf="item.type === UserMenuItemType.ITEM"
                     class="dropdown-item btn btn-sm font-12 pt-2 pb-2"
                     type="button" [disabled]="item.disabled"
