@@ -28,7 +28,7 @@ export class ResizableDirective {
   );
 
   constructor(
-    @Inject(DOCUMENT) private readonly documentRef: Document,
+    @Inject(DOCUMENT) private readonly documentRef: any,
     @Inject(ElementRef)
     private readonly elementRef: ElementRef<HTMLElement>
   ) {}
