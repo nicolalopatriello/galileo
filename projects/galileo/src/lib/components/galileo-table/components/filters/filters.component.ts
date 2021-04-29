@@ -57,7 +57,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
         <div class="d-flex pt-1 pl-1" ngbDropdown placement="bottom-right"
              *ngIf="columnFilterConfig?.type === 'gllTextColumnFilter'
            || columnFilterConfig?.type === 'gllNumberColumnFilter'">
-            <gll-filter-icon ngbDropdownToggle class="cursor-pointer" [size]="16"  [attr.data-cy]="columnField + '-filter-options'"></gll-filter-icon>
+            <gll-filter-icon ngbDropdownToggle class="cursor-pointer" [fontSize]="16"  [attr.data-cy]="columnField + '-filter-options'"></gll-filter-icon>
           <div ngbDropdownMenu class="p-2"
                *ngIf="columnFilterConfig?.type === 'gllTextColumnFilter' || columnFilterConfig?.type === 'gllNumberColumnFilter'">
             <div>
@@ -81,7 +81,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
              *ngIf="columnFilterConfig?.type === 'gllDateColumnFilter'">
           <gll-filter-icon (click)="dialogService.open(calendarContainerDialog, {size: 'sm', backdrop: true, centered: true})"
                            class="cursor-pointer"
-                           [size]="16"  [attr.data-cy]="columnField + '-filter-options'"></gll-filter-icon>
+                           [fontSize]="16"  [attr.data-cy]="columnField + '-filter-options'"></gll-filter-icon>
         </div>
 
 

@@ -32,7 +32,7 @@ import {Utils} from "../../../utils/utils";
           <ng-container *ngFor="let item of userMenuItems">
             <div class="dropdown-divider" *ngIf="item.type == UserMenuItemType.SEPARATOR"></div>
             <button *ngIf="item.type === UserMenuItemType.ITEM"
-                    class="dropdown-item btn btn-sm font-12 pt-1 pb-1"
+                    class="dropdown-item btn btn-sm font-12 pt-2 pb-2"
                     type="button" [disabled]="item.disabled"
                     (click)="!item.disabled ? userMenuItemClick.emit(item): null">
               <i style="font-size: 20px; vertical-align: bottom" [ngStyle]="{'color': item.faIcon?.color}" class="material-icons-outlined mr-1">{{item.faIcon?.icon}}
