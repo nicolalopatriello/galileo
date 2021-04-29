@@ -23,10 +23,3 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org
       - run: npm install
-      - name: run tests
-        run: npm run e2e
-      - uses: codecov/codecov-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./dist/cypress/coverage/clover.xml
-          name: codecov-galileo
