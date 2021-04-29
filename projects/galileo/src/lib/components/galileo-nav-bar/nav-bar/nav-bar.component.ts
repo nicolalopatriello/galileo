@@ -8,7 +8,7 @@ import {Utils} from "../../../utils/utils";
   template: `
     <nav [ngStyle]="{'height': navbarHeightPx+'px'}"
          [ngClass]="{'fixed-top': fixedTop}"
-         class="navbar gll-navbar bg-lsi justify-content-end">
+         class="navbar gll-navbar justify-content-end">
       <ng-content></ng-content>
       <div class="nav-item dropdown">
         <a data-toggle="dropdown">
@@ -25,7 +25,7 @@ import {Utils} from "../../../utils/utils";
               </div>
             </div>
             <div class="d-flex text-black-50 mr-auto ml-auto mt-2">
-              <p class="font-weight-lighter">{{loggedUsername}}</p>
+              <p class="font-weight-bold">{{loggedUsername}}</p>
             </div>
           </div>
           <div class="dropdown-divider"></div>
@@ -35,11 +35,10 @@ import {Utils} from "../../../utils/utils";
                     class="dropdown-item btn btn-sm font-12 pt-1 pb-1"
                     type="button" [disabled]="item.disabled"
                     (click)="!item.disabled ? userMenuItemClick.emit(item): null">
-              <fa-icon class="mr-1" [ngStyle]="{'color': item.faIcon.color}"
-                       *ngIf="item.faIcon" [icon]="['fas', item.faIcon.icon]" size="1x"></fa-icon>
+              <i style="font-size: 20px; vertical-align: bottom" [ngStyle]="{'color': item.faIcon?.color}" class="material-icons-outlined mr-1">{{item.faIcon?.icon}}
+              </i>
               {{isObs(item.label) ? (item.label | async) : item.label}}
             </button>
-
           </ng-container>
         </div>
       </div>

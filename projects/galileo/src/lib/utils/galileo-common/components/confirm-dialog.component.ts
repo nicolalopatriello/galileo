@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import {Component, Input} from '@angular/core';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {ConfirmDialogOptions, DialogType, FontAwesomeIconColorBoolPair} from '../../../models';
 import {Observable} from 'rxjs';
 import {Utils} from '../../utils';
@@ -7,16 +7,18 @@ import {Utils} from '../../utils';
 @Component({
   selector: 'gll-confirm-dialog',
   template: `
-    <div class="modal-header text-light" [ngClass]="{'bg-danger': options?.dialogType == DialogType.DANGER, 'bg-success': options?.dialogType == DialogType.SUCCESS}">
+    <div class="modal-header text-light"
+         [ngClass]="{'bg-danger': options?.dialogType == DialogType.DANGER, 'bg-success': options?.dialogType == DialogType.SUCCESS}">
       <h4 class="modal-title" [ngClass]="{'text-white': options?.dialogType === DialogType.DANGER}">
-        <fa-icon *ngIf="options?.iconColorPair" [icon]="['fas', options?.iconColorPair.icon]"
-                 [ngStyle]="{'color': options?.iconColorPair.color}"></fa-icon>
+        <span *ngIf="options?.iconColorPair" [ngStyle]="{'color': options?.iconColorPair.color}"
+              class="material-icons-outlined">{{options.iconColorPair.icon}}</span>
         {{isObs(options?.title) ? (options?.title | async) : options?.title}}</h4>
     </div>
     <div class="modal-body mt-2">
       <p>{{isObs(options?.body) ? (options?.body | async) : options?.body}}</p>
       <div *ngIf="options?.confirmButtonCheck" class="mt-1">
-        {{'toConfirmWrite' | galileoTranslate | async}} <span class="font-weight-bold">{{isObs(options?.confirmButtonCheck) ? (options?.confirmButtonCheck | async) : options?.confirmButtonCheck}}</span>:
+        {{'toConfirmWrite' | galileoTranslate | async}} <span
+        class="font-weight-bold">{{isObs(options?.confirmButtonCheck) ? (options?.confirmButtonCheck | async) : options?.confirmButtonCheck}}</span>:
         <input data-cy="confirmButtonCheck" [(ngModel)]="confirmButtonCheckInput" ngbAutofocus class="form-control mt-1" type="text">
       </div>
     </div>

@@ -25,8 +25,8 @@ export class PasswordInputState {
 }
 
 export enum PasswordInputStateIcon {
-  EYE_CLOSED = 'eye-slash',
-  EYE_OPENED = 'eye'
+  EYE_CLOSED = 'visibility_off', // Material icons
+  EYE_OPENED = 'visibility' // Material icons
 }
 
 export enum PasswordInputTypeState {

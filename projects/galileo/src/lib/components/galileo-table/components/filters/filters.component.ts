@@ -47,9 +47,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
                   </div>
                 </div>
                 <div class="d-flex flex-column justify-content-around" *ngIf="value || valueTo">
-
-                  <fa-icon style="font-size: 13px" class="cursor-pointer clear-date-icon" [icon]="['far', 'trash-alt']"
-                           (click)="clearDateFilter()"></fa-icon>
+                  <span style="font-size: 13px" class="material-icons-outlined text-danger cursor-pointer" (click)="clearDateFilter()">delete_outline</span>
                 </div>
               </div>
 

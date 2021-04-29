@@ -8,8 +8,7 @@ import {Observable} from "rxjs";
       <div>
           <div class="modal-header">
               <h4 class="modal-title" id="modal-basic-title">
-                  <fa-icon *ngIf="iconColorPair" [icon]="['fas', iconColorPair.icon]"
-                           [ngStyle]="{'color': iconColorPair.color}"></fa-icon>
+                <span [ngStyle]="{'color': iconColorPair.color}" class="material-icons-outlined">{{iconColorPair.icon}}</span>
                   {{title}}
               </h4>
           </div>
@@ -21,7 +20,6 @@ import {Observable} from "rxjs";
         </div>
       </div>
   `,
-  styles: []
 })
 export class DialogWrapperComponent {
   @Input() title: string;

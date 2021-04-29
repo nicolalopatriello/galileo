@@ -93,7 +93,7 @@ export class TableComponent implements OnInit {
         field: 'isAdmin',
         headerName: 'Admin',
         gllTableRenderer: 'gllTableBooleanRenderer',
-        trueFaIcon: {color: 'green', icon: 'user-shield'},
+        trueFaIcon: {color: 'green', icon: 'shield'},
         falseFaIcon: {color: 'red', icon: 'user'},
         helpMessage: {type: 'tooltip', message: 'This is a short message about Admin field.'},
       },
@@ -104,7 +104,7 @@ export class TableComponent implements OnInit {
       }
     ],
     actions: {
-      delete: {builtIn: true, show: false, disabled: () => false, showDeleteConfirmInput: true}
+      delete: {builtIn: true, show: true, disabled: () => false, showDeleteConfirmInput: true}
     },
     extraActions: [
       {

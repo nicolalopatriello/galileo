@@ -36,11 +36,8 @@ import {Utils} from '../../../utils/utils';
                 sidebarItemsGroups.get(groupLabel)?.groupLabel &&
                 (sidebarItemsGroups.get(groupLabel).groupLabel.show | async) ? '5px solid ' + (sidebarItemsGroups.get(groupLabel).groupLabel.activeItemGroupBorderColor | async) : null}"
                 [ngClass]="{'sidenav--closed': !sideBarOpened}">
-                <fa-icon
-                  *ngIf="item.faIcon"
-                  [icon]="['fas', item.faIcon]"
-                  class="fa-1x" [ngClass]="{'item-icon': !rla.isActive,
-                              'item-icon-active': rla.isActive}"></fa-icon>
+                <span *ngIf="item.faIcon" [ngClass]="{'item-icon': !rla.isActive,
+                              'item-icon-active': rla.isActive}" class="material-icons-outlined">{{item.faIcon}}</span>
                 <img *ngIf="item.svgPath" [src]="item.svgPath" style="width: 20px">
                 <div [ngClass]="{'pl-2': sideBarOpened}" class="d-flex justify-content-center"
                      *ngIf="sideBarOpened">

@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
         <ul class="pagination pagination-sm">
           <li (click)="(currentPage -1 ) >= 0 ? selectPage.emit(currentPage - 1) : null" class="page-item">
             <a class="page-link cursor-pointer">
-              <fa-icon [icon]="['fas', 'chevron-left']"></fa-icon>
+              <span style="font-size: 13px; vertical-align: middle" class="material-icons-outlined">navigate_before</span>
             </a>
           </li>
           <li class="page-item">
@@ -16,7 +16,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
           </li>
           <li (click)="(currentPage + 1) < numberOfPages ? selectPage.emit(currentPage + 1) : null" class="page-item">
             <a class="page-link cursor-pointer">
-              <fa-icon [icon]="['fas', 'chevron-right']"></fa-icon>
+              <span style="font-size: 13px; vertical-align: middle" class="material-icons-outlined">navigate_next</span>
             </a>
           </li>
         </ul>

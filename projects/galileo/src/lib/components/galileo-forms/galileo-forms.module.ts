@@ -5,7 +5,6 @@ import { InputComponent } from './input.component';
 import {GalileoCommonModule} from '../../utils/galileo-common/galileo-common.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import { FileUploadComponent } from './file-upload/file-upload.component';
-import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {NgbPopoverModule, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 
 
@@ -16,7 +15,6 @@ import {NgbPopoverModule, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
         CommonModule,
         GalileoCommonModule,
         ReactiveFormsModule,
-        FontAwesomeModule,
         NgbPopoverModule,
         NgbTooltipModule
     ],
