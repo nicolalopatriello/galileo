@@ -26,6 +26,8 @@ export interface GalileoTranslations {
   dateEquals: string;
   range: string;
   noData: string;
+  maxFileSize: string;
+  dragFileHere: string;
 }
 
 export const gllEn: GalileoTranslations = {
@@ -55,7 +57,9 @@ export const gllEn: GalileoTranslations = {
   after: 'After',
   dateEquals: 'On',
   range: 'Range',
-  noData: 'No data.'
+  noData: 'No data.',
+  maxFileSize: 'Max file size',
+  dragFileHere: 'Drag &amp; drop file here or'
 };
 
 export const gllIt: GalileoTranslations = {
@@ -85,5 +89,7 @@ export const gllIt: GalileoTranslations = {
   after: 'Dopo il',
   dateEquals: 'Il',
   range: 'Intevallo',
-  noData: 'Nessun dato.'
+  noData: 'Nessun dato.',
+  maxFileSize: 'Dimensione massima file',
+  dragFileHere: 'Trascina qui il file oppure'
 };
