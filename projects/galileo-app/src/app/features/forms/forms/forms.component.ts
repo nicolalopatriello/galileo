@@ -54,6 +54,7 @@ Inside class just create FormGroup
   userFormGroup: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.pattern('a')]),
     surname: new FormControl('', [Validators.required]),
+    fileToUpload: new FormControl('', [Validators.required]),
     admin: new FormControl(false)
   });
 

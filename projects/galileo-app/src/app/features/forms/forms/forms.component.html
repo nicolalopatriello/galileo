@@ -20,6 +20,11 @@
         </gll-input>
 
         <gll-input [associatedFormGroup]="userFormGroup"
+                   [label]="' '">
+          <gll-file-upload id="fileToUpload" formControlName="fileToUpload"></gll-file-upload>
+        </gll-input>
+
+        <gll-input [associatedFormGroup]="userFormGroup"
                    [inputLabelPosition]="'left'"
                    [helpMessage]="{message: 'This is a short message about Name input', type: 'tooltip'}"
                    [label]="'Admin'">
