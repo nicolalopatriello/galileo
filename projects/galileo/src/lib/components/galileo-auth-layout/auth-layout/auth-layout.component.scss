@@ -13,7 +13,7 @@ $gll-auth-layout--only-form-bg: var(--gll-auth-layout--only-form-bg);
 .gll-auth-layout-grid-container--carousel {
   overflow: hidden;
   display: grid;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 75% 25%;
   grid-template-rows: 1fr;
   gap: 1px 1px;
   grid-template-areas: "carousel-content form-content";
