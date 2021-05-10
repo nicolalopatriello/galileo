@@ -12,7 +12,7 @@ export class FilterParser {
         let parsedString = '';
         if (mapKeys.length > 0) {
           mapKeys.forEach(k => {
-              if (t.get(k).value.toString().length > 0) {
+              if (!!t.get(k).value && t.get(k).value.toString().length > 0) {
                 parsedString += `${t.get(k).columnField}${FilterParser.getSpringOperator(
                   t.get(k).filterOption)}${t.get(k).value}${t.get(k).filterOption === 'inRange' ? `|${t.get(k).valueTo}` : ''},`;
               }

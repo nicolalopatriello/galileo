@@ -1,15 +1,16 @@
 <div class="h2 font-weight-bold">Tables</div>
-<div style="height: 300px; max-height: 300px; min-height: 300px">
+<!--<div style="height: 300px; max-height: 300px; min-height: 300px">
   <div class="w-100">Client side</div>
 <gll-table [tableConfig]="tableConfig" [data]="tableData" (extraAction)="onExtraAction($event)"></gll-table>
-</div>
+</div>-->
 
-<!--<div style="height: 300px; max-height: 300px; min-height: 300px">
+<div style="height: 300px; max-height: 300px; min-height: 300px">
   <div class="w-100">Spring Server side</div>
   <div class="w-100 d-flex flex-row justify-content-center">
     <button [disabled]="isDataLoading" class="btn btn-outline-primary" (click)="testLoadingData()">Test Loading data</button>
   </div>
   <gll-table [tableConfig]="tableConfigServerSide"
+             (tableSort)="onTableSort($event)"
              (tableFilter)="onTableServerSideFilter($event)"
              (extraAction)="onExtraActionFromServer($event)"
              [loadingData]="isDataLoading"
@@ -19,7 +20,7 @@
       {{currentServerSideFilter}}
     </pre>
   </div>
-</div>-->
+</div>
 <!--
 
 <markdown [data]="markDown"></markdown>
