@@ -10,13 +10,19 @@
           [style.maxWidth.px]="c.widthPx"
       >{{isObs(c.headerName) ? (c.headerName | async) : c.headerName}}
         <ng-container *ngIf="c.helpMessage">
-          <i [ngbTooltip]="helpContainer" style="font-size: 16px; vertical-align: text-bottom" class="material-icons-outlined cursor-pointer">help_outline</i>
+          <em [ngbTooltip]="helpContainer" style="font-size: 16px; vertical-align: text-bottom"
+             class="material-icons-outlined cursor-pointer">help_outline</em>
           <ng-template #helpContainer>
             <div class="p-1">
               {{isObs(c.helpMessage.message) ? (c.helpMessage.message | async) : c.helpMessage.message}}
             </div>
           </ng-template>
         </ng-container>
+
+        <ng-container *ngIf="c.sortEnabled">
+            <gll-sort-field [field]="c.field" (sortBy)="onColumnSort($event)"></gll-sort-field>
+        </ng-container>
+
       </th>
       <th class="gll-actions-column" *ngIf="atLeastOneAction()" scope="col"></th>
     </tr>
@@ -99,7 +105,8 @@
           <div container="body" ngbDropdown class="d-inline-block">
             <ng-container
               *ngIf="(tableConfig?.hideActionsMenu | async) == undefined ? true : !(tableConfig?.hideActionsMenu | async)">
-              <span  id="gll-table-dropdown-menu" ngbDropdownToggle *ngIf="showMenuBtn(gllTableContainer.id, rowIdx)" class="material-icons-outlined cursor-pointer">menu</span>
+              <span id="gll-table-dropdown-menu" ngbDropdownToggle *ngIf="showMenuBtn(gllTableContainer.id, rowIdx)"
+                    class="material-icons-outlined cursor-pointer">menu</span>
             </ng-container>
             <div ngbDropdownMenu [attr.data-cy]="'gll-table-actions-menu'">
               <ng-container

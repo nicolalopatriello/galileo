@@ -66,13 +66,14 @@ export class TableComponent implements OnInit {
           type: 'gllDateColumnFilter',
           options: ['equals', 'greaterThanOrEqual', 'lessThanOrEqual', 'inRange']
         },
+        sortEnabled: true,
       },
       {
         field: 'name',
         headerName: of('Name'),
         filterConfig: {type: 'gllTextColumnFilter', options: ['contains']},
         helpMessage: {type: 'tooltip', message: 'This is a short message about Name field.'},
-
+        sortEnabled: true,
       },
       {
         field: 'surname',
@@ -141,12 +142,14 @@ export class TableComponent implements OnInit {
           type: 'gllDateColumnFilter',
           options: ['equals', 'greaterThanOrEqual', 'lessThanOrEqual', 'inRange']
         },
+        sortEnabled: true,
       },
       {
         field: 'name',
         headerName: of('Name'),
         filterConfig: {type: 'gllTextColumnFilter', options: ['contains']},
         helpMessage: {type: 'tooltip', message: 'This is a short message about name field.'},
+        sortEnabled: true,
       },
       {
         field: 'surname',
@@ -239,5 +242,9 @@ where \`tableConfig\` is
   testLoadingData() {
     this.isDataLoading = true;
     setTimeout(_ => this.isDataLoading = false, 50000);
+  }
+
+  onTableSort($event: any) {
+    console.log(JSON.stringify($event))
   }
 }

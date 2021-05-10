@@ -184,15 +184,20 @@ export type columnFilterType =
   'gllTextColumnFilter'
   | 'gllNumberColumnFilter'
   | 'gllDateColumnFilter'
-  | 'gllSelectMenuColumnFilter'
+  | 'gllSelectMenuColumnFilter';
 
 export type columnFilterOptions = 'equals' | 'notEqual' | 'lessThanOrEqual'
   | 'greaterThanOrEqual' | 'inRange' | 'contains' | 'startsWith';
 
 export interface ColumnFilterEvent {
-  filterOption: columnFilterOptions;
-  filterType: columnFilterType;
-  columnField: string;
-  value: string | number;
+  filterOption?: columnFilterOptions;
+  filterType?: columnFilterType;
+  columnField?: string;
+  value?: string | number;
   valueTo?: string | number;
+  sortBy?: 'asc' | 'desc';
+}
+export interface ColumnSortEvent {
+  columnField: string;
+  value: 'asc' | 'desc';
 }

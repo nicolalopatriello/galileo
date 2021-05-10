@@ -14,7 +14,7 @@ import {
   ViewChild
 } from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-import {ColumnFilterConfig, ColumnFilterEvent, columnFilterOptions, columnFilterType} from './components/filters';
+import {ColumnFilterConfig, ColumnFilterEvent, columnFilterOptions, columnFilterType, ColumnSortEvent} from './components/filters';
 import {FontAwesomeIconColorBoolPair, GalileoHelpMessage} from '../../models';
 import {TableCellDirective} from './table-cell.directive';
 import {FilterParser} from './utils/filter-parser';
@@ -39,14 +39,21 @@ export class TableComponent implements OnInit, OnChanges, AfterContentChecked, O
 
   @Output() deleteConfirm: EventEmitter<any> = new EventEmitter();
   @Output() tableFilter: EventEmitter<any> = new EventEmitter<any>();
+  @Output() tableSort: EventEmitter<any> = new EventEmitter<any>();
   @Output() extraAction: EventEmitter<{ eventKey: string, data: any }> = new EventEmitter<{ eventKey: string, data: any }>();
   @Output() checkboxRendererEvent: EventEmitter<{ checked: boolean, data: any, field: string }> = new EventEmitter<{ checked: boolean, data: any, field: string }>();
   @Output() rowSelected: EventEmitter<any> = new EventEmitter<any>();
 
   public currentRowToDelete: null;
+
   private currentFilters: Map<string, ColumnFilterEvent> = new Map<string, ColumnFilterEvent>();
+  private currentSorts: Map<string, ColumnSortEvent> = new Map<string, ColumnSortEvent>();
+
   private filtersSubject: Subject<Map<string, ColumnFilterEvent>> = new Subject<Map<string, ColumnFilterEvent>>();
+  private sortsSubject: Subject<Map<string, ColumnSortEvent>> = new Subject<Map<string, ColumnSortEvent>>();
+
   private tableFilterSubject: Subject<any> = new Subject<any>();
+  private tableSortsSubject: Subject<any> = new Subject<any>();
 
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -98,6 +105,10 @@ export class TableComponent implements OnInit, OnChanges, AfterContentChecked, O
       takeUntil(this.destroy$)
     ).subscribe(t => this.tableFilter.emit(t));
 
+    this.tableSortsSubject.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(t => this.tableSort.emit(t));
+
     if (this.tableConfig.mode === 'clientSide') {
       this.clientSideInformation = {
         ...this.clientSideInformation,
@@ -125,6 +136,19 @@ export class TableComponent implements OnInit, OnChanges, AfterContentChecked, O
           break;
       }
     });
+
+    this.sortsSubject.pipe(
+    ).subscribe(t => {
+      const parsed = this.parseSorts(t);
+      switch (this.tableConfig.mode) {
+        case 'clientSide':
+          throw Error('Not implemented');
+        case 'serverSide':
+          this.tableSortsSubject.next(parsed);
+          break;
+      }
+    });
+
   }
 
 
@@ -168,8 +192,25 @@ export class TableComponent implements OnInit, OnChanges, AfterContentChecked, O
     this.filtersSubject.next(this.currentFilters);
   }
 
+  onColumnSort($event: ColumnSortEvent) {
+    if ($event.value === null) {
+      this.currentSorts.delete($event.columnField);
+    } else {
+      this.currentSorts.set($event.columnField, $event);
+    }
+    this.sortsSubject.next(this.currentSorts);
+  }
+
   private parseFilter(t: Map<string, ColumnFilterEvent>): any {
     return FilterParser.getHttpParams(this.tableConfig.tableFilterParser, t);
+  }
+
+  private parseSorts(t: Map<string, ColumnSortEvent>): Array<ColumnSortEvent> {
+    const arr: Array<ColumnSortEvent> = [];
+    Array.from(t.keys()).forEach(k => {
+      arr.push({columnField: k, value: t.get(k).value});
+    });
+    return arr;
   }
 
   private handleClientSideFilter(filters: Map<string, ColumnFilterEvent>) {
