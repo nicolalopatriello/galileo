@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ColumnSortEvent} from './filters';
+import {ColumnSortEvent} from './models';
 
 @Component({
   selector: 'gll-sort-field',

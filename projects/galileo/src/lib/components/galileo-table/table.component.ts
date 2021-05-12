@@ -14,7 +14,7 @@ import {
   ViewChild
 } from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-import {ColumnFilterConfig, ColumnFilterEvent, columnFilterOptions, columnFilterType, ColumnSortEvent} from './components/filters';
+import {ColumnFilterConfig, ColumnFilterEvent, columnFilterOptions, columnFilterType} from './components/filters';
 import {FontAwesomeIconColorBoolPair, GalileoHelpMessage} from '../../models';
 import {TableCellDirective} from './table-cell.directive';
 import {FilterParser} from './utils/filter-parser';
@@ -22,6 +22,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Utils} from '../../utils/utils';
 import {GalileoLanguageService} from '../../services';
 import {debounceTime, map, take, takeUntil} from 'rxjs/operators';
+import {ColumnSortEvent} from './components';
 
 @Component({
   selector: 'gll-table',
