@@ -39,6 +39,7 @@ export * from './lib/components/galileo-sidebar/sidebar-item';
 export * from './lib/components/galileo-table/galileo-table.module';
 export * from './lib/components/galileo-table/table.component';
 export * from './lib/components/galileo-table/components/pagination.component';
+export * from './lib/components/galileo-table/components/models/';
 
 export * from './lib/components/galileo-forms/galileo-forms.module';
 export * from './lib/components/galileo-forms/form.component';
