@@ -197,7 +197,3 @@ export interface ColumnFilterEvent {
   valueTo?: string | number;
   sortBy?: 'asc' | 'desc';
 }
-export interface ColumnSortEvent {
-  columnField: string;
-  value: 'asc' | 'desc';
-}
