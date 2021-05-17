@@ -67,7 +67,8 @@ export class TableComponent implements OnInit {
           options: ['equals', 'greaterThanOrEqual', 'lessThanOrEqual', 'inRange']
         },
         sorting: {
-          enabled: true
+          enabled: true,
+          default: 'asc'
         },
       },
       {
@@ -76,7 +77,8 @@ export class TableComponent implements OnInit {
         filterConfig: {type: 'gllTextColumnFilter', options: ['contains']},
         helpMessage: {type: 'tooltip', message: 'This is a short message about Name field.'},
         sorting: {
-          enabled: true
+          enabled: true,
+          default: 'asc'
         },
       },
       {
@@ -147,7 +149,8 @@ export class TableComponent implements OnInit {
           options: ['equals', 'greaterThanOrEqual', 'lessThanOrEqual', 'inRange']
         },
         sorting: {
-          enabled: true
+          enabled: true,
+          default: 'desc'
         },
       },
       {
@@ -156,7 +159,8 @@ export class TableComponent implements OnInit {
         filterConfig: {type: 'gllTextColumnFilter', options: ['contains']},
         helpMessage: {type: 'tooltip', message: 'This is a short message about name field.'},
         sorting: {
-          enabled: true
+          enabled: true,
+          default: 'asc'
         },
       },
       {
