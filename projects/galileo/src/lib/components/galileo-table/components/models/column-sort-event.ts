@@ -1,4 +1,6 @@
 export interface ColumnSortEvent {
   columnField: string;
-  value: 'asc' | 'desc';
+  value: sortType;
 }
+
+export type sortType = 'asc' | 'desc';

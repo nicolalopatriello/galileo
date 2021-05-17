@@ -19,8 +19,8 @@
           </ng-template>
         </ng-container>
 
-        <ng-container *ngIf="c.sortEnabled">
-            <gll-sort-field [field]="c.field" (sortBy)="onColumnSort($event)"></gll-sort-field>
+        <ng-container *ngIf="c.sorting?.enabled">
+            <gll-sort-field [field]="c.field" [default]="c.sorting?.default" (sortBy)="onColumnSort($event)"></gll-sort-field>
         </ng-container>
 
       </th>
