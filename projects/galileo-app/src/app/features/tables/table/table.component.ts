@@ -66,14 +66,20 @@ export class TableComponent implements OnInit {
           type: 'gllDateColumnFilter',
           options: ['equals', 'greaterThanOrEqual', 'lessThanOrEqual', 'inRange']
         },
-        sortEnabled: true,
+        sorting: {
+          enabled: true,
+          default: 'asc'
+        },
       },
       {
         field: 'name',
         headerName: of('Name'),
         filterConfig: {type: 'gllTextColumnFilter', options: ['contains']},
         helpMessage: {type: 'tooltip', message: 'This is a short message about Name field.'},
-        sortEnabled: true,
+        sorting: {
+          enabled: true,
+          default: 'asc'
+        },
       },
       {
         field: 'surname',
@@ -142,14 +148,20 @@ export class TableComponent implements OnInit {
           type: 'gllDateColumnFilter',
           options: ['equals', 'greaterThanOrEqual', 'lessThanOrEqual', 'inRange']
         },
-        sortEnabled: true,
+        sorting: {
+          enabled: true,
+          default: 'desc'
+        },
       },
       {
         field: 'name',
         headerName: of('Name'),
         filterConfig: {type: 'gllTextColumnFilter', options: ['contains']},
         helpMessage: {type: 'tooltip', message: 'This is a short message about name field.'},
-        sortEnabled: true,
+        sorting: {
+          enabled: true,
+          default: 'asc'
+        },
       },
       {
         field: 'surname',

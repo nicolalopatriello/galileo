@@ -22,7 +22,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Utils} from '../../utils/utils';
 import {GalileoLanguageService} from '../../services';
 import {debounceTime, map, take, takeUntil} from 'rxjs/operators';
-import {ColumnSortEvent} from './components';
+import {ColumnSortEvent, sortType} from './components';
 
 @Component({
   selector: 'gll-table',
@@ -372,7 +372,10 @@ export interface ColumnDef {
   headerName: string | Observable<string>;
   field: string;
   widthPx?: number;
-  sortEnabled?: boolean;
+  sorting?: {
+    enabled: boolean,
+    default?: sortType;
+  };
   filterConfig?: ColumnFilterConfig;
   gllTableRenderer?: GllTableRenderer;
   gllTableCustomRender?: Function;
