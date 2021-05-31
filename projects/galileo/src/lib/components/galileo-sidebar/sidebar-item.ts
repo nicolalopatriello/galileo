@@ -7,6 +7,6 @@ export interface SidebarItem {
   show: Observable<boolean>;
   active?: boolean;
   disabled?: boolean;
-  faIcon?: any; //todo restore to IconProp
+  faIcon?: any;
   svgPath?: string;
 }

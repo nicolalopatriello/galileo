@@ -16,7 +16,9 @@ import {Observable} from "rxjs";
               <ng-content></ng-content>
           </div>
         <div *ngIf="showCloseButton" class="modal-footer">
-          <button (click)="closeButtonClick.emit(true)" class="btn btn-outline-secondary">Close</button> <!--todo translate 'Close' label-->
+          <button (click)="closeButtonClick.emit(true)" class="btn btn-outline-secondary">
+            {{'close' | galileoTranslate | async}}
+          </button>
         </div>
       </div>
   `,
