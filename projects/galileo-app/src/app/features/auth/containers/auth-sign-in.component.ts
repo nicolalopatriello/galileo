@@ -19,7 +19,6 @@ import {SignAction, SignActionType} from '../../../../../../galileo/src/lib/mode
 })
 export class AuthSignInComponent {
 
-
   constructor(
               private router: Router) {
   }
