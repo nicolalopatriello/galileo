@@ -30,7 +30,9 @@ align-items-center d-flex flex-column justify-content-center sign-in__container"
     <div class="row-cols-6 mt-3 d-flex justify-content-center" *ngIf="usernameLabel">
       <div class="col-10">
         <label for="username" class="text-secondary">{{usernameLabel}}</label>
-        <input id="username" class="form-control" type="text" formControlName="username" autocomplete="lsi-username">
+        <input
+          (change)="fixAutoFill($event, 'a')"
+          id="username" class="form-control" type="text" formControlName="username" autocomplete="lsi-username">
       </div>
     </div>
 
@@ -43,7 +45,7 @@ align-items-center d-flex flex-column justify-content-center sign-in__container"
     <div class="row-cols-6 d-flex justify-content-center" *ngIf="passwordLabel">
       <div class="col-10 d-flex align-items-center">
         <div class="input-group">
-          <input id="password" class="col-10 form-control" autocomplete="lsi-password"
+          <input #pwd id="password" class="col-10 form-control" autocomplete="lsi-password"
                  [type]="passwordInputState.inputType"
                  formControlName="password">
           <div class="col-2 input-group-append m-0 p-0">
@@ -64,7 +66,7 @@ align-items-center d-flex flex-column justify-content-center sign-in__container"
                   (click)="signUp()">{{signUpButtonLabel}}</button>
           <button class="btn ml-1 btn-primary gll-signin-btn" (click)="signIn()"
                   [ngClass]="{'sign-in__disabled': loginFormGroup.invalid, 'w-50': !!signUpButtonLabel, 'w-100': !signUpButtonLabel}"
-                  [disabled]="loginFormGroup.invalid">
+                  [disabled]="forceEnabled ? false : loginFormGroup.invalid">
             {{signInButtonLabel}}
           </button>
         </div>
