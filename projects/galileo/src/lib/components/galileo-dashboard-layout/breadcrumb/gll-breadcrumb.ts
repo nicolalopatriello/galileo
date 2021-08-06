@@ -1,4 +1,6 @@
+import {Observable} from 'rxjs';
+
 export interface GllBreadCrumb {
-  label: string;
+  label: string | Observable<string>;
   url: string;
 }
