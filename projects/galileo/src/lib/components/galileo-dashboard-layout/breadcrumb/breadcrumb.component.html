@@ -2,7 +2,7 @@
   <li *ngFor="let breadcrumb of breadcrumbs; let last = last">
     <span [ngClass]="{'font-weight-bold' : last}" class="cursor-pointer"
           (click)="navigate(breadcrumb.url)" routerLinkActive="router-link-active">
-      {{ breadcrumb.label}}
+      {{isObs(breadcrumb.label) ? (breadcrumb.label | async) : breadcrumb.label}}
     </span>
   </li>
 </ol>
